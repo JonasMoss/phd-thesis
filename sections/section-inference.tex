@@ -313,7 +313,8 @@ That is, $\tilde{p}=\argmin_{p\in\mathcal{P}}E_{\theta\mid\textrm{data}}[d_{KL}(
 where $\mathcal{P}$ is the space of all densities. To see why, observe
 that
 \begin{eqnarray}
-E_{\theta\mid\textrm{data}}(\int[\log f_{\theta}(x)-\log(g)]f_{\theta}(x)dx) & = & E_{\theta\mid\textrm{data}}[H(f_{\theta},g)]-E_{\theta\mid\textrm{data}}[H(f_{\theta})],\label{eq:cross-entropy equality}\\
+ &  & E_{\theta\mid\textrm{data}}\left(\int[\log f_{\theta}(x)-\log(g)]f_{\theta}(x)dx\right)\nonumber \\  
+ & = & E_{\theta\mid\textrm{data}}[H(f_{\theta},g)]-E_{\theta\mid\textrm{data}}[H(f_{\theta})],\label{eq:cross-entropy equality}\\
  & = & H(\tilde{p},g)-E_{\theta\mid\textrm{data}}[H(f_{\theta})],\nonumber 
 \end{eqnarray}
 and that this is minimized in $g=\tilde{p}$, as the true distribution
@@ -490,8 +491,7 @@ to be important to indicate how strong the evidence against $H_{0}$''.
 idea that \emph{p}-values are a measure of evidence.
 
 One reason why \emph{p}-values are not measures is evidence is the
-lack of explicit alternative hypotheses. That \emph{p}-values\emph{
-}are usually framed without explicit alternative hypotheses is sometimes
+lack of explicit alternative hypotheses. That \emph{p}-values are usually framed without explicit alternative hypotheses is sometimes
 framed as a strength. \cite[p. 308]{Barnard1962-rz} wrote that ``the
 simple tests of significance arise ,it seems to me, in situations
 where we do not have a parameter space of hypotheses; we have only
