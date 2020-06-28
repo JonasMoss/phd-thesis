@@ -170,23 +170,23 @@ on matching \parencite{Rassler2012-rp}.You need to fill out
 \text{\ensuremath{?}} & \rho_{23} & 1
 \end{array}\right]
 \]
-subject only to the constaint that $\Phi$ is positive definite. 
+subject only to the constraint that $\Phi$ is positive definite. 
 \begin{proposition}
 \label{prop:correlation identification}The following identification
 sets are true.
-\begin{enumerate}
-\item When $\rho_{23}$ and $\rho_{12}$ are known, the identification region
+\begin{itemize}
+\item[(i)] When $\rho_{23}$ and $\rho_{12}$ are known, the identification region
 for $\rho_{13}$ is the open interval
 \begin{equation}
 \rho_{13}\in\rho_{12}\rho_{23}\pm\sqrt{\rho_{12}^{2}\rho_{23}^{2}-\rho_{23}^{2}-\rho_{12}^{2}+1}.\label{eq:identification set correlation}
 \end{equation}
 In particular, when $\rho_{12}=\rho_{23}=\rho$, the partial identification
 set is $(2\rho^{2}-1,1)$. 
-\item If only $\rho_{12}$ is known, the identification region for $(\rho_{13},\rho_{23})$
+\item[(ii)] If only $\rho_{12}$ is known, the identification region for $(\rho_{13},\rho_{23})$
 is the ellipse width $2\sqrt{1+\rho_{12}}$ and height $2\sqrt{1-\rho_{12}}$,
 rotated $\pi/4$ degrees. In particular, when $\rho_{12}=0$, the
 identification set is the open Euclidean unit ball in $\mathbb{R}^{2}$.
-\end{enumerate}
+\end{itemize}
 \end{proposition}
 
 \begin{proof}
@@ -401,7 +401,6 @@ We want to know the supply and demand functions, or equivalently,
 $(\alpha_{s},\beta_{s},\alpha_{d},\beta_{d})$. We know the mean $\mu$
 and covariance $\Sigma$ of $(p,q)$:
 \end{example}
-
 \begin{eqnarray*}
 \mu & = & \left(\frac{\alpha_{d}-\alpha_{s}}{\beta_{s}-\beta_{d}},\frac{\beta_{s}\alpha_{d}-\beta_{d}\alpha_{s}}{\beta_{s}-\beta_{d}}\right)\\
 \Sigma & = & \frac{1}{(\beta_{s}-\beta_{d})^{2}}\left[\begin{array}{cc}
