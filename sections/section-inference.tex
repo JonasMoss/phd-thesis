@@ -4,11 +4,11 @@ Bayesians are in a priveleged position vis-à-vis frequents. Any problem
 has a unique solution for a Bayesian provided he can answer three
 questions \parencite[Chapter 2]{Robert2007-ri}:
 \begin{enumerate}
-\item What is the structure of reality? He needs a likelihood for the problem. 
-\item What do I know about reality? He needs a prior for the parameters
+\item "What is the structure of reality?" He needs a likelihood for the problem. 
+\item "What do I know about reality?" He needs a prior for the parameters
 of the likelihood.
-\item What do I want to do, or what to I want to know? He needs a loss function
-to quantify the severity of choosing the wrong act.
+\item "What do I want to do, or what to I want to know?" He needs a loss function
+to quantify the consequences of choosing the wrong act.
 \end{enumerate}
 The Bayesian does not only claim that every problem has a unique solution.
 His claim is much stronger. Given a likelihood, a prior, and a loss
@@ -21,7 +21,7 @@ Frequentist seldom have this luxury. Sometimes solutions with desireable
 features do not exists, sometimes it is hard to find candidate confidence
 set, sometimes optimality criteria do not hold. Since frequentist
 methods usually aren't unique, frequently based on intuition, and
-do not have a common source, they are famously called \emph{ad hoc
+can be based on severely conflicting criteria, they are famously called \emph{ad hoc
 methods}. \cite[p. xxiii]{Jaynes2003-ky} speaks for many Bayesians
 in his diatribe against frequentist statistics:
 \begin{quote}
@@ -52,7 +52,7 @@ statistics we assume a known likelihood, but not always. In particular,
 semi-parametric statistics often assumes no likelihood. For instance,
 the \cite{Cox1972-xd} model assumes only a partially known likelihood,
 while the maximum score model of \cite{Manski1975-gl} makes no likelihood
-assumptions at all. Moreover, non-parametric methods such as kernel
+assumptions at all. Moreover, non-parametric methods, such as kernel
 density estimation \parencite{Silverman1986-nt} do not involve likelihoods
 at all. Curiously, the archetypal non-parametric estimator, the histogram,
 can be framed as a maximum likelihood problem, complete with its own
@@ -81,7 +81,7 @@ $Q(A)$ is finite if and only if $A$ is finite, and since a countable
 union if finite sets is countable, $Q$ is not $\sigma$-finite.
 \end{example}
 
-Since $\{P_{\theta}\},\,\theta\in[0,1]$ has no likelihoods, the Bayesian
+Since $\{P_{\theta}\},\,\theta\in[0,1]$ has no likelihood, the Bayesian
 is lost. He might have a prior on $\theta$, for instance a $\textrm{Beta}(2,2)$,
 but that does not help him. He might want to use the quadratic loss
 function, but he can't. Perhaps he could ditch the idea of likelihoods
@@ -110,9 +110,9 @@ somehow not needed for the problem.
 \begin{example}[Robins--Ritov--Wasserman]
  This example due to \cite{Robins2012-fr}. We will consider a sequence
 of $n$ independent and identically distributed variables $(X_{i},Y_{i},Y_{i}^{*},R_{i})$,
-where $X_{i}\in[0,1]$ is uniform, and $R_{i}$ is binary, $Y_{i}^{*}\in\{0,1\}$,
-and $Y\in\{\textrm{NA},0,1\}$. Here $Y^{*}$ is unobserved; instead
-of observing $Y_{i}^{*}$, we observe 
+where $X_{i}\in[0,1]$ is uniform,  $R_{i}$ is binary, $Y_{i}^{*}\in\{0,1\}$,
+and $Y\in\{\textrm{NA},0,1\}$. Here $Y_i^{*}$ are unobserved; instead
+of observing $Y_{i}^{*}$, we observe
 \[
 Y=\begin{cases}
 Y^{*}, & R=1,\\
@@ -122,7 +122,6 @@ Y^{*}, & R=1,\\
 Here $R$ is allowed to depend on $X$, with \emph{known} conditional
 probability $\pi(x)=p(r=1\mid x)$, where we assume there $\delta>0$
 such that $\pi(x)\geq0$. The joint density of $(X,Y,R$) is
-
 \begin{eqnarray*}
 p(x,y,r\mid\theta) & = & \begin{cases}
 p(y\mid x,\theta)\pi(x), & r=1,\\{}
@@ -133,7 +132,6 @@ Our goal is to estimate $\psi=P(Y_{i}^{*}=1)=\int p(y\mid x,\theta)dx$.
 We do not wish to assume any specific parametric form form the true
 $p(y\mid x,\theta)$; in fact, we will only assume that $\delta\leq p(y\mid x)\leq1-\delta$
 for some $\delta>0$. Anyhow, the posterior is proportional to
-
 \begin{eqnarray*}
 p(\theta\mid\textrm{data}) & \propto & \prod_{r_{i}=1}p(y\mid x_{i},\theta)\pi(x_{i})\prod_{r_{i}=0}1\{y=\textrm{NA}\}(1-\pi(x)),\\
  & \propto & \prod_{r_{i}=1}\pi(x_{i})\prod_{r_{i}=1,}p(y\mid x_{i},\theta).\\
@@ -141,11 +139,10 @@ p(\theta\mid\textrm{data}) & \propto & \prod_{r_{i}=1}p(y\mid x_{i},\theta)\pi(x
 \end{eqnarray*}
 Hence the posterior does not depend on $\pi(x)$ unless the prior
 does. However, \cite{Robins1997-uv} proved that any uniformly consistent
-estimator of $\psi$ must depend on $\pi(x)$. 
+estimator of $\psi$ must depend on $\pi(x)$. In this sense, any Bayesian estimator of $\hat{\theta}$ is inadequate. No matter what likelihood and prior you choose, the estimator of $\psi$ won't be uniformly consistent.
 
-There is a well-known uniformly consistent estimators of $\psi$,
+On the other hand, there is a well-known uniformly consistent estimator of $\psi$,
 namely the \emph{Horwitz--Thompson} estimator
-
 \begin{equation}
 \hat{\psi}=\frac{1}{n}\sum_{i=1}^{n}\frac{Y_{i}R_{i}}{\pi(X_{i})}.\label{eq:Horwitz-Thompson}
 \end{equation}
@@ -158,11 +155,10 @@ P(\psi\in C)\geq1-\alpha\quad(P\in\mathcal{P})
 for all $n$.
 \end{example}
 
-The Robins--Wasserman does not matter to a Bayesian that firmly knows
-the likelihood and the prior. For him, the Bayes' theorem is the best
-you could possible do. The Bayesians that are troubled by this example
-are the bounded Bayesians, those who have only limited trust in their
-priors and likelihoods, and try to make do make appriximations. In
+The Robins--Wasserman does not matter to a Bayesian that firmly knows the likelihood and the prior. For him, the Bayes' theorem is the best you could possible do. And by Doob's consistency theorem \parencite{Miller2018-xq}, if you know your prior is true, every Bayesian procedure is consistent.
+
+The Bayesians that are troubled by this example are the bounded Bayesians, those who have only limited trust in their
+priors and likelihoods, and try to make do with approximations. In
 parametric problems, the bounded Bayesians are relatively safe. Due
 to the Bernstein--von Mises phenomenon \parencite[Section 10.2]{Van_der_Vaart2000-qc},
 the prior does not matter in the limit, as $n\to\infty$. Moreover,
@@ -196,9 +192,9 @@ of this normal distribution, and analyze it as an ordinary normal-likelihood
 and normal-prayer Bayesian problem.
 \end{example}
 
-\cite{Sims2012-ze} proposes other ``bounded Bayesian'' solutions
-to the Robins--Ritov--Wasserman. Wasserman and Robins interprets
-such solutions as engaging in\emph{ frequentist persuit}. That is,
+\cite{Sims2012-ze} proposes other bounded Bayesian solutions
+to the Robins--Ritov--Wasserman problem. Wasserman and Robins interprets
+such solutions as engaging in \emph{frequentist persuit}. That is,
 an attempt to manipulate Bayesian procedures to have good frequentist
 properties through \emph{ad hoc} metods. But the bounded Bayesian
 does not do his analysis due to frequentist persuit. He does it because
