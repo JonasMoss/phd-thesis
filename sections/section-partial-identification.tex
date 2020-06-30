@@ -95,10 +95,10 @@ decreases with the strength of the assumptions maintained.
 There is a trade-off between credibility and assumptions. Strong assumptions bring plenty of benefits, such as models that are much easier to deal with computationally and mathematically. It is easier to compute a linear regression with normal errors than one with \emph{t}-distributed errors, and confidence intervals are exact only in the former case. Moreover, adding assumptions can make models much easier to interpret; the linear regression model $Y=\alpha+\beta X+\epsilon$ is as clear as day, $Y=\alpha+\beta X+\delta e^{\sin X}\Gamma(X)\epsilon$ is obscure. 
 
 Frequently assumptions are made only to make sure the model is identifiable, as in the following is the quintessential partial identifiability problem.
-\begin{example}[Error-in-variables regression model]
-Let $Y,Z$ be two variables of finite variance, $Y$ observable and $Z$ latent. We want to know $\beta=\Cov(Y,Z)/\Var(Z)$, that is, the regression coefficient of $Y$ on $Z$. Let $X=Z+\eta$ an observed variable, where $\eta$ has finite second moments and is uncorrelated with $X$ and $Z$. We know know the second moments moments $\Var X$ and $\Cov(Y,X)$, i.e., $K=(\Var X,\Cov(Y,X)$. What can we say about $\beta$? 
+\begin{example}[Error-in-variables regression model, \cite{Tamer2010-rj}]
+Let $Y,Z$ be two variables of finite variance, $Y$ observable and $Z$ latent. We want to know $\beta=\Cov(Y,Z)/\Var(Z)$, that is, the regression coefficient of $Y$ on $Z$. Let $X=Z+\eta$ be an observed variable, where $\eta$ has finite second moments and is uncorrelated with $X$ and $Z$. We know the second moments moments $\Var X$ and $\Cov(Y,X)$, i.e., $K=(\Var X,\Cov(Y,X)$. What can we say about $\beta$? 
 
-Define $\beta^{\star}=\Cov(X,Y)/\Var X$. Since $\Var X=\Var Z+\Var\eta$
+Define $\beta^{\star}=\Cov(X,Y)/\Var X$, the regression coefficient of $Y$ on $X$. Since $\Var X=\Var Z+\Var\eta$
 and $\Cov(X,Y)=\Cov(Z+\eta,Y)=\Cov(Z,Y),$we find
 \[
 \beta^{\star}=\frac{\Cov(Z,Y)}{\Var Z+\Var\eta}=\frac{\beta}{1+\frac{\Var\eta}{\Var Z}}=\frac{\Var Z}{\Var X}\beta.
@@ -107,7 +107,7 @@ If we make the assumption that $m\leq\Var Z\leq\Var X$, we obtain
 the identification region $H=\beta^{\star}[1,\Var X/m)$. 
 \end{example}
 
-Now we will consider two problem of partial identification of distributions.
+Now we will consider, in more detail, two problem of partial identification of distributions.
 
 \subsubsection{When you know some correlations}
 Let $X,Y,Z$ be random variable with unit variance. Assume you know
@@ -192,7 +192,7 @@ we are done.
 \noindent \begin{centering}
 \includegraphics[scale=0.4]{chunks/rho}
 \par\end{centering}
-\caption{The ellipses of Proposition (\ref{prop:correlation identification})
+\caption{The ellipses of Proposition \ref{prop:correlation identification}
 for a selection of correlations $\rho_{12}$.}
 \end{figure}
 %
@@ -276,17 +276,16 @@ The identification regions of Proposition \ref{prop:guessing regions} are wide. 
 \subsection{Identification of structural parameters}
 
 Structural parameters are extra-probabilistical; they encode something
-about the world the isn't captured in any probability distributions.
-Causal inference is about structural parameters. The joint distribution
+about the world the isn't captured in any probability distribution.
+Causal inference is about structural parameters; the joint distribution
 of $(X,Y)$ does not tell us if $X$ causes $Y$. The causal information
 is encoded in e.g. a causal graph \parencite{Pearl2009-zf} or a system
 of counterfactuals \parencite[Chapter 4]{Pearl2016-tc}. A related example
-is identifacation of structural parameters is from psychometrics.
-In geneal, several structural equation models can give rise to exactly
+of identifacation of structural parameters is from psychometrics.
+In general, several structural equation models can give rise to exactly
 the same joint distribution, but with highly disparate interpretations
 \parencite{Raykov2001-ap}. Econometrics have perhaps the most famous
-identification problem, sometimes called the identification problem
-in econometrics \parencite{Manski1999-ab}.
+identification problem, sometimes called \textit{the identification problem in econometrics} \parencite{Manski1999-ab}.
 \begin{example}[The identification problem in econometrics]
  Let $p$ be the price and $q$ the quantity of some good. Assume
 the linear supply and demand functions
@@ -297,15 +296,13 @@ d(p) & = & \alpha_{d}+\beta_{d}p+\epsilon_{d}\quad\textrm{(demand).}
 Here $s(p)$ is the quantity supplied at the price $p$, $d(p)$ is
 the quantity demanded at the price $p$, and $\epsilon_{1},\epsilon_{2}$
 are uncorrelated error terms with zero mean and variances $\sigma_{1}^{2},\sigma_{2}^{2}$.
-If prices are in equilibrium, $q=s(p)=d(p)$, where $q$ is the quantity
-of the good, hence
+If prices are in equilibrium, $q=s(p)=d(p)$, hence
 \[
 q=\alpha_{s}+\beta_{s}p+\epsilon_{1}=\alpha_{d}+\beta_{d}p+\epsilon_{2}.
 \]
 We want to know the supply and demand functions, or equivalently,
 $(\alpha_{s},\beta_{s},\alpha_{d},\beta_{d})$. We know the mean $\mu$
 and covariance $\Sigma$ of $(p,q)$:
-\end{example}
 \begin{eqnarray*}
 \mu & = & \left(\frac{\alpha_{d}-\alpha_{s}}{\beta_{s}-\beta_{d}},\frac{\beta_{s}\alpha_{d}-\beta_{d}\alpha_{s}}{\beta_{s}-\beta_{d}}\right)\\
 \Sigma & = & \frac{1}{(\beta_{s}-\beta_{d})^{2}}\left[\begin{array}{cc}
@@ -314,7 +311,7 @@ and covariance $\Sigma$ of $(p,q)$:
 \end{array}\right]
 \end{eqnarray*}
 Here we have $5$ knowns $(\mu_{1},\mu_{2},\Sigma_{11},\Sigma_{22},\Sigma_{12})$
-and $6$ unknowns, $x=(\alpha_{s},\beta_{s},\alpha_{d},\beta_{d},\sigma_{1}^{2},\sigma_{2}^{2})$
+and $6$ unknowns $(\alpha_{s},\beta_{s},\alpha_{d},\beta_{d},\sigma_{1}^{2},\sigma_{2}^{2})$
 in a system of quadratic equations. This system of equations has no
-unique solution, and several identifying restrictions have been proposed.
-See \cite[Chapter 6]{Manski1999-ab} for details.
+unique solution. To rectify this, several identifying restrictions have been proposed. See \cite[Chapter 6]{Manski1999-ab} for details.
+\end{example}
