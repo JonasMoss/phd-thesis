@@ -22,7 +22,7 @@ features do not exists, sometimes it is hard to find candidate confidence
 set, sometimes optimality criteria do not hold. Since frequentist
 methods usually aren't unique, frequently based on intuition, and
 can be based on severely conflicting criteria, they are famously called \emph{ad hoc
-methods}. \cite[p. xxiii]{Jaynes2003-ky} speaks for many Bayesians
+methods}. \textcite[p. xxiii]{Jaynes2003-ky} speaks for many Bayesians
 in his diatribe against frequentist statistics:
 \begin{quote}
 {[}F{]}requentist methods provide no technical means to eliminate
@@ -65,7 +65,7 @@ the normal Dirichlet mixture model \parencite[Chapter 2.2]{Muller2015-xn}.
 
 But there are problems where Bayesian estimation appears impossible
 in principle, namely when the likelihood does not exist.
-\begin{example}[{No likelihood, \cite[p. 30]{Berger1988-ji}}]
+\begin{example}[{No likelihood, \textcite[p. 30]{Berger1988-ji}}]
 \label{exa:no likelihood}Let $\{P_{\theta}\},\,\theta\in[0,1]$
 be a the parameterized class of probability distributions on $[0,1]$
 defined by
@@ -405,7 +405,7 @@ Hypothesis tests are quite easy to understand, especially when formulated
 with explicit null-hypotheses and alternative hypotheses. The complexity
 goes up a notch with \emph{p-}values.
 \begin{definition}
-\label{def:p-value}(\cite[][Chapter 3.3]{Lehmann2005-sp}, \cite{Bayarri2000-dt}) Let
+\label{def:p-value}(\textcite[][Chapter 3.3]{Lehmann2005-sp}, \textcite{Bayarri2000-dt}) Let
 $A\subseteq[0,1]$ and $R(\alpha)$ be an increasing sequence of size
 $\alpha$ rejection sets under $\mathcal{P}_{0}$, i.e., $R(\alpha')\subseteq R(\alpha)$
 when $\alpha'\leq\alpha$, and $\sup_{P\in\mathcal{P}_{0}}P(R)=\alpha$.
@@ -476,7 +476,7 @@ to be important to indicate how strong the evidence against $H_{0}$''.
 \textcite{Hubbard2008-cg}, among others, are strongly critical of the
 idea that \emph{p}-values are a measure of evidence, but \textcite{Liu2020-er} defend a slight modification of Definition \ref{def:p-value}, incorporating asymptotic guarantees, as being a reasonable measure of evidence.
 
-One reason why \emph{p}-values are not measures is evidence is the lack of explicit alternative hypotheses. That \emph{p}-values are usually framed without explicit alternative hypotheses is sometimes framed as a strength. \cite[p. 308]{Barnard1962-rz} wrote that ``the simple tests of significance arise ,it seems to me, in situations where we do not have a parameter space of hypotheses; we have only a single hypothesis essentially, and the sample space then is the only space of variables present in the problem.`` Fisher was firmly against formal alternatives hypotheses and power calculations \parencite{Lehmann1993-oa}. A compelling argument for why alternative hypotheses are important is the Albino argument of \textcite{Berkson1942-hj}:
+One reason why \emph{p}-values are not measures is evidence is the lack of explicit alternative hypotheses. That \emph{p}-values are usually framed without explicit alternative hypotheses is sometimes framed as a strength. \textcite[p. 308]{Barnard1962-rz} wrote that ``the simple tests of significance arise ,it seems to me, in situations where we do not have a parameter space of hypotheses; we have only a single hypothesis essentially, and the sample space then is the only space of variables present in the problem.`` Fisher was firmly against formal alternatives hypotheses and power calculations \parencite{Lehmann1993-oa}. A compelling argument for why alternative hypotheses are important is the Albino argument of \textcite{Berkson1942-hj}:
 \begin{quotation}
 Suppose I said, \textquotedblleft Albinos are very rare in human populations, only one in fifty thousand. Therefore, if you have taken a random sample of 100 from a population and found in it an albino, the population is not human.\textquotedblright{} This is a similar argument but if it were given, I believe the rational retort would be, \textquotedblleft If the population is not human, what is it?\textquotedblright{} 
 \end{quotation}
@@ -523,7 +523,7 @@ of $C$ as a random set would would be necessary to answer such questions.
 Confidence sets are not only hard to define, they are hard to understand.
 You can't figure a handy reformulation of confidence sets, as that
 does not exist \parencite{Morey2016-ry}. 
-\begin{example}[{\cite[Example 4a]{Berger1988-ji}}]
+\begin{example}[{\textcite[Example 4a]{Berger1988-ji}}]
  Let $X\in\{1,2,3\}$ and $\theta\in\{1,2\}$. Define
 
 \[
