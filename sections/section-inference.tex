@@ -1,6 +1,6 @@
 \section{Statistical inference}
 
-Bayesians are in a priveleged position vis-à-vis frequents. Any problem
+Bayesians are in a privileged position vis-à-vis frequentists. Any problem
 has a unique solution for a Bayesian provided he can answer three
 questions \parencite[Chapter 2]{Robert2007-ri}:
 \begin{enumerate}
@@ -45,9 +45,9 @@ specify a prior, and the difficulties involved in finding good priors
 takes up a large chunk of the arguments of frequentists against Bayesians,
 and has inspired much work in objective Bayes. Getting the benefits
 of Bayesian analysis without a using priors has even been called ``holy
-grail of statistical theory'' \parencite{Efron2010-is}. 
+grail of statistical theory'' by \textcite{Efron2010-is}. 
 
-But a the Bayesian also has to specify a likelihood. In most frequentist
+But the Bayesian also has to specify a likelihood. In most frequentist
 statistics we assume a known likelihood, but not always. In particular,
 semi-parametric statistics often assumes no likelihood. For instance,
 the \textcite{Cox1972-xd} model assumes only a partially known likelihood,
@@ -67,7 +67,7 @@ But there are problems where Bayesian estimation appears impossible
 in principle, namely when the likelihood does not exist.
 \begin{example}[{No likelihood, \textcite[p. 30]{Berger1988-ji}}]
 \label{exa:no likelihood}Let $\{P_{\theta}\},\,\theta\in[0,1]$
-be a the parameterized class of probability distributions on $[0,1]$
+be a parameterized class of probability distributions on $[0,1]$
 defined by
 \begin{equation}
 P_{\theta}(A)=\frac{1}{2}[\lambda(A)+1_{A}(\theta)],\label{eq:no likelihood}
@@ -120,8 +120,7 @@ Y^{*}, & R=1,\\
 \end{cases}
 \]
 Here $R$ is allowed to depend on $X$, with \emph{known} conditional
-probability $\pi(x)=p(r=1\mid x)$, where we assume there $\delta>0$
-such that $\pi(x)\geq0$. The joint density of $(X,Y,R$) is
+probability $\pi(x)=p(r=1\mid x)$. The joint density of $(X,Y,R$) is
 \begin{eqnarray*}
 p(x,y,r\mid\theta) & = & \begin{cases}
 p(y\mid x,\theta)\pi(x), & r=1,\\{}
@@ -129,9 +128,8 @@ p(y\mid x,\theta)\pi(x), & r=1,\\{}
 \end{cases}
 \end{eqnarray*}
 Our goal is to estimate $\psi=P(Y_{i}^{*}=1)=\int p(y\mid x,\theta)dx$.
-We do not wish to assume any specific parametric form form the true
-$p(y\mid x,\theta)$; in fact, we will only assume that $\delta\leq p(y\mid x)\leq1-\delta$
-for some $\delta>0$. Anyhow, the posterior is proportional to
+We do not wish to assume any specific parametric form for the true
+$p(y\mid x,\theta)$. Anyhow, the posterior is proportional to
 \begin{eqnarray*}
 p(\theta\mid\textrm{data}) & \propto & \prod_{r_{i}=1}p(y\mid x_{i},\theta)\pi(x_{i})\prod_{r_{i}=0}1\{y=\textrm{NA}\}(1-\pi(x)),\\
  & \propto & \prod_{r_{i}=1}\pi(x_{i})\prod_{r_{i}=1,}p(y\mid x_{i},\theta).\\
@@ -210,11 +208,8 @@ in frequentist persuit. In this section, ``Bayesian'' is used in
 the sense of Finetti and Savage, as an ideal, rational actor. Most
 Bayesians are not dogmatic in this sense, but pragmatic Bayesians
 who use the methods because they often work better than frequentist
-methods. \textcite{Gelman2013-ib} argue that the Bernstein--von Mises
-phenomenon is essential to the Bayesian because it guarantees good
-frequentist properites of confidence sets. On the other hand, \textcite{Morey2016-ry}
-argue that confidence sets are worthless unless they can be given
-a Bayesian interpretation. 
+methods. For instance, \textcite{Gelman2013-ib} argue that the Bernstein--von Mises
+phenomenon is essential to the Bayesian because it guarantees good frequentist properites of confidence sets. (On the other hand, \textcite{Morey2016-ry} argue that confidence sets are worthless unless they can be given a Bayesian interpretation.)
 
 \subsection{Loss functions}
 
@@ -346,9 +341,9 @@ is invariant under reparameterizations too.
 \end{example}
 
 
-\subsection{Frequentis statistics}
+\subsection{Frequentist statistics}
 
-Frequentist inference is hard to understands for lay people. Misunderstandings
+Frequentist inference is hard to understand for lay people. Misunderstandings
 about \emph{p}-values and confidence intervals are ubiquitous, documented
 in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi}
 and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same
