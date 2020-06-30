@@ -35,7 +35,7 @@ ad hoc devices (such as unbiased estimators, confidence intervals,
 tail-area significance tests) not contained in the rules of probability
 theory.
 \end{quote}
-The case for Bayesianism is extremely strong \parencite{Berger1988-ji,Bernardo2009-wv}.
+The case for Bayesianism is extremely strong \nptextcite{Berger1988-ji,Bernardo2009-wv}.
 But the arguments hinge on the assumption that we know the likelihood,
 prior, and loss. Is this realistic? We will consider them in turn. 
 
@@ -45,18 +45,18 @@ specify a prior, and the difficulties involved in finding good priors
 takes up a large chunk of the arguments of frequentists against Bayesians,
 and has inspired much work in objective Bayes. Getting the benefits
 of Bayesian analysis without a using priors has even been called ``holy
-grail of statistical theory'' \parencite{Efron2010-is}. 
+grail of statistical theory'' \nptextcite{Efron2010-is}. 
 
 But a the Bayesian also has to specify a likelihood. In most frequentist
 statistics we assume a known likelihood, but not always. In particular,
 semi-parametric statistics often assumes no likelihood. For instance,
-the \cite{Cox1972-xd} model assumes only a partially known likelihood,
-while the maximum score model of \cite{Manski1975-gl} makes no likelihood
+the \textcite{Cox1972-xd} model assumes only a partially known likelihood,
+while the maximum score model of \textcite{Manski1975-gl} makes no likelihood
 assumptions at all. Moreover, non-parametric methods, such as kernel
-density estimation \parencite{Silverman1986-nt} do not involve likelihoods
+density estimation \nptextcite{Silverman1986-nt} do not involve likelihoods
 at all. Curiously, the archetypal non-parametric estimator, the histogram,
 can be framed as a maximum likelihood problem, complete with its own
-AIC \parencite{Birge2006-nl}. But even in this case, no likelihoods are
+AIC \nptextcite{Birge2006-nl}. But even in this case, no likelihoods are
 actually assumed. The histogram is just a handy device to estimate
 an unknown density. That said, most semi-parametric and non-parametric
 problems can be formulated into similar non-parametric Bayes models.
@@ -108,7 +108,7 @@ aside as mere curiosities. A more practically serious problem appears
 when a likelihood appears to exist, is hard to reason about, but is
 somehow not needed for the problem.
 \begin{example}[Robins--Ritov--Wasserman]
- This example due to \cite{Robins2012-fr}. We will consider a sequence
+ This example due to \textcite{Robins2012-fr}. We will consider a sequence
 of $n$ independent and identically distributed variables $(X_{i},Y_{i},Y_{i}^{*},R_{i})$,
 where $X_{i}\in[0,1]$ is uniform,  $R_{i}$ is binary, $Y_{i}^{*}\in\{0,1\}$,
 and $Y\in\{\textrm{NA},0,1\}$. Here $Y_i^{*}$ are unobserved; instead
@@ -138,7 +138,7 @@ p(\theta\mid\textrm{data}) & \propto & \prod_{r_{i}=1}p(y\mid x_{i},\theta)\pi(x
  & \propto & \prod_{r_{i}=1,}p(y_{i}\mid x_{i},\theta).
 \end{eqnarray*}
 Hence the posterior does not depend on $\pi(x)$ unless the prior
-does. However, \cite{Robins1997-uv} proved that any uniformly consistent
+does. However, \textcite{Robins1997-uv} proved that any uniformly consistent
 estimator of $\psi$ must depend on $\pi(x)$. In this sense, any Bayesian estimator of $\hat{\theta}$ is inadequate. No matter what likelihood and prior you choose, the estimator of $\psi$ won't be uniformly consistent.
 
 On the other hand, there is a well-known uniformly consistent estimator of $\psi$,
@@ -155,7 +155,7 @@ P(\psi\in C)\geq1-\alpha\quad(P\in\mathcal{P})
 for all $n$.
 \end{example}
 
-The Robins--Wasserman does not matter to a Bayesian that firmly knows the likelihood and the prior. For him, the Bayes' theorem is the best you could possible do. And by Doob's consistency theorem \parencite{Miller2018-xq}, if you know your prior is true, every Bayesian procedure is consistent.
+The Robins--Wasserman does not matter to a Bayesian that firmly knows the likelihood and the prior. For him, the Bayes' theorem is the best you could possible do. And by Doob's consistency theorem \nptextcite{Miller2018-xq}, if you know your prior is true, every Bayesian procedure is consistent.
 
 The Bayesians that are troubled by this example are the bounded Bayesians, those who have only limited trust in their
 priors and likelihoods, and try to make do with approximations. In
@@ -192,7 +192,7 @@ of this normal distribution, and analyze it as an ordinary normal-likelihood
 and normal-prayer Bayesian problem.
 \end{example}
 
-\cite{Sims2012-ze} proposes other bounded Bayesian solutions
+\textcite{Sims2012-ze} proposes other bounded Bayesian solutions
 to the Robins--Ritov--Wasserman problem. Wasserman and Robins interprets
 such solutions as engaging in \emph{frequentist persuit}. That is,
 an attempt to manipulate Bayesian procedures to have good frequentist
@@ -210,9 +210,9 @@ in frequentist persuit. In this section, ``Bayesian'' is used in
 the sense of Finetti and Savage, as an ideal, rational actor. Most
 Bayesians are not dogmatic in this sense, but pragmatic Bayesians
 who use the methods because they often work better than frequentist
-methods. \cite{Gelman2013-ib} argue that the Bernstein--von Mises
+methods. \textcite{Gelman2013-ib} argue that the Bernstein--von Mises
 phenomenon is essential to the Bayesian because it guarantees good
-frequentist properites of confidence sets. On the other hand, \cite{Morey2016-ry}
+frequentist properites of confidence sets. On the other hand, \textcite{Morey2016-ry}
 argue that confidence sets are worthless unless they can be given
 a Bayesian interpretation. 
 
@@ -231,8 +231,8 @@ is $l(a,x)=E_{X\mid\theta}[l'(a,x)]$, where $l'(a,x)$ should equal
 $0$ if and only if $a=x$, and $l'(a,x)>0$ for all other $a\in\dom X$.
 Well-known prediction losses of this kind are the $L_{p}$-losses,
 $l'(a,x)=|a-x|^{p}$, the $0-1$-loss $l'(a,x)=1[a=x]$, the Linex
-loss $l'(a,x)=b(e^{c(x-a)}-c(x-a)-1)$ \parencite{Varian1975-cd}, and
-the Huber loss from robust statistics \parencite{Huber1964-fm}. For all
+loss $l'(a,x)=b(e^{c(x-a)}-c(x-a)-1)$ \nptextcite{Varian1975-cd}, and
+the Huber loss from robust statistics \nptextcite{Huber1964-fm}. For all
 of these cases, the risk $R=\min_{a\in\mathcal{A}}E[l(a,x)]$ tells
 you how certain you can be about your prediction of $X$.
 \item [{\textbf{Density~prediction}}] The action space $\mathcal{A}$
@@ -241,7 +241,7 @@ we should demand that $l(g,f)=0$ if and only if $g=f$ a.e., and
 $l(g,f)>0$ for all other $g$. That is, $l$ is a statistical divergence
 function. Some well-known divergences are the Kullback--Leibler divergence,
 the $L_{2}$-divergence, the Hellinger distance, and the class of
-$f$-divergences \parencite{Basu2011-gs}. 
+$f$-divergences \nptextcite{Basu2011-gs}. 
 \item [{\textbf{Parameter~estimation}}] The action space $\mathcal{A}$
 is a subset of the parameter space $\Theta$. The loss function will
 have the same properties as in point prediction, i.e., the loss $l(a,\theta)$
@@ -252,7 +252,7 @@ problem or a statement as to why you should be interested in the parameters
 themselves.
 \item [{\textbf{Instrumental~losses}}] Sometimes we design our loss functions
 to help us reach our statistical goals. One application is the formulation
-of stopping rules in sequential analysis \parencite{Brockwell2003-pd}.
+of stopping rules in sequential analysis \nptextcite{Brockwell2003-pd}.
 A natural stopping rule is to check the posterior risk, continue if
 it is too large, and stop if it is too small. We add an increasing
 penalty $C_{k}$ to the loss, where $k$ is the sample size, since
@@ -265,7 +265,7 @@ instrumental losses can be used for e.g. sparse estimation.
 \item [{\textbf{Practical~losses}}] Much decision theory is framed in
 terms of practical losses but they are rarely used. A practical loss
 is simply a loss that doesn't fit into the categories above. For example,
-\cite{Stankovic1985-th} employs custom-made loss for the problem
+\textcite{Stankovic1985-th} employs custom-made loss for the problem
 of decentralized control of job scheduling. 
 \end{lyxlist}
 The parameter estimation losses are not well-motivated. It's hard
@@ -291,7 +291,7 @@ this density is not decision-theoretically justified; it is merely
 a marginalized density. To justify the usage of the posterior predictive
 density, we need a loss function over over the space of densities, as described above.
 The best-known and most popular such loss function is the Kullback--Leibler\emph{
-}divergence \parencite{Kullback1951-kv}
+}divergence \nptextcite{Kullback1951-kv}
 \begin{equation}
 d_{KL}(f,g)=\int\log\left[\frac{f(x)}{g(x)}\right]f(x)dx.\label{eq:Kullback-Leibler}
 \end{equation}
@@ -320,7 +320,7 @@ exponential model is the same kind of problem as estimating $f_{\lambda}$,
 the exponential density itself. Now let $\mathcal{P}$ the family
 of exponential densities . Then $\argmin_{p\in\mathcal{P}}E_{\theta\mid\textrm{data}}[d_{KL}(f_{\theta},p)]$,
 an estimate of the density $f_{\lambda}$, can readily be calculated.
-This method of estimating parameters is studied by \cite{Robert1996-ii},
+This method of estimating parameters is studied by \textcite{Robert1996-ii},
 who calls the statistical divergences intrinsic losses. 
 
 From the equations (\ref{eq:cross-entropy equality}) above, we know
@@ -340,7 +340,7 @@ of Kullback--Leibler minimization \parencite[p. 25]{Claeskens2008-hk}:
 If $F_{n}$ is the the empirical cumulative distribution function,
 the maximim likelihood estimator is $\hat{\theta}_{ML}=\argmin d_{KL}(F_{n},f_{\theta})$.
 Since $\hat{\theta}_{ML}$ is invariant under reparameterizations
-(just like other minimum distance estimators, see \cite{Drossos1980-ar}),
+(just like other minimum distance estimators, see \textcite{Drossos1980-ar}),
 it is hardly surprising that the Kullback--Leibler loss minimizer
 is invariant under reparameterizations too. 
 \end{example}
@@ -350,8 +350,8 @@ is invariant under reparameterizations too.
 
 Frequentist inference is hard to understands for lay people. Misunderstandings
 about \emph{p}-values and confidence intervals are ubiquitous, documented
-in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi}
-and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same
+in fields such as psychology \nptextcite{Belia2005-di,Gigerenzer2018-oi}
+and medicine \nptextcite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same
 sense as Bayesian quantities, and they are often hard to reason about
 mathematically. 
 
@@ -367,7 +367,7 @@ of definitions and optimality criteria. I have heard people who should
 know better use this 'dullness' as an argument against Bayesianism.
 One might as well complain that Newton's dynamics, being based on
 three simple laws of motion and one of gravitation, is a poor substitute
-for the richness of Ptolemy's epicyclic system. \parencite{Dawid2000-aw}
+for the richness of Ptolemy's epicyclic system. \nptextcite{Dawid2000-aw}
 \end{quote}
 It's easy to forget just how strange hypothesis tests, confidence
 sets, and \emph{p}-values are. 
@@ -399,7 +399,7 @@ test then guarantees that you will be choose $\mathcal{P}_{1}$ when
 $\mathcal{P}_{0}$ is true with at most probability $\alpha$. Usually,
 discussions of hypothesis tests will involve the probability that
 $\mathcal{P}_{1}$ is choosen when $\mathcal{P}_{1}$ is true; the
-\emph{power} of a test is $\inf_{P\in\mathcal{P}_{1}}P(R^{c})$. \parencite{Neyman1977-nx}
+\emph{power} of a test is $\inf_{P\in\mathcal{P}_{1}}P(R^{c})$. \nptextcite{Neyman1977-nx}
 
 Hypothesis tests are quite easy to understand, especially when formulated
 with clear null-hypotheses and alternative hypotheses. The complexity
@@ -425,7 +425,7 @@ of \emph{p}-value is slightly more general than usual, as it allows
 for both $A\neq[0,1]$ and composite hypotheses. The \emph{p}-value
 suffers from an all-too-common problem in statistics; there is no
 different name for the observed \emph{p}-value $u$ and the \emph{p}-value
-statistic $U$. \cite{Schweder1988-nh} proposed to call $U$ the
+statistic $U$. \textcite{Schweder1988-nh} proposed to call $U$ the
 ``signficance statistic'', a name that has unfortunately not caught
 on. 
 
@@ -465,7 +465,7 @@ It is hard to interpret \emph{p}-values as anything else than their
 definition, which is opaque and hard, if not impossible, to connect
 to real-life outcomes. And it is hard to justify the use numbers one
 cannot expect anyone to interpret in any meaningful way, especially
-because people will try to interpret it, and inevitably fail. \cite{Cohen1994-au}
+because people will try to interpret it, and inevitably fail. \textcite{Cohen1994-au}
 wrote, in his critique of \emph{p}-values, 
 \begin{verse}
 What's wrong with {[}null-hypothesis significance testing{]}? Well,
@@ -475,10 +475,10 @@ we nevertheless believe that it does! What we want to know is \textquotedbl Give
 these data, what is the probability that $H_{0}$ is true?\textquotedbl{}
 \end{verse}
 Some authors, such as (Birnbaum?) attempt to justify \emph{p}-values
-as measures of evidence, and, according to \cite{Berger1987-tf}
+as measures of evidence, and, according to \textcite{Berger1987-tf}
 most statisticians use \emph{p}-values since they are ``feeling it
 to be important to indicate how strong the evidence against $H_{0}$''.
-\cite{Hubbard2008-cg}, among others, are strongly critical of the
+\textcite{Hubbard2008-cg}, among others, are strongly critical of the
 idea that \emph{p}-values are a measure of evidence.
 
 One reason why \emph{p}-values are not measures is evidence is the
@@ -488,9 +488,9 @@ simple tests of significance arise ,it seems to me, in situations
 where we do not have a parameter space of hypotheses; we have only
 a single hypothesis essentially, and the sample space then is the
 only space of variables present in the problem.`` Fisher was firmly
-against formal alternatives hypotheses and power calculations \parencite{Lehmann1993-oa}.
+against formal alternatives hypotheses and power calculations \nptextcite{Lehmann1993-oa}.
 A compelling argument for why alternative hypotheses are important
-is the Albino argument of \cite{Berkson1942-hj}:
+is the Albino argument of \textcite{Berkson1942-hj}:
 \begin{quotation}
 Suppose I said, \textquotedblleft Albinos are very rare in human populations,
 only one in fifty thousand. Therefore, if you have taken a random
@@ -502,7 +502,7 @@ the population is not human, what is it?\textquotedblright{}
 A major difference between the Neyman--Pearson theory of statistical
 tests and p-values is the theoretical justification. Classical Neyman--Pearson-type
 inferential statistics, with Lehmann's ``Testing statistical statistical
-hypotheses'' \parencite{Lehmann2005-sp} as its bible, is concerned with
+hypotheses'' \nptextcite{Lehmann2005-sp} as its bible, is concerned with
 finding optimal tests. Usually, uniformly most powerful tests or uniformly
 most powerful unbiased tests do not exist, but it is sometimes possible
 to find other kinds of optimal tests. Optimality theory gives you
@@ -547,7 +547,7 @@ of $C$ as a random set would would be necessary to answer such questions.
 
 Confidence sets are not only hard to define, they are hard to understand.
 You can't figure a handy reformulation of confidence sets, as that
-does not exist \parencite{Morey2016-ry}. 
+does not exist \nptextcite{Morey2016-ry}. 
 \begin{example}[{\cite[Example 4a]{Berger1988-ji}}]
  Let $X\in\{1,2,3\}$ and $\theta\in\{1,2\}$. Define
 
@@ -570,10 +570,10 @@ $P_{0}$ than under $P_{1}$!
 \end{example}
 
 Moreover, confidence sets can be empty; even optimal confidence sets
-can be empty \parencite{Blaker2000-ud}. Confidence set for a real parameter
-can contain the entire real line \parencite{Morey2016-ry}. Most confidence
+can be empty \nptextcite{Blaker2000-ud}. Confidence set for a real parameter
+can contain the entire real line \nptextcite{Morey2016-ry}. Most confidence
 sets are asymptotic, but with no guaranteed coverage since uniform
-convergence almost never is proved, or even true \parencite{Gleser1996-kk}.
+convergence almost never is proved, or even true \nptextcite{Gleser1996-kk}.
 
 \subsubsection{Impossibility results}
 
@@ -589,7 +589,7 @@ be useless in any case.
 But what happens with \emph{p}-values? It turns out there is no nice
 \emph{p}-value for the mean, or even hypothesis test, for non-parametric
 families of distributins, even when the variance is finite for every
-$P$. \cite{Bahadur1956-tg} proved the following elegant theorem.
+$P$. \textcite{Bahadur1956-tg} proved the following elegant theorem.
 \begin{theorem}[Bahadur--Savage]
 Let $\mathcal{\mathcal{P}}$ be a family of probability measures
 satisfying
@@ -670,7 +670,7 @@ and the following test
 \mathcal{P}_{1}: & p(x,y\mid z)\neq p(x\mid z)p(y\mid z)\quad\textrm{for some }x,y,z.
 \end{align*}
 
-\cite{Shah2018-jh} proved the following theorem, showing that a
+\textcite{Shah2018-jh} proved the following theorem, showing that a
 conditional independence test has no power against any alternative. 
 \begin{theorem}
 \label{theorem:Shah--Peters}Let $n$ be arbitrary and $x_{i},y_{i},z_{i}$
@@ -690,6 +690,6 @@ must satisfy $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{1}$
 too.
 
 An analogue of the Shah--Peters result does not hold for independence
-testing, as the rank test of \cite{Hoeffding1948-nm} test is pointwise
+testing, as the rank test of \textcite{Hoeffding1948-nm} test is pointwise
 consistent. But there is no uniformly unbiased test of independence
-\parencite{Moss2020-bc}.
+\nptextcite{Moss2020-bc}.
