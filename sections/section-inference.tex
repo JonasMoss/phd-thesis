@@ -271,17 +271,10 @@ of decentralized control of job scheduling.
 The parameter estimation losses are not well-motivated. It's hard
 to imagine any situation where anyone would directly care about the
 posterior mean of $\mu$, philosophically speaking. Yes, posterior
-means and standard deviations are easy to calculate and intertrept,
-but this is hardly a deep justification to employ them. Besides, parameterizations
-are arbitrary. For any identified $k$-dimensional parameterization
-of a likelihood, there are $2^{\mathfrak{c}}$ (where $\mathfrak{c}$
-is the cardinality of the continuum) identified $k$-dimensional parameterizations,
-and why care only about one of them? 
+means and standard deviations are easy to calculate and intertrep,
+but this is hardly a deep justification to employ them. Losses on the parameter space does not take into account that parameterizations are, in a sense, arbitrary. For any identified $k$-dimensional parameterization of a likelihood, there are $2^{\mathfrak{c}}$ (where $\mathfrak{c}$ is the cardinality of the continuum) identified $k$-dimensional parameterizations, and why care only about one of them? 
 
-For a better motivated variant of parameter estimation, we could reframe
-the problem as a density estimation problem. For if let let the action
-space $\mathcal{A}$ be the space of likelihoods, we are essentially
-dealing with a \emph{parameterization-agnostic} estimation problem. 
+For a better motivated variant of parameter estimation, we could re-frame the problem as a density estimation problem. For if let let the action space $\mathcal{A}$ be the space of likelihoods, we are essentially dealing with a \emph{parameterization-agnostic} estimation problem. 
 \begin{example}
 \label{exa:exponential estimation} Let $X_{1},\ldots,X_{n}\sim\Exp(\lambda)$
 and $\lambda\sim\GammaDist(\alpha_{0},\beta_{0})$. It is well-known
@@ -296,14 +289,14 @@ risk-minization problem $\min_{p}E_{\theta\mid\textrm{data}}\{[p(x)-f_{\theta}(x
 where $f_{\theta}(x)$ is the aleatoric density at a data point. But
 this density is not decision-theoretically justified; it is merely
 a marginalized density. To justify the usage of the posterior predictive
-density, we need a loss function over density, as described above.
+density, we need a loss function over over the space of densities, as described above.
 The best-known and most popular such loss function is the Kullback--Leibler\emph{
 }divergence \parencite{Kullback1951-kv}
 \begin{equation}
 d_{KL}(f,g)=\int\log\left[\frac{f(x)}{g(x)}\right]f(x)dx.\label{eq:Kullback-Leibler}
 \end{equation}
  Define the \emph{entropy} $H(f)=\int-\log[f(x)]f(x)dx$ and the \emph{cross-entropy}
-$H(f,g)=-\int\log[g(x)]f(x)dx$. Assuming finite entropy and the cross-entropy,
+$H(f,g)=-\int\log[g(x)]f(x)dx$. Assuming finite entropy and cross-entropy,
 \begin{equation}
 d_{KL}(f,g)=H(f,g)-H(f).\label{eq:Kullback--Leibler(entropy)}
 \end{equation}
@@ -322,10 +315,10 @@ minimizes the cross-entropy.
 
 Parameter estimation can be framed in similar terms. Estimating the
 parameters of a density $f$ is just a rephrasing of estimating the
-density itself. That is, estimating the $\lambda$ parameter in an
+density. That is, estimating the $\lambda$ parameter in an
 exponential model is the same kind of problem as estimating $f_{\lambda}$,
 the exponential density itself. Now let $\mathcal{P}$ the family
-of exponential densities in this case. Then $\argmin_{p\in\mathcal{P}}E_{\theta\mid\textrm{data}}[d_{KL}(f_{\theta},p)]$,
+of exponential densities . Then $\argmin_{p\in\mathcal{P}}E_{\theta\mid\textrm{data}}[d_{KL}(f_{\theta},p)]$,
 an estimate of the density $f_{\lambda}$, can readily be calculated.
 This method of estimating parameters is studied by \cite{Robert1996-ii},
 who calls the statistical divergences intrinsic losses. 
@@ -333,7 +326,6 @@ who calls the statistical divergences intrinsic losses.
 From the equations (\ref{eq:cross-entropy equality}) above, we know
 we only have to minimize the cross-entropy $H(\tilde{p},g)$. Let
 $X\sim\Lomax(\alpha,\beta)$, then calculate
-
 \begin{eqnarray*}
 H(\tilde{p},g_{\lambda}) & = & \int[\log\lambda-\lambda x]\alpha\beta^{\alpha}(x+\beta)^{-\alpha-1}dx,\\
  & = & \log\lambda-\lambda EX=\log\lambda-\lambda\frac{\beta}{\alpha-1}.
@@ -359,8 +351,7 @@ is invariant under reparameterizations too.
 Frequentist inference is hard to understands for lay people. Misunderstandings
 about \emph{p}-values and confidence intervals are ubiquitous, documented
 in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi}
-and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. But that is
-not all. Frequentist quantities are almost never unique in the same
+and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same
 sense as Bayesian quantities, and they are often hard to reason about
 mathematically. 
 
@@ -414,7 +405,7 @@ Hypothesis tests are quite easy to understand, especially when formulated
 with clear null-hypotheses and alternative hypotheses. The complexity
 goes up a notch with \emph{p-}values.
 \begin{definition}
-\label{def:p-value}\parencite[][Chapter 3.3]{Lehmann2005-sp}{Bayarri2000-dt} Let
+\label{def:p-value}(\textcite[][Chapter 3.3]{Lehmann2005-sp}, \textcite{Bayarri2000-dt}) Let
 $A\subseteq[0,1]$ and $R(\alpha)$ be an increasing sequence of size
 $\alpha$ rejection sets under $\mathcal{P}_{0}$, i.e., $R(\alpha')\subseteq R(\alpha)$
 when $\alpha'>\alpha'$ and $\sup_{P\in\mathcal{P}_{0}}P(R)=\alpha$.
