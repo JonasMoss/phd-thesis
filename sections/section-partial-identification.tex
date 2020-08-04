@@ -1,21 +1,13 @@
 \section{Partial identification}
 
-Sometimes we cannot say much about how the world is. If I tell
-you that $\cos x=1$ you would be at a loss to tell me exactly what
-$x$ is. You could say that $x=2\pi n$, for some integer $n$, but
-not anything else. The situation is bad, but could have been worse.
-You do know something about $x$ after all; in the worst case scenario,
-you would only know that $x\in\mathbb{R}$. You have \emph{partially
-identifed} $x$. In contrast, if I tell you that $x\in[0,1]$, you
-can immediately answer that $x=0$, and you have \emph{identified}
-$x$.
+Sometimes we cannot say much about how the world is. If I tell you that $\cos K=1$ you would be at a loss to tell me exactly what $K$ is. You could say that $K=2\pi n$, for some integer $n$, but not anything else. The situation is bad, but could have been worse. You do know something about $K$ after all; in the worst case scenario, you would have known only that $K\in\mathbb{R}$. You have \emph{partially identifed} $K$. In contrast, if I tell you that $K\in[0,1]$, you can immediately answer that $K=0$, and you have \emph{identified} $K$.
 
-In general, identification is about answering questions on the form ``I know $K$ but want to know $W$, to what extent is this possible?''. If this is possible for every $K$, there is a function $K\mapsto W$, such as $f(K)=K^{2}$. Often tough, there are multiple possible $W$ compatible with $K$, and the mapping $K\mapsto\{W\}$ is set-valued, such as $f(K)=\{\pm\sqrt{K}\}$.
+In general, identification is about answering questions on the form ``I know $K$ but want to know $W$, to what extent is this possible?''. If this is possible for every $K$, there is a function $K\mapsto W$, such as $f(K)=K^{2}$. Often tough, there are multiple possible $W$ compatible with $K$, and the mapping $K\mapsto\{W\}$ is set-valued, such as $f(K)=\{\pm\sqrt{K}\}$ or $f(K) = \arccos{K} \pm \{2\pi n\mid n\in \mathbb{N}\}$.
 
 Most identification problems in statistics and adjacent fields can be analyzed using four spaces.
 \begin{enumerate}
 \item $\mathcal{F}$: A space of distributions. Think of these as latent distributions underlying some phenomenon. 
-\item $\mathcal{K}$: The space of what you know. This can be a multivariate distribution, a set of marginal distributions, or perhaps some moments of a distribution. We will demand that $K\in\mathcal{K}$ is the image of an $F\in\mathcal{F}$ under some function. That is, there is a surjective function $\mathcal{F}\to\mathcal{K}$. 
+\item $\mathcal{K}$: The space of what you know. This space could contain multivariate distributions, sets of marginal distributions, or perhaps moments of a distribution. We will demand that $K\in\mathcal{K}$ is the image of an $F\in\mathcal{F}$ under some function. That is, there is a surjective function $\mathcal{F}\to\mathcal{K}$. 
 \item $\Theta$: The parameter space of $\mathcal{F}$, endowed with a surjective function $\Theta\to\mathcal{F}$. The parameter space will sometimes contain information that cannot be deduced from $\mathcal{F}$ itself, that is, the mapping $\theta\mapsto F$ does not have to injective. 
 \item $\mathcal{W}$: The space of what you want to know. The quantity we wish to know is a function of $\theta$, hence there is a surjective function $\mathcal{F}\to\mathcal{K}$. 
 \end{enumerate}
@@ -46,12 +38,12 @@ Identification analyses come in three forms, depending on which of maps the maps
 \begin{description}
 \item [{Convenience~identification}] When statisticians talk about identifiability they usually think about convenience. Unidentified parameters make estimation difficult and is a prerequisite for most asymptotic results. In this case, the interpretation of the parameters are often of no consequence. Both $\Theta\to\mathcal{W}$ and $\mathcal{F}\to\mathcal{K}$ are identity maps. We know $F$ and wish to know $\theta$. 
 \item [{Partial~identification~of~distributions}] When $\Theta$ can be identified with the space of distributions $\mathcal{F}$, we are dealing with partial identification of distributions. In this setting, $F\in\mathcal{F}$ is the true, latent distribution, but we only observe some $K=\Psi(F)$. We are usually not interested in getting to know $F$ itself, but rather some summary such as a correlation. A famous example is the error-in-variables regression problem, considered below.
-\item [{Structural~parameters}] Sometimes you want to say something about parameters that are in extra-probabilistical, that is, they cannot be encoded by probability measures. In problems of this type the spaces $\Theta$ and $\mathcal{F}$ are distinct. The most famous example is causal inference, where different causal assumptions can produce identical joint distributions. 
+\item [{Structural~parameters}] Sometimes you want to say something about parameters that are extra-probabilistical, that is, they cannot be encoded by probability measures. In problems of this type the spaces $\Theta$ and $\mathcal{F}$ are distinct. The most famous example is causal inference, where different causal assumptions can produce identical joint distributions. 
 \end{description}
 
 \subsection{Convenience identification}
 
-Identification is usually about parameterizations. A parameterization is just a convenient way to represent an object, and we usually want each representation to be unique. We want parameterizations since probabilities is difficult beast to work with directly, but tuples of reals are easy to handle. Let $\mathcal{P}$ be family of probability measures and $\theta:\text{\ensuremath{\Theta\to\mathcal{P}}}$ a surjective function on some parameter space $\Theta$. We will call $\theta$ a parameter and say it is\emph{ identified }if $\theta$ is injective. 
+Identification is usually about parameterizations. A parameterization is just a convenient way to represent an object, and we usually want each representation to be unique. We want parameterizations since probabilities are wild beasts, and usually cannot be worked with directly. On the other hand, tuples of reals are easily tamed. Let $\mathcal{P}$ be family of probability measures and $\theta:\text{\ensuremath{\Theta\to\mathcal{P}}}$ a surjective function on some parameter space $\Theta$. We will call $\theta$ a parameter and say it is\emph{ identified }if $\theta$ is injective. 
 \begin{example}
 \label{exa:normal unidentified}Let $\Theta=[0,\infty)$ and map $\theta$ to the the probability distribution of a mean-zero normal variable with standard deviation $\theta$. Then $\theta$ is injective, hence identified. On the other hand, if $\Theta=\mathbb{R}$ and $\theta$ maps to the mean-zero normal probability with standard deviation $|\theta|$, $\theta$ is not identified. For instance, both $-1,1$ maps to the the standard normal probability.
 \end{example}
@@ -61,7 +53,7 @@ Parameterizing probability measures is in many cases quite important, both for i
 Identifiability is often a crucial technical assumption, required for the math to work. For instance, an identifiable parameterization is required for Doob's consistency theorem \parencite{Miller2018-xq} and consistency of Manski's maximum score estimator \parencite{Manski1975-gl}. Moreover, it is needed for numerical algorithms such as Newton--Raphson in order to assure convexity of the objective function.
 
 \subsection{Partial identification of distributions}
-In partial identification of probability distributions, the spaces $\mathcal{F}$ and $\Theta$ of \ref{fig:partial identifiaction situation-1} are equal. While partial identification is important in several fields, econometricians have been more active than others in studying it. Two important books are those of \textcite{Manski1999-ab,Manski2003-aq}, and \textcite{Tamer2010-rj} is a more recent review. The motivation for partial identification analyses is a principle connecting assumptions with believeability \textcite[p. 1]{Manski2003-aq}:
+In partial identification of probability distributions, the spaces $\mathcal{F}$ and $\Theta$ of Figure \ref{fig:partial identifiaction situation-1} are equal. While partial identification is important in several fields, econometricians have been more active than others in studying it. Two important books are those of \textcite{Manski1999-ab,Manski2003-aq}, and \textcite{Tamer2010-rj} is a more recent review. The motivation for partial identification analyses is a principle connecting assumptions with believeability, first phrased by \textcite[p. 1]{Manski2003-aq}:
 \begin{quote}
 \emph{The Law of Decreasing Credibility: }The credibility of inference
 decreases with the strength of the assumptions maintained.
@@ -97,8 +89,7 @@ on matching \parencite{Rassler2012-rp}.You need to fill out
 \]
 subject only to the constraint that $\Phi$ is positive definite. 
 \begin{proposition}
-\label{prop:correlation identification}The following identification
-sets are true.
+\label{prop:correlation identification}The following is true.
 \begin{itemize}
 \item[(i)] When $\rho_{23}$ and $\rho_{12}$ are known, the identification region
 for $\rho_{13}$ is the open interval
@@ -123,11 +114,11 @@ determinant of $A$ itself is positive.
 
 Since $\Phi_{11}=1$, (i) satisfied, and so is (ii) since $\rho_{12}$
 is a correlation. The determinant of $\Phi$ is
-\begin{eqnarray*}
-\det\Phi & = & (1-\rho_{23}^{2})-\rho_{12}(\rho_{12}-\rho_{23}\rho_{13})+\rho_{13}(\rho_{12}\rho_{23}-\rho_{13}).
-\end{eqnarray*}
+\begin{equation*}
+\det\Phi = (1-\rho_{23}^{2})-\rho_{12}(\rho_{12}-\rho_{23}\rho_{13})+\rho_{13}(\rho_{12}\rho_{23}-\rho_{13}).
+\end{equation*}
 Fixing $\rho_{12}$ and $\rho_{23}$, this is positive and if the
-quadratic functin $\rho_{13}^{2}-2(\rho_{12}\rho_{23})\rho_{13}+(\rho_{23}^{2}+\rho_{12}^{2})<0$.
+quadratic function $\rho_{13}^{2}-2(\rho_{12}\rho_{23})\rho_{13}+(\rho_{23}^{2}+\rho_{12}^{2})<0$.
 Since this equation has roots $\rho_{12}\rho_{23}\pm\sqrt{\rho_{12}^{2}\rho_{23}^{2}-\rho_{23}^{2}-\rho_{12}^{2}+1}$,
 equation (\ref{eq:identification set correlation}) follows. As for
 $\rho_{12}=\rho_{23}=\rho$, the limits are $\rho^{2}\pm\sqrt{(\rho^{2}-1)^{2}}$,
