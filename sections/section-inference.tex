@@ -1,378 +1,11 @@
 \section{Statistical inference}
 
-Bayesians are in a privileged position vis-à-vis frequentists. Any problem
-has a unique solution for a Bayesian provided he can answer three
-questions \parencite[Chapter 2]{Robert2007-ri}:
-\begin{enumerate}
-\item "What is the structure of reality?" He needs a likelihood for the problem. 
-\item "What do I know about reality?" He needs a prior for the parameters
-of the likelihood.
-\item "What do I want to do, or what to I want to know?" He needs a loss function
-to quantify the consequences of choosing the wrong act.
-\end{enumerate}
-The Bayesian does not only claim that every problem has a unique solution.
-His claim is much stronger. Given a likelihood, a prior, and a loss
-function, it is \emph{irrational} to do anything else than minimizing
-the expected loss, also known as the risk, defined as
-\begin{equation}
-\argmin_{a\in\mathcal{A}}E[l(X,a)\mid\textrm{data}].\label{eq:risk minimization}
-\end{equation}
-Frequentist seldom have this luxury. Sometimes solutions with desireable
-features do not exists, sometimes it is hard to find candidate confidence
-set, sometimes optimality criteria do not hold. Since frequentist
-methods usually aren't unique, frequently based on intuition, and
-can be based on severely conflicting criteria, they are famously called \emph{ad hoc
-methods}. \textcite[p. xxiii]{Jaynes2003-ky} speaks for many Bayesians
-in his diatribe against frequentist statistics:
-\begin{quote}
-{[}F{]}requentist methods provide no technical means to eliminate
-nuisance parameters or to take prior information into account, no
-way even to use all the information in the data when sufficient or
-ancillary statistics do not exist. Lacking the necessary theoretical
-principles, they force one to \textquoteleft choose a statistic\textquoteright{}
-from intuition rather than from probability theory, and then to invent
-ad hoc devices (such as unbiased estimators, confidence intervals,
-tail-area significance tests) not contained in the rules of probability
-theory.
-\end{quote}
-The case for Bayesianism is extremely strong \parencite{Berger1988-ji,Bernardo2009-wv}.
-But the arguments hinge on the assumption that we know the likelihood,
-prior, and loss. Is this realistic? We will consider them in turn. 
-
-The nature of Bayesian inference sometimes requires us to specify
-much more than a frequentist needs to. A Bayesian always needs to
-specify a prior, and the difficulties involved in finding good priors
-takes up a large chunk of the arguments of frequentists against Bayesians,
-and has inspired much work in objective Bayes. Getting the benefits
-of Bayesian analysis without a using priors has even been called ``holy
-grail of statistical theory'' by \textcite{Efron2010-is}. 
-
-But the Bayesian also has to specify a likelihood. In most frequentist
-statistics we assume a known likelihood, but not always. In particular,
-semi-parametric statistics often assumes no likelihood. For instance,
-the \textcite{Cox1972-xd} model assumes only a partially known likelihood,
-while the maximum score model of \textcite{Manski1975-gl} makes no likelihood
-assumptions at all. Moreover, non-parametric methods, such as kernel
-density estimation \parencite{Silverman1986-nt} do not involve likelihoods
-at all. Curiously, the archetypal non-parametric estimator, the histogram,
-can be framed as a maximum likelihood problem, complete with its own
-AIC \parencite{Birge2006-nl}. But even in this case, no likelihoods are
-actually assumed. The histogram is just a handy device to estimate
-an unknown density. That said, most semi-parametric and non-parametric
-problems can be formulated into similar non-parametric Bayes models.
-For instance, the natural analogue of kernel density estimation is
-the normal Dirichlet mixture model \parencite[Chapter 2.2]{Muller2015-xn}.
-
-But there are problems where Bayesian estimation appears impossible
-in principle, namely when the likelihood does not exist.
-\begin{example}[{No likelihood, \textcite[p. 30]{Berger1988-ji}}]
-\label{exa:no likelihood}Let $\{P_{\theta}\},\,\theta\in[0,1]$
-be a parameterized class of probability distributions on $[0,1]$
-defined by
-\begin{equation}
-P_{\theta}(A)=\frac{1}{2}[\lambda(A)+1_{A}(\theta)],\label{eq:no likelihood}
-\end{equation}
-for all $A$ in the Borel $\sigma$-algebra of $[0,1]$. Here $\lambda$
-is the Lebesgue measure. Then $\{P_{\theta}\}$ is not dominated by
-any $\sigma$-finite measure. To see why, assume $Q$ dominates $\{P_{\theta}\}$,
-that is, $Q(A)\geq P_{\theta}(A)$ for all $\theta$ and all $A$.
-In particular, $Q(\theta)\geq1$ for all $\theta\in[0,1]$. By $\sigma$-additivity,
-$Q(A)$ is finite if and only if $A$ is finite, and since a countable
-union if finite sets is countable, $Q$ is not $\sigma$-finite.
-\end{example}
-
-Since $\{P_{\theta}\},\,\theta\in[0,1]$ has no likelihood, the Bayesian
-is lost. He might have a prior on $\theta$, for instance a $\textrm{Beta}(2,2)$,
-but that does not help him. He might want to use the quadratic loss
-function, but he can't. Perhaps he could ditch the idea of likelihoods
-altogether and use a predetermined countable partitioning of $\Omega$
-instead. But such a solution is most definitely \emph{ad hoc}, and
-hard to reconcile with his prior on $\theta$. The only coherent way
-seems to be the adoption of a prior with countable support, so that
-$\{P_{\theta}\}$ becomes dominated; but then the estimator will be
-inconsistent for all $\theta$ outside of that countable support.
-
-On the other hand, the frequentist has no trouble dealing with this
-example. There are reasonable estimators for $\theta$ when we observe
-repeatedly from $P_{\theta}$. Most obviously, the estimator $\hat{\theta}=a$
-if and only if $a$ has been observed at least twice. Confidence sets,
-convergence rates, and other frequentist properties are trivially
-calculated from this estimator.
-
-An even stranger is case $P_{\theta}(A)=1_{\theta}(A)$. Here $\theta$
-is uniquely identified from a single observation, but has no likelihood,
-and no Bayesian analysis is possible.
-
-These two examples don't look realistic at all, and might be brushed
-aside as mere curiosities. A more practically serious problem appears
-when a likelihood appears to exist, is hard to reason about, but is
-somehow not needed for the problem.
-\begin{example}[Robins--Ritov--Wasserman]
- This example due to \textcite{Robins2012-fr}. We will consider a sequence
-of $n$ independent and identically distributed variables $(X_{i},Y_{i},Y_{i}^{*},R_{i})$,
-where $X_{i}\in[0,1]$ is uniform,  $R_{i}$ is binary, $Y_{i}^{*}\in\{0,1\}$,
-and $Y\in\{\textrm{NA},0,1\}$. Here $Y_i^{*}$ are unobserved; instead
-of observing $Y_{i}^{*}$, we observe
-\[
-Y=\begin{cases}
-Y^{*}, & R=1,\\
-\textrm{NA}, & R=0.
-\end{cases}
-\]
-Here $R$ is allowed to depend on $X$, with \emph{known} conditional
-probability $\pi(x)=p(r=1\mid x)$. The joint density of $(X,Y,R$) is
-\begin{eqnarray*}
-p(x,y,r\mid\theta) & = & \begin{cases}
-p(y\mid x,\theta)\pi(x), & r=1,\\{}
-[1-\pi(x)]1\{y=\textrm{NA}\} & r=0.
-\end{cases}
-\end{eqnarray*}
-Our goal is to estimate $\psi=P(Y_{i}^{*}=1)=\int p(y\mid x,\theta)dx$.
-We do not wish to assume any specific parametric form for the true
-$p(y\mid x,\theta)$. Anyhow, the posterior is proportional to
-\begin{eqnarray*}
-p(\theta\mid\textrm{data}) & \propto & \prod_{r_{i}=1}p(y\mid x_{i},\theta)\pi(x_{i})\prod_{r_{i}=0}1\{y=\textrm{NA}\}(1-\pi(x)),\\
- & \propto & \prod_{r_{i}=1}\pi(x_{i})\prod_{r_{i}=1,}p(y\mid x_{i},\theta).\\
- & \propto & \prod_{r_{i}=1,}p(y_{i}\mid x_{i},\theta).
-\end{eqnarray*}
-Hence the posterior does not depend on $\pi(x)$ unless the prior
-does. However, \textcite{Robins1997-uv} proved that any uniformly consistent
-estimator of $\psi$ must depend on $\pi(x)$. In this sense, any Bayesian estimator of $\hat{\theta}$ is inadequate. No matter what likelihood and prior you choose, the estimator of $\psi$ won't be uniformly consistent.
-
-On the other hand, there is a well-known uniformly consistent estimator of $\psi$,
-namely the \emph{Horwitz--Thompson} estimator
-\begin{equation}
-\hat{\psi}=\frac{1}{n}\sum_{i=1}^{n}\frac{Y_{i}R_{i}}{\pi(X_{i})}.\label{eq:Horwitz-Thompson}
-\end{equation}
-It is unbiased, and it variance shrinks to $0$ as $n\to\infty$,
-hence it's consisent. Moreover, the interval $C=\{\hat{\psi}\pm([2n\delta^{2}]^{-1}\log(2/\alpha))^{1/2}\}$
-is a valid finite sample level $\alpha$ confidence set, i.e.
-\[
-P(\psi\in C)\geq1-\alpha\quad(P\in\mathcal{P})
-\]
-for all $n$.
-\end{example}
-
-The Robins--Wasserman does not matter to a Bayesian that firmly knows the likelihood and the prior. For him, the Bayes' theorem is the best you could possible do. And by Doob's consistency theorem \parencite{Miller2018-xq}, if you know your prior is true, every Bayesian procedure is consistent.
-
-The Bayesians that are troubled by this example are the bounded Bayesians, those who have only limited trust in their
-priors and likelihoods, and try to make do with approximations. In
-parametric problems, the bounded Bayesians are relatively safe. Due
-to the Bernstein--von Mises phenomenon \parencite[Section 10.2]{Van_der_Vaart2000-qc},
-the prior does not matter in the limit, as $n\to\infty$. Moreover,
-parameter estimates such the posterior mean will converge to the do
-the Kullback--Leibler-minimizing parameter \parencite[Theorem 2.1]{Bunke1998-vg},
-sometimes called least-false parameters \parencite[p. 25]{Claeskens2008-hk},
-just as they do for maximum likelihood estimation.
-
-But non-parametric Bayesians doesn't have the luxury of an unconstrained
-Bernstein--von Mises phenomenon. The imaginary logical omniscience
-of the Bayesian has practical consequences now. In the Robins--Wasserman
-example, the frequentist is luckier than the Bayesian, as he does
-not have pretend to be omniscient at all. He does not need to pretend
-to know the likelihood $p(y\mid x,\theta)$, much less a prior for
-it. The Horwitz--Thompson estimator is an empirical average, not
-a function of the likelihood.
-
-As a Bayesian who admits not to be logically omniscient, what should
-you do? The frequentist method suggests a possible solution. We are
-looking for an esimator of the mean $\psi$, but the theoretical Bayesian
-is forced to supply a likelihood for the far more general $\theta$.
-But we can reformulate the problem so $\theta$ does not appear at
-all. 
-\begin{example}[Response to Robins--Wasserman]
- The bounded Bayesian will not know the likelihood of $\theta$,
-but there is still hope for him, as he has some information about
-the problem. In particular, he knows that $E[Y_{i}R_{i}/\pi(X_{i})]=\psi$.
-As any statistician worth his salt, he pretends that $Y_{i}R_{i}/\pi(X_{i})$
-is normal. He can then use e.g. a normal prior for the mean parameter
-of this normal distribution, and analyze it as an ordinary normal-likelihood
-and normal-prayer Bayesian problem.
-\end{example}
-
-\textcite{Sims2012-ze} proposes other bounded Bayesian solutions
-to the Robins--Ritov--Wasserman problem. Wasserman and Robins interprets
-such solutions as engaging in \emph{frequentist persuit}. That is,
-an attempt to manipulate Bayesian procedures to have good frequentist
-properties through \emph{ad hoc} metods. But the bounded Bayesian
-does not do his analysis due to frequentist persuit. He does it because
-he is aware of his own ignorance: No one can force you to know something
-you don't, and you don't know the likelihood of $y\mid x$, much less
-its prior. The bounded Bayesian retains some of his upper hand vis-à-vis
-the frequentist, as he is able to incorporate his knowledge about
-$\psi$ into his prior and has guaranteed frequentist properties via
-the Bernstein--von Mises theorem.
-
-That said, plenty of self-declared Bayesians are happy to engange
-in frequentist persuit. In this section, ``Bayesian'' is used in
-the sense of Finetti and Savage, as an ideal, rational actor. Most
-Bayesians are not dogmatic in this sense, but pragmatic Bayesians
-who use the methods because they often work better than frequentist
-methods. For instance, \textcite{Gelman2013-ib} argue that the Bernstein--von Mises
-phenomenon is essential to the Bayesian because it guarantees good frequentist properites of confidence sets. (On the other hand, \textcite{Morey2016-ry} argue that confidence sets are worthless unless they can be given a Bayesian interpretation.)
-
-\subsection{Loss functions}
-
-Loss functions don't receive much attention at all. Most statisticians
-let $l$ be quadratic, the action space be the parameter space, and
-call it a day. While this procedure certainly is practical, it's hard
-to defend philosophically. Loss functions can be categorized into
-at least five classes, depending on their actions space.
-\begin{lyxlist}{00.00.0000}
-\item [{\textbf{Point~prediction}}] Our goal is to predict the value of
-a new sample of $X$. In this case, the action space $\mathcal{A}$
-has to be a subset of $\dom X$, the domain of $X$. The loss function
-is $l(a,x)=E_{X\mid\theta}[l'(a,x)]$, where $l'(a,x)$ should equal
-$0$ if and only if $a=x$, and $l'(a,x)>0$ for all other $a\in\dom X$.
-Well-known prediction losses of this kind are the $L_{p}$-losses,
-$l'(a,x)=|a-x|^{p}$, the $0-1$-loss $l'(a,x)=1[a=x]$, the Linex
-loss $l'(a,x)=b(e^{c(x-a)}-c(x-a)-1)$ \parencite{Varian1975-cd}, and
-the Huber loss from robust statistics \parencite{Huber1964-fm}. For all
-of these cases, the risk $R=\min_{a\in\mathcal{A}}E[l(a,x)]$ tells
-you how certain you can be about your prediction of $X$.
-\item [{\textbf{Density~prediction}}] The action space $\mathcal{A}$
-is a subspace of the space of densities on $\mathcal{X}$. Again,
-we should demand that $l(g,f)=0$ if and only if $g=f$ a.e., and
-$l(g,f)>0$ for all other $g$. That is, $l$ is a statistical divergence
-function. Some well-known divergences are the Kullback--Leibler divergence,
-the $L_{2}$-divergence, the Hellinger distance, and the class of
-$f$-divergences \parencite{Basu2011-gs}. 
-\item [{\textbf{Parameter~estimation}}] The action space $\mathcal{A}$
-is a subset of the parameter space $\Theta$. The loss function will
-have the same properties as in point prediction, i.e., the loss $l(a,\theta)$
-should equal $0$ if and only if $a=x$, and $l(a,x)>0$. The by far
-most popular loss is the quadratic loss. The context is usually stated
-as ``parameter estimation'', without any more details about the
-problem or a statement as to why you should be interested in the parameters
-themselves.
-\item [{\textbf{Instrumental~losses}}] Sometimes we design our loss functions
-to help us reach our statistical goals. One application is the formulation
-of stopping rules in sequential analysis \parencite{Brockwell2003-pd}.
-A natural stopping rule is to check the posterior risk, continue if
-it is too large, and stop if it is too small. We add an increasing
-penalty $C_{k}$ to the loss, where $k$ is the sample size, since
-sampling costs money. The action space is the product two spaces.
-The first space contains two actions, Stop and Continue. If the action
-chosen is Stop, we will stop our sampling process; if it is Continue,
-we will continue the sampling process. The second space is $\dom X$,
-and the risk is $E_{X\mid\textrm{data}}[l(\mu,X)]+C_{k}$. Similar
-instrumental losses can be used for e.g. sparse estimation.
-\item [{\textbf{Practical~losses}}] Much decision theory is framed in
-terms of practical losses but they are rarely used. A practical loss
-is simply a loss that doesn't fit into the categories above. For example,
-\textcite{Stankovic1985-th} employs custom-made loss for the problem
-of decentralized control of job scheduling. 
-\end{lyxlist}
-The parameter estimation losses are not well-motivated. It's hard
-to imagine any situation where anyone would directly care about the
-posterior mean of $\mu$, philosophically speaking. Yes, posterior
-means and standard deviations are easy to calculate and intertrep,
-but this is hardly a deep justification to employ them. Losses on the parameter space does not take into account that parameterizations are, in a sense, arbitrary. For any identified $k$-dimensional parameterization of a likelihood, there are $2^{\mathfrak{c}}$ (where $\mathfrak{c}$ is the cardinality of the continuum) identified $k$-dimensional parameterizations, and why care only about one of them? 
-
-For a better motivated variant of parameter estimation, we could re-frame the problem as a density estimation problem. For if let let the action space $\mathcal{A}$ be the space of likelihoods, we are essentially dealing with a \emph{parameterization-agnostic} estimation problem. 
-\begin{example}
-\label{exa:exponential estimation} Let $X_{1},\ldots,X_{n}\sim\Exp(\lambda)$
-and $\lambda\sim\GammaDist(\alpha_{0},\beta_{0})$. It is well-known
-that the posterior distribution is $\GammaDist(\alpha,\beta)$, with
-parameters $\alpha=\alpha_{0}+n$, $\beta=\beta_{0}+n\overline{x}$.
-The posterior predictive distribution is $\Lomax(\alpha,\beta)$,
-which has density $\alpha\beta^{\alpha}(x+\beta)^{-\alpha-1}$. 
-
-A popular way to do density prediction is to use the the posterior
-predictive density. This\emph{ }is the point-wise solution to the
-risk-minization problem $\min_{p}E_{\theta\mid\textrm{data}}\{[p(x)-f_{\theta}(x)]^{2}\}$,
-where $f_{\theta}(x)$ is the aleatoric density at a data point. But
-this density is not decision-theoretically justified; it is merely
-a marginalized density. To justify the usage of the posterior predictive
-density, we need a loss function over over the space of densities, as described above.
-The best-known and most popular such loss function is the Kullback--Leibler\emph{
-}divergence \parencite{Kullback1951-kv}
-\begin{equation}
-d_{KL}(f,g)=\int\log\left[\frac{f(x)}{g(x)}\right]f(x)dx.\label{eq:Kullback-Leibler}
-\end{equation}
- Define the \emph{entropy} $H(f)=\int-\log[f(x)]f(x)dx$ and the \emph{cross-entropy}
-$H(f,g)=-\int\log[g(x)]f(x)dx$. Assuming finite entropy and cross-entropy,
-\begin{equation}
-d_{KL}(f,g)=H(f,g)-H(f).\label{eq:Kullback--Leibler(entropy)}
-\end{equation}
-Provided $E_{\theta\mid\textrm{ data}}[H(f_{\theta})]$ is finite,
-the posterior predictive distribution $\tilde{p}$ solves $\min_{p}E_{\theta\mid\textrm{data}}[d_{KL}(f_{\theta},p)]$.
-That is, $\tilde{p}=\argmin_{p\in\mathcal{P}}E_{\theta\mid\textrm{data}}[d_{KL}(f_{\theta},p)],$
-where $\mathcal{P}$ is the space of all densities. To see why, observe
-that
-\begin{eqnarray}
- &  & E_{\theta\mid\textrm{data}}\left(\int[\log f_{\theta}(x)-\log(g)]f_{\theta}(x)dx\right)\nonumber \\  
- & = & E_{\theta\mid\textrm{data}}[H(f_{\theta},g)]-E_{\theta\mid\textrm{data}}[H(f_{\theta})],\label{eq:cross-entropy equality}\\
- & = & H(\tilde{p},g)-E_{\theta\mid\textrm{data}}[H(f_{\theta})],\nonumber 
-\end{eqnarray}
-and that this is minimized in $g=\tilde{p}$, as the true distribution
-minimizes the cross-entropy. 
-
-Parameter estimation can be framed in similar terms. Estimating the
-parameters of a density $f$ is just a rephrasing of estimating the
-density. That is, estimating the $\lambda$ parameter in an
-exponential model is the same kind of problem as estimating $f_{\lambda}$,
-the exponential density itself. Now let $\mathcal{P}$ the family
-of exponential densities . Then $\argmin_{p\in\mathcal{P}}E_{\theta\mid\textrm{data}}[d_{KL}(f_{\theta},p)]$,
-an estimate of the density $f_{\lambda}$, can readily be calculated.
-This method of estimating parameters is studied by \textcite{Robert1996-ii},
-who calls the statistical divergences intrinsic losses. 
-
-From the equations (\ref{eq:cross-entropy equality}) above, we know
-we only have to minimize the cross-entropy $H(\tilde{p},g)$. Let
-$X\sim\Lomax(\alpha,\beta)$, then calculate
-\begin{eqnarray*}
-H(\tilde{p},g_{\lambda}) & = & \int[\log\lambda-\lambda x]\alpha\beta^{\alpha}(x+\beta)^{-\alpha-1}dx,\\
- & = & \log\lambda-\lambda EX=\log\lambda-\lambda\frac{\beta}{\alpha-1}.
-\end{eqnarray*}
-This function reaches its minimum in $\hat{\lambda}_{KL}=(\alpha-1)/\beta$,
-where $H(\tilde{p},g_{\lambda})=\log\beta-\log(\alpha-1)$. Compare
-this to the posterior mean, which for this particular parameterization
-is the slightly larger $\alpha/\beta$. 
-
-Recall that maximum likelihood estimation can be formulated in terms
-of Kullback--Leibler minimization \parencite[p. 25]{Claeskens2008-hk}:
-If $F_{n}$ is the the empirical cumulative distribution function,
-the maximim likelihood estimator is $\hat{\theta}_{ML}=\argmin d_{KL}(F_{n},f_{\theta})$.
-Since $\hat{\theta}_{ML}$ is invariant under reparameterizations
-(just like other minimum distance estimators, see \textcite{Drossos1980-ar}),
-it is hardly surprising that the Kullback--Leibler loss minimizer
-is invariant under reparameterizations too. 
-\end{example}
-
-
-\subsection{Frequentist statistics}
-
-Frequentist inference is hard to understand for lay people. Misunderstandings
-about \emph{p}-values and confidence intervals are ubiquitous, documented
-in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi}
-and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same
-sense as Bayesian quantities, and they are often hard to reason about
-mathematically. 
-
-The much harder mathematics involved in research level frequentist
-statistics has led to an understanding that Bayesian statistics is
-boring. 
-\begin{quote}
-What is the principal distinction between Bayesian and classical statistics?
-It is that Bayesian statistics is fundamentally boring. There is so
-little to do: just specify the model and the prior, and turn the Bayesian
-handle. There is no room for clever tricks or an alphabetic cornucopia
-of definitions and optimality criteria. I have heard people who should
-know better use this 'dullness' as an argument against Bayesianism.
-One might as well complain that Newton's dynamics, being based on
-three simple laws of motion and one of gravitation, is a poor substitute
-for the richness of Ptolemy's epicyclic system. \parencite{Dawid2000-aw}
-\end{quote}
-It's easy to forget just how strange hypothesis tests, confidence
+Frequentist inference is hard to understand for lay people. Misunderstandings about \emph{p}-values and confidence intervals are ubiquitous, documented in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi} and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same sense as Bayesian quantities, and they are often hard to reason about mathematically. It's easy to forget just how strange hypothesis tests, confidence
 sets, and \emph{p}-values are. 
 
-\subsubsection{Hypothesis tests, \emph{p}-values, and confidence intervals}
+\subsection{Hypothesis tests, \emph{p}-values, and confidence intervals}
 
-In the following pages, $(\Omega,\mathcal{\mathcal{F}})$ will be
-a measurable space and $\mathcal{P}$ a backgroud family of probability
-measures on this space. The family $\mathcal{P}$ contains every probability
-measure we consider plausible. 
+In the following pages, $(\Omega,\mathcal{\mathcal{F}})$ will be a measurable space and $\mathcal{P}$ a background family of probability measures on this space. The family $\mathcal{P}$ contains every probability measure we consider plausible. 
 \begin{definition}
 \parencite[][Chapter 3.1]{Lehmann2005-sp} Let $\mathcal{P}_{0}$ be a family
 of probability measures on $(\Omega,\mathcal{F})$. A test of the
@@ -382,36 +15,42 @@ of $P\in\mathcal{P}_{0}$ of \emph{level $\alpha$ }is a set $R$
 such that $\sup_{P\in\mathcal{P}_{0}}P(R)\leq\alpha.$
 \end{definition}
 
-The set $R$ is the \emph{rejection set} of the hypothesis test. Its
-complement is the acceptance set of the hypothesis and is denoted
-$A=R^{c}$. The philsophical underpinning of hypothesis test, due
-to Neymann, is that you have to have make a binary choice. Either
-you act as if $P\in\mathcal{P}_{0}$ is true, or you act as if $\mathcal{P}_{0}$
-isn't true. When you do a hypothesis test, you choose $\mathcal{P}_{0}$
-if $\omega\in R^{c}$ and $\mathcal{P}_{1}=\mathcal{P\backslash P}_{0}$,
-the alternative hypothesis, otherwise. The definition of hypothesis
-test guarantees you will choose $\mathcal{P}_{1}$ when
-$\mathcal{P}_{0}$ is true with at most probability $\alpha$. Usually,
-discussions of hypothesis tests will involve the probability that
-$\mathcal{P}_{1}$ is chosen when $\mathcal{P}_{1}$ is true; this is called the
-\emph{power} of the test \parencite{Neyman1977-nx}.
+The set $R$ is the \emph{rejection set} of the hypothesis test. Its complement is the acceptance set of the hypothesis and is denoted $A=R^{c}$. The philosophical underpinning of hypothesis test, due to Neyman, is that you have to have make a binary choice. Either you act as if $P\in\mathcal{P}_{0}$ is true, or you act as if $\mathcal{P}_{0}$ isn't true. When you do a hypothesis test, you choose $\mathcal{P}_{0}$ if $\omega\in R^{c}$ and $\mathcal{P}_{1}=\mathcal{P\backslash P}_{0}$, the alternative hypothesis, otherwise. The definition of hypothesis test guarantees you will choose $\mathcal{P}_{1}$ when $\mathcal{P}_{0}$ is true with at most probability $\alpha$. Usually, discussions of hypothesis tests will involve the probability that $\mathcal{P}_{1}$ is chosen when $\mathcal{P}_{1}$ is true; this is called the \emph{power} of the test \parencite{Neyman1977-nx}.
 
-Hypothesis tests are quite easy to understand, especially when formulated
-with explicit null-hypotheses and alternative hypotheses. The complexity
-goes up a notch with \emph{p-}values.
+Hypothesis tests are quite easy to understand, especially when formulated with explicit null-hypotheses and alternative hypotheses. The idea behind hypothesis tests is easy to state and has a clear and practical rationale, which is to control error rates. That said, there are examples of even optimal hypothesis tests that behave unintuitively. 
+
+\begin{example}[{\textcite[Example 4a]{Berger1988-ji}}]
+ Let $X\in\{1,2,3\}$ and $\theta\in\{1,2\}$. Define
+\[
+P_{0}(x)=\begin{cases}
+0.009, & x=1.\\
+0.001, & x=2,\\
+0.99, & x=3,
+\end{cases},\;P_{1}=\begin{cases}
+0.001, & x=1.\\
+0.989, & x=2,\\
+0.01, & x=3,
+\end{cases}
+\]
+The rejection set $R=\{x\neq3\}$ is the most powerful test of $P_{0}$ vs $P_{1}$, with both error probabilities equal to $0.01$. Now suppose you observe $x=1$, whereupon you would reject $P_{0}$ in favour $P_{1}$ according to $R$. But $x=1$ is $9$ times more likely under $P_{0}$ than under $P_{1}$!
+\end{example}
+
+In this example you are you forced to reject $P_0$ since hypothesis test are pre-data constructions. Problems such as these has led to much research into conditional frequentist inference, where conditioning on auxiliary statistics is the best know method. For a review, see \textcite{Goutis1995-ga}.
+
+The complexity goes up a notch with \emph{p-}values.
 \begin{definition}
 \label{def:p-value}(\textcite[][Chapter 3.3]{Lehmann2005-sp}, \textcite{Bayarri2000-dt}) Let
 $A\subseteq[0,1]$ and $R(\alpha)$ be an increasing sequence of size
 $\alpha$ rejection sets under $\mathcal{P}_{0}$, i.e., $R(\alpha')\subseteq R(\alpha)$
 when $\alpha'\leq\alpha$, and $\sup_{P\in\mathcal{P}_{0}}P(R)=\alpha$.
-Then random variable
+Then the random variable
 \begin{equation}
 U(\omega)=\inf\{\alpha\mid\omega\in R(\alpha)\}\label{eq:size p-value}
 \end{equation}
 is a \emph{p}-value. 
 \end{definition}
 
-Observe that $U\leq\alpha=\left\{ \omega\mid\inf\{\alpha'\mid\omega\in R(\alpha')\}\leq\alpha\right\} =R(\alpha)$.
+Observe that $\{U\leq\alpha\}=\left\{ \omega\mid\inf\{\alpha'\mid\omega\in R(\alpha')\}\leq\alpha\right\}=R(\alpha)$.
 Importantly, $U$ satisfies $\sup_{P\in\mathcal{P}_{0}}P(U\leq\alpha)=\sup_{P\in\mathcal{P}_{0}}P(R(\alpha))=\alpha$
 for all $\alpha\in A$. When $\mathcal{P}_{0}$ is a singleton, $P(U\leq\alpha)=P(R(\alpha))=\alpha$.
 In particular, if $A=[0,1]$, $U$ is uniformly distributed under
@@ -421,7 +60,7 @@ for both $A\neq[0,1]$ and composite hypotheses. The \emph{p}-value
 suffers from an all-too-common problem in statistics; there is no
 different name for the observed \emph{p}-value $u$ and the \emph{p}-value
 statistic $U$. \textcite{Schweder1988-nh} proposed to call $U$ the
-``signficance statistic'', a name that has unfortunately not caught
+``significance statistic'', a name that has unfortunately not caught
 on. 
 
 You could claim this definition of a \emph{p}-value is too convoluted.
@@ -431,9 +70,9 @@ least as extreme as the observed data, given the null hypothesis is
 true.'' A better definition is ``the probability of observing $T\geq t$,
 where $t$ is a observation of the statistic $T$'', as it makes
 the dependence on the (often arbitrary) statistic $T$ explicit. But
-stating it in terms of of increasing rejection sets is even better,
+stating the definition in terms of increasing rejection sets is even better,
 as it makes it clear just how many \emph{p}-values there are, how
-permissive the definition is, and how the definition is fundmentally
+permissive the definition is, and how the definition is fundamentally
 about chains in the $\sigma$-algebra $\mathcal{F}$. Moreover, the
 connection between hypothesis tests and \emph{p}-values is easiest to state
 and appreciate in terms of rejection sets. The notion of most powerful
@@ -449,20 +88,11 @@ Luckily, $\sqrt{n}\overline{x}/s$ is a pivot in this situation, i.e.,
 $P_{\sigma}(\sqrt{n}\overline{x}/s\leq x)$ is independent of $\sigma$,
 but the null-hypothesis is still composite. 
 
-How should you use \emph{p}-values for inferential purposes? That's
-really hard to say. First of all, notice that a \emph{p}-value does
-not have the error-rate interpretation as an hypothesis test. A of
-p-value of $0.05$ is not observed with probability $0.05$ under
-the null-hypothesis, but a \emph{p}-value of $0.05$ or less is observed
-with probability $0.05$. 
+How should you use \emph{p}-values for inferential purposes? That is really hard to say. A \emph{p}-value does not have the error rate interpretation as an hypothesis test. A of \textit{p}-value of $0.05$ is not observed with probability $0.05$ under the null-hypothesis, but a \emph{p}-value of $0.05$ or less is observed with probability $0.05$. 
 
-It is hard to interpret \emph{p}-values. The definition is opaque and hard, if not impossible, to connect to real-life outcomes. And it is hard to justify the use numbers one cannot expect anyone to interpret in any meaningful way, especially because people will try to interpret it, and inevitably fail. \textcite{Cohen1994-au} wrote, in his critique of \emph{p}-values, 
+It is hard to interpret \emph{p}-values. The definition is opaque and hard, if not impossible, to connect to real-life outcomes. And it is hard to justify the use of numbers one cannot expect anyone to interpret in any meaningful way, especially because people will try to interpret it, and inevitably fail. \textcite{Cohen1994-au} wrote, in his critique of \emph{p}-values, 
 \begin{quotation}
-What's wrong with {[}null-hypothesis significance testing{]}? Well,
-among many other things, it does not tell us what we want to know,
-and we so much want to know what we want to know that, out of desperation,
-we nevertheless believe that it does! What we want to know is \textquotedbl Given
-these data, what is the probability that $H_{0}$ is true?\textquotedbl{}
+What's wrong with {[}null-hypothesis significance testing{]}? Well, among many other things, it does not tell us what we want to know, and we so much want to know what we want to know that, out of desperation, we nevertheless believe that it does! What we want to know is \textquotedbl Given these data, what is the probability that $H_{0}$ is true?\textquotedbl{}
 \end{quotation}
 Some authors, most famously Fisher \parencite{Liu2020-er} attempt to justify \emph{p}-values
 as measures of evidence, and, according to \textcite{Berger1987-tf}
@@ -475,17 +105,17 @@ One reason why \emph{p}-values are not measures is evidence is the lack of expli
 \begin{quotation}
 Suppose I said, \textquotedblleft Albinos are very rare in human populations, only one in fifty thousand. Therefore, if you have taken a random sample of 100 from a population and found in it an albino, the population is not human.\textquotedblright{} This is a similar argument but if it were given, I believe the rational retort would be, \textquotedblleft If the population is not human, what is it?\textquotedblright{} 
 \end{quotation}
-A major difference between the Neyman--Pearson theory of statistical
-tests and \textit{p}-values is the theoretical justification. Classical Neyman--Pearson-type
-inferential statistics, with Lehmann's ``Testing statistical
-hypotheses'' \parencite{Lehmann2005-sp} as its bible, is concerned with
-finding optimal tests. Usually, uniformly most powerful tests or uniformly
-most powerful unbiased tests do not exist, but it is sometimes possible
-to find other kinds of optimal tests. Optimality theory gives you
-justification for selecting one test instead of another, and maybe
-more importantly, forces you to think clearly about exactly what your
-assumptions are and exactly what you want to test. \emph{p}-values,
-almost never framed in this way, are much more arbitrary. 
+A major difference between the Neyman--Pearson theory of statistical tests and \textit{p}-values is the theoretical justification. Classical Neyman--Pearson-type inferential statistics, with Lehmann's ``Testing statistical hypotheses'' \parencite{Lehmann2005-sp} as its bible, is concerned with finding optimal tests. Usually, uniformly most powerful tests or uniformly most powerful unbiased tests do not exist, but it is sometimes possible to find other kinds of optimal tests. Optimality theory gives you justification for selecting one test instead of another, and maybe more importantly, forces you to think clearly about exactly what your assumptions are and exactly what you want to test. \emph{p}-values, almost never framed in this way, are much more arbitrary. 
+
+The opaqueness of \textit{p}-values arguably has extreme consequences for the scientific literature. Since most researchers do not know the definition of \textit{p}-values, much less understand them, they fall back on utterly incorrect ideas about what a \textit{p}-value is or what it entails. Classical examples include \parencite{Gigerenzer2018-oi}:
+\begin{itemize}
+    \item Replication delusion. The idea that a  \textit{p}-values specifies the probability of a successful replication.
+    \item Illusion of certainty. A significant \textit{p}-value proves a purported effect exists.
+    \item Bayesian wishful thinking. The \textit{p}-value is the posterior probability of the null-hypothesis being true.
+\end{itemize}
+\textcite{Gigerenzer2018-oi} found, in a review of the literature comprising a total sample of approximately 1000 academic psychologist and $1000$ psychology students, that $56\%--97\%$ of the respondents believed in at least one these incorrect statements. 
+
+Most research follows what \textcite{Gigerenzer2004-oc} calls the \text{null ritual}. The null hypothesis is that of no effect, the \textit{p}-value threshold is $0.05$, and the study is a success if and only if the \textit{p}-value falls below $0.05$. The detrimental effects of this ritual includes \textit{p}-hacking and publication bias, to be discussed in the section about the replication crisis.
 
 Confidence sets are even harder handle than \emph{p}-values. For while
 \emph{p}-values are defined in terms of a nested family of rejection
@@ -506,60 +136,15 @@ Usually we define a set $C(\omega)$ by $\theta\in C(\omega)\iff\omega\notin R_{\
 for every $P$ in the equivalence class $\mathcal{P}(\theta)$, while
 the supremum over $\Theta$ guarantees that this is the case for each equivalence class.
 
-A confidence set should be regarded as family of rejection sets, not
-as a random set. For it to be random set we would have to find a $\sigma$-algebra
-$\mathcal{G}$ over a suitable space of sets $\mathcal{X}$ such that
-$C:\Omega\to\mathcal{X}$ is measurable, i.e., $C^{-1}(G)\in\mathcal{F}$
-for every $G\in\mathcal{G}$. Luckily, this is unneccessary, as we
-are never interested in questions such a ``What is the probability
-under $P$ that $C$ is an element of $\mathcal{D}$?''. But a formalization
-of $C$ as a random set would would be necessary to answer such questions.
+A confidence set should be regarded as family of rejection sets, not as a random set. For it to be random set we would have to find a $\sigma$-algebra $\mathcal{G}$ over a suitable space of sets $\mathcal{X}$ such that $C:\Omega\to\mathcal{X}$ is measurable, i.e., $C^{-1}(G)\in\mathcal{F}$ for every $G\in\mathcal{G}$. Luckily, this is unneccessary, as we are never interested in questions such a ``What is the probability under $P$ that $C$ is an element of $\mathcal{D}$?''. But a formalization of $C$ as a random set would would be necessary to answer such questions.
 
-Confidence sets are not only hard to define, they are hard to understand.
-You can't figure a handy reformulation of confidence sets, as that
-does not exist \parencite{Morey2016-ry}. 
-\begin{example}[{\textcite[Example 4a]{Berger1988-ji}}]
- Let $X\in\{1,2,3\}$ and $\theta\in\{1,2\}$. Define
+Confidence sets are not only hard to define, they are hard to understand. You cannot figure out a handy reformulation of confidence sets, as that does not exist \parencite{Morey2016-ry}. Moreover, confidence sets can be empty; even optimal confidence sets can be empty \parencite[Section 3.1]{Blaker2000-ud}. Well justified confidence set for a real parameter can contain the entire real line \parencite[Section 3.2--3.3]{Blaker2000-ud}. Most confidence sets are asymptotic, but with no guaranteed coverage since uniform convergence almost never is proved, or even true \parencite{Gleser1996-kk}.
 
-\[
-P_{0}(x)=\begin{cases}
-0.009, & x=1.\\
-0.001, & x=2,\\
-0.99, & x=3,
-\end{cases},\;P_{1}=\begin{cases}
-0.001, & x=1.\\
-0.989, & x=2,\\
-0.01, & x=3,
-\end{cases}
-\]
-The rejection set $R=\{x\neq3\}$ is the most powerful test of $P_{0}$
-vs $P_{1}$, with both error probabilities equal to $0.01$. Now suppose
-you observe $x=1$, whereupon you would reject $P_{0}$ in favour
-$P_{1}$ according to $R$. But $x=1$ is $9$ times more likely under
-$P_{0}$ than under $P_{1}$!
-\end{example}
+\subsection{Impossibility results}
 
-Moreover, confidence sets can be empty; even optimal confidence sets
-can be empty \parencite{Blaker2000-ud}. Confidence set for a real parameter
-can contain the entire real line \parencite{Morey2016-ry}. Most confidence
-sets are asymptotic, but with no guaranteed coverage since uniform
-convergence almost never is proved, or even true \parencite{Gleser1996-kk}.
+Let's say you have a sequence of real random variables $X_{1},X_{2},\ldots,X_{n}$ from some probability measure $P$ with finite mean $\mu=EX_{1}<\infty$. You do not know anything else about $P$. Is it possible to say anything about the mean $\mu$? From a Bayesian perspective the answer is no, as the problem is underspecified. The problem lacks not only a prior, but a likelihood too. Even worse, there is no $\sigma$-finite dominating measure for the class of candidate $F$s, so Bayes' theorem would be useless in any case. 
 
-\subsubsection{Impossibility results}
-
-Let's say you have a sequence of real random variables $X_{1},X_{2},\ldots,X_{n}$
-from some probability measure $P$ with finite mean $\mu=EX_{1}<\infty$.
-You do not know anything else about $P$. Is it possible to say anything
-about the mean $\mu$? From a Bayesian perspective the answer is no,
-as the problem is underspecified. The problem lacks not only a prior,
-but a likelihood too. Even worse, there is no $\sigma$-finite dominating
-measure for the class of candidate $F$s, so Bayes' theorem would
-be useless in any case. 
-
-But what happens with \emph{p}-values? It turns out there is no nice
-\emph{p}-value for the mean, or even hypothesis test, for non-parametric
-families of distributions, even when the variance is finite for every
-$P$. \textcite{Bahadur1956-tg} proved the following elegant theorem.
+But what happens with \emph{p}-values? It turns out there is no nice \emph{p}-value for the mean, or even hypothesis test, for non-parametric families of distributions, even when the variance is finite for every $P$. \textcite{Bahadur1956-tg} proved the following elegant.
 \begin{theorem}[Bahadur--Savage]
 Let $\mathcal{\mathcal{P}}$ be a family of probability measures
 satisfying
@@ -605,36 +190,9 @@ P_{\mu}(R) & = & (1-\lambda)P_{\mu_{0}}(R)+\lambda P_{\eta}(R),\\
 hence $\sup P_{\mu}(R)\geq\alpha-\epsilon$ by letting $\lambda\to0$.
 Since this is true for every $\epsilon,$ the result follows.
 \end{proof}
-The Bahadur--Savage theorem tells that for any sample size $n$,
-there is no hypothesis test of the mean that has power agianst a whole
-class of distributions with any other mean. In a sense, the mean is
-untestable.
+The Bahadur--Savage theorem tells that for any sample size $n$, there is no hypothesis test of the mean that has power against a whole class of distributions with any other mean. In a sense, the mean is untestable.
 
-% Assume $\{P_{\mu}\}_{\mu\in\mathbb{R}}$ is a family generating family
-% for $\mathcal{P}$, so that every $P\in\mathcal{P}$ has the representation
-% \[
-% P=\sum_{i=1}^{n}\lambda_{i}P_{i},\quad(\sum_{i=1}^{n}\lambda_{i}=1,\,P_{i}\in\mathcal{P},\lambda_{i}\in(0,1)).
-% \]
-% For instance, each $P_{\mu}$ could be the probability distribution
-% of a normal variable with mean $\mu$ and standard deviation $\sigma_{i}=1$.
-% All of these mixture components are assumed to have finite variance.
-% Using the formula for the variance of a mixture, $\Var P=\sum_{i=1}^{k}\lambda_{i}(\sigma_{i}^{2}+\mu_{i}^{2}-\mu^{2})$,
-% where $\mu=\sum_{i=1}^{n}\lambda_{i}\mu_{i}$ is the mean of $P$.
-% Thus the variance of each $P$ is finite. 
-
-% Now consider the studentized mean
-
-% \begin{equation}
-% \sqrt{n}\frac{\overline{x}-\mu}{s}\stackrel{d}{\to}N(0,1).\label{eq:studentized mean}
-% \end{equation}
-% where $\overline{x}$ is the sample mean and $s$ is the sample standard
-% deviation. By the Bahadur--Savage theorem, the natural rejection
-% set $R_{\mu}=\{x\mid\sqrt{n}|\overline{x}-\mu|/s\geq z_{\alpha/2}\}$
-% is has no power against any any alternative, and is useless.
-
-A more recent example of utestable hypothesis testing is \emph{conditional
-independence testing}. Consider a density with three variables $x,y,z$
-and the following test
+A more recent example of utestable hypothesis testing is \emph{conditional independence testing}. Consider a density with three variables $x,y,z$ and the following test
 \begin{align*}
 \mathcal{P}_{0}: & p(x,y\mid z)=p(x\mid z)p(y\mid z)\quad\textrm{for all }x,y,z.\\
 \mathcal{P}_{1}: & p(x,y\mid z)\neq p(x\mid z)p(y\mid z)\quad\textrm{for some }x,y,z.
@@ -642,22 +200,20 @@ and the following test
 \textcite{Shah2018-jh} proved the following theorem, showing that a
 conditional independence test has no power against any alternative. 
 \begin{theorem}
-\label{theorem:Shah--Peters}Let $n$ be arbitrary and $x_{i},y_{i},z_{i}$
-be identically and independently sampled from $P$. Assume $P^{n}(R)\leq\alpha$
-for all $P\in\mathcal{P}_{0}$. Then $P^{n}(R)\leq\alpha$ for all
-$P\in\mathcal{P}_{1}$ too.
+\label{theorem:Shah--Peters}Let $n$ be arbitrary and $x_{i},y_{i},z_{i}$ be identically and independently sampled from $P$. Assume $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{0}$. Then $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{1}$ too.
 \end{theorem}
 
-The Shah--Peters theorem is stronger than the Bahadur--Savage theorem
-in the sense its alternatives are simple, not composite. The alternatives
-in Bahadur--Savage are entire classes of probability measures; and
-the richness of these classes is what drives the theorem. The Shah--Peters
-theorem, on the other hand, is about the richness of the the nullhypothesis,
-$\mathcal{P}_{0}$. This class of distributions is so large that any
-rejection set satisfying $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{0}$
-must satisfy $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{1}$
-too.
+The Shah--Peters theorem is stronger than the Bahadur--Savage theorem in the sense its alternatives are simple, not composite. The alternatives in Bahadur--Savage are entire classes of probability measures; and the richness of these classes is what drives the theorem. The Shah--Peters theorem, on the other hand, is about the richness of the the null hypothesis, $\mathcal{P}_{0}$. This class of distributions is so large that any rejection set satisfying $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{0}$ must satisfy $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{1}$ too.
 
-An analogue of the Shah--Peters result does not hold for independence
-testing, as the rank test of \textcite{Hoeffding1948-nm} test is pointwise
-consistent. Still, there is no uniformly unbiased test of independence \parencite{Moss2020-bc}.
+An analogue of the Shah--Peters result does not hold for unconditional independence testing, as the rank test of \textcite{Hoeffding1948-nm} test is pointwise consistent. Still, there is no uniformly unbiased test of independence \parencite{Moss2020-bc}.
+
+\textcite{Donoho1988-hg} studies conditions when two-sided confidence intervals fail to exist, but one-sided do. Consider the problem of estimating the number of modes in a continuous density. If we make no assumptions about the shape of the density, such as smoothness assumptions of various kinds, it is impossible to put an upper bound on its number of modes. The intuition here is simple, as illustrated in Figure \ref{fig:donoho}. You might be able to identify large modes from limited data, but you will not be able to identify the small ones. But Donoho proved there is possible to find lower bounds for the number of nodes. 
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.16]{chunks/donoho.png}
+    \caption{Thick line: a density with three modes. Thin line: The same density pertubed to have three modes. Taken from the paper of \textcite{Donoho1988-hg}.}
+    \label{fig:donoho}
+\end{figure}
+
+The mean of normal model with known standard deviation is connected to three confidence intervals. The standard two-sided, the left-sided, and the right-sided. In this case, the two-sided confidence interval will always have finite diameter, or length, while the left-sided and right-sided will always have infinite diameter. But there are models and parameters where there is no confidence interval of guaranteed finite length. \textcite{Gleser1987-ii} proved a beautiful theorem giving sufficient conditions for there to be no confidence interval of guaranteed finite diameter. Essentially, if there is a sequence $\theta_n$ of parameters such that $|\theta_n| \to \infty$ while $f_{\theta_n} \to f$ for some density $f$, then there is no confidence interval for $\theta$ of guaranteed finite diameter. A simple example is $\theta = 1/\mu$, where $\mu$ is the mean of a normally distributed variable with fixed standard deviation. For in this case, $\mu_n = 1/n$ implies $\theta_n\to\infty$, while the density $f_\mu$ converges to a standard normal.

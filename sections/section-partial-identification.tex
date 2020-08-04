@@ -10,35 +10,17 @@ identifed} $x$. In contrast, if I tell you that $x\in[0,1]$, you
 can immediately answer that $x=0$, and you have \emph{identified}
 $x$.
 
-In general, identification is about answering questions on the form
-``I know $K$ but want to know $W$, to what extent is this possible?''.
-If this is possible for every $K$, there is a function $K\mapsto W$,
-such as $f(K)=K^{2}$. Often tough, there are multiple possible $W$
-compatible with $K$, and the mapping $K\mapsto\{W\}$ is set-valued,
-such as $f(K)=\{\pm\sqrt{K}\}$.
+In general, identification is about answering questions on the form ``I know $K$ but want to know $W$, to what extent is this possible?''. If this is possible for every $K$, there is a function $K\mapsto W$, such as $f(K)=K^{2}$. Often tough, there are multiple possible $W$ compatible with $K$, and the mapping $K\mapsto\{W\}$ is set-valued, such as $f(K)=\{\pm\sqrt{K}\}$.
 
-Most identification problems in statistics and adjacent fields can
-be analyzed using four spaces.
+Most identification problems in statistics and adjacent fields can be analyzed using four spaces.
 \begin{enumerate}
-\item $\mathcal{F}$: A space of distributions. Think of these as latent
-distributions underlying some phenomenon. 
-\item $\mathcal{K}$: The space of what you know. This can be a multivariate
-distribution, a set of marginal distributions, or perhaps some moments
-of a distribution. Will demand that $K\in\mathcal{K}$ is the image
-of an $F\in\mathcal{F}$ under some function. That is, there is a
-surjective function $\mathcal{F}\to\mathcal{K}$. 
-\item $\Theta$: The parameter space of $\mathcal{F}$,
-endowed with a surjective function $\Theta\to\mathcal{F}$. The parameter
-space will sometimes contain information that cannot be deduced from
-$\mathcal{F}$ itself, that is, the mapping $\theta\mapsto F$ does
-not have to injective. 
-\item $\mathcal{W}$: The space of what you want to know. The quantity we wish to know is a function of $\theta$, hence there is a surjective
-function $\mathcal{F}\to\mathcal{K}$. 
+\item $\mathcal{F}$: A space of distributions. Think of these as latent distributions underlying some phenomenon. 
+\item $\mathcal{K}$: The space of what you know. This can be a multivariate distribution, a set of marginal distributions, or perhaps some moments of a distribution. We will demand that $K\in\mathcal{K}$ is the image of an $F\in\mathcal{F}$ under some function. That is, there is a surjective function $\mathcal{F}\to\mathcal{K}$. 
+\item $\Theta$: The parameter space of $\mathcal{F}$, endowed with a surjective function $\Theta\to\mathcal{F}$. The parameter space will sometimes contain information that cannot be deduced from $\mathcal{F}$ itself, that is, the mapping $\theta\mapsto F$ does not have to injective. 
+\item $\mathcal{W}$: The space of what you want to know. The quantity we wish to know is a function of $\theta$, hence there is a surjective function $\mathcal{F}\to\mathcal{K}$. 
 \end{enumerate}
-The mappings above induce a set-valued map $H:\mathcal{K}\to\mathcal{W}$,
-the\emph{ identification region} for $F$ \parencite{Manski2003-aq}.
-Figure \ref{fig:partial identifiaction situation-1} shows the situtation
-using a commutative diagram. 
+The mappings above induce a set-valued map $H:\mathcal{K}\to\mathcal{W}$, the \emph{identification region} for $F$ \parencite{Manski2003-aq}.
+Figure \ref{fig:partial identifiaction situation-1} shows the situation using a commutative diagram. 
 
 \begin{figure}
 \noindent \begin{centering}
@@ -55,18 +37,10 @@ denote surjections, the dashed arrow ($\protect\dashrightarrow$)
 denotes the induced map.}
 \end{figure}
 
-Identification analysis is usually not presented in this formal way,
-but is fruitful for three reason. First, it makes a clear that there is a connection
-between the seemingly disparate uses of the word ``identification''
-across the stastical, medical, econonomic and sociological literutures.
-Second, it allows us to state results using little notation and words.
-For instance, $H(K)\subseteq A$ means that $A$ contains the identification
-region of $K$, when $K$ is what we know. Third, it is possible to prove some general results
-about these problems.
+Identification analysis is usually not presented in this formal way, but is fruitful for three reason. First, it makes a clear that there is a connection between the seemingly disparate uses of the word ``identification'' across the statistical, medical, econonomic, and sociological literatures.
+Second, it allows us to state results using little notation and words. For instance, $H(K)\subseteq A$ means that $A$ contains the identification region of $K$, when $K$ is what we know. Third, it is possible to prove some general results about these problems.
 
-As is customary in partial identification analysis, we ignore sampling
-error \parencite{Manski2003-aq}. Making this assumption reduces the complexity
-of the problem a lot. 
+As is customary in partial identification analysis, we ignore sampling error \parencite{Manski2003-aq}. Making this assumption reduces the complexity of the problem quite a bit. 
 
 Identification analyses come in three forms, depending on which of maps the maps in Figure \ref{fig:partial identifiaction situation-1} are identities. 
 \begin{description}

@@ -39,70 +39,6 @@ A reason to exclude a study is that it does not fulfill a list of best practices
 
 Finally, studies can be excluded since they look suspicious. There are many cases of both reporting errors \parencite{Nuijten2016-eu} and downright fraud in the research literature, with Diedrik Stapel being a high-profile fraudster from social psychology. Since research data is seldom available, the meta-analyst will not be able to check the veracity of the reported results in each research paper. This can lead to exclusion of studies on seemingly ad-hoc grounds. As an example, take \citeauthor{ferguson_angry_2015}'s 2015 meta-analysis on the effect of violent video games on aggressive behaviour. In this analysis, he excluded the study of \textcite{gentile_effects_2009} due to what \textcite{ferguson_angry_2015} called ``bouncing beta'' regression coefficients, or regression coefficients of equal magnitude going in opposite directions, a choice heavily criticized \textcite{gentile_what_2015}.
 
-% \subsubsection{Choice of statistical technique}
-% After the meta-analyst is done collecting her data, she must chose how to analyze them. Now she is faced with two categories of models, namely the class of \emph{fixed effect models} and \emph{random effects models} \parencite[chapter 10]{Borenstein2011-yx}. Let $N(\mu,\sigma)$ denote the normal distribution with mean $\mu$ and variance $\sigma^{2}$, and allow $z_{i}$ to be the estimated effect size of the $i$th study. Under this simple set up, the fixed effects model works under the assumption $z_{i}\sim N(\mu,\sigma_{i}n_{i}^{-1/2})$. The pith of this model is that all studies are assumed to \emph{exactly equal}. On the face of it, this is an unacceptably unrealistic assumption. Still, the model will often be the best choice, mostly due to the \emph{bias-variance trade-off} \parencite[p. 37]{friedman_elements_2001}. Since
-% our data is imprecise, it is always possible to get our estimates
-% horribly wrong. When we have many parameters in comparison to the
-% data size, the possibility of this happening goes from possible to
-% probable. The consequence is that a model with many parameters will
-% increase the variance of our estimates. On the other hand, a model
-% with few parameters will not give us the correct information even
-% with \emph{infinitely much data} -- there is an inherent bias in
-% the model. In conclusion, there are good reasons to believe fixed
-% effects models should perform well even though they are simple. Other
-% reasons to prefer fixed effects models is their interpretability.
-% They reflect what researcher hopes for an effect to be: A reliable,
-% consistent phenomenon. 
-
-% On the other hand, studies are always slightly different, also in
-% unobservable ways, and this difference is called study \emph{heterogeneity}.
-% This heterogeneity is captured by the normal distribution $N\left(\mu,\tau^{2}\right)$
-% above. In essence, we assume that all the heterogeneity can be accounted
-% for by a normal distribution. Examples of heterogeneity includes ``\emph{diversity
-% in doses, lengths of follow up, study quality, and inclusion criteria
-% for participants.} \parencite{higgins_measuring_2003}`` The models used
-% to capture this between-study variance are the random effect models.
-% In symbols, the linear random effect model is
-
-% \begin{eqnarray}
-% \mu_{i} & \sim & N(\mu_{0},\tau).\label{eq:Random effects}\\
-% z_{i} & \sim & N(\mu_{i},\sigma_{i}n_{i}^{-1/2})\nonumber 
-% \end{eqnarray}
-
-% There are more choices to be made regarding data analysis. Both main
-% classes of models can be estimated using a wealth of different methods,
-% both frequentist and Bayesian. A good case for Bayesian analysis can
-% be made on the grounds of \emph{regularization} (see e.g. \textcite{simpson_penalising_2017}).
-% Pure maximum likelihood is unstable, making it possible to obtain
-% far too large estimates when the sample size is small. On the other
-% hand, a Bayesian approach requires a prior, which adds yet another
-% layer of subjectivity. Moreover, if random effects are used, the meta-analyst
-% must decide whether she wants to use the normal distribution or something
-% else to model it. Still, the most important decision concerns which
-% covariates be included. By adding information about e.g. age of participants,
-% the length of the study, or the type of intervention used, the conclusions
-% of the meta-analysis can change dramatically.
-
-% Some academic fields will have more heterogeneous studies than others.
-% One example of a heterogeneous field is \emph{social priming} research,
-% where the exact experiments are significantly changed from study to
-% study since the effects studied are assumed to be sensitive to the
-% minutiae of the experimental conditions. Since random effects models
-% incorporates differences among studies, using a random effects model
-% looks like a no-brainer in this subfield of psychology. \textcite{oyserman_does_2008}
-% is a highly cited meta-analysis of collectivism vs individuals primes,
-% with over $900$ Google scholar citations. Still, \textcite{lakens_reproducibility_2016}
-% claim that \textcite{oyserman_does_2008} uses the wrong model, namely
-% fixed effects instead of random effects. While \textciteauthor{oyserman_does_2008}
-% obtain a statistically significant effect size in their original meta-analysis,
-% \textcite{lakens_reproducibility_2016} do not obtain significance in
-% their reanalysis with a random effects model. But recall the remark
-% above about the virtues of fixed effects models -- their estimates
-% might be less accurate, but are more precise. The researchers belong
-% to two different sides in an ongoing debate about the existence of
-% social priming effects, and both can justify their choice of model
-% if need be.
-
 \subsubsection{Publication bias and $p$-hacking}
 
 In 1959, \citeauthor{Sterling1959-cq} noted that many journals in psychology only regard an hypothesis as supported its associated $p$-value was less than $0.05$. Then he hypothesized that this rigid rule would cause that studies with non-significant results not to be published. In order to test this hypothesis, he sampled $364$ papers from four psychology journals and registered the results from the statistical tests contained in them. The result was staggering: Out of $296$ significance tests, only $8$ were non-significant at the $0.05$ level. To account for such an observation without invoking publication bias would require extraordinary assumptions on the ability of psychologists to find real effects. The phenomenon that almost only publications with a $p$-value less than $0.05$ are published is commonly referred to as \emph{publication bias} or the \emph{file-drawer
@@ -145,7 +81,7 @@ effect sizes in order to cross the $p=0.05$ boundary. Figure \ref{fig:A-funnel-p
 
 Under severe publication bias, this plot will be skewed. Building on this method intuition, the authors propose to estimate a publication bias-corrected effect size by running the regression
 \[
-z_{i}\sim\theta+\beta\widehat{s}_{i}+\epsilon_{i},
+x_{i}\sim\theta+\beta\widehat{s}_{i}+\epsilon_{i},
 \]
 where $\theta$ is the adjusted effect size and $\beta\neq0$ indicates the presence publication bias. This method is called PET \parencite{stanley_beyond_2005}. But PET is not the only regression-based method for publication bias
 correction. Another popular method is PET-PEESE \parencite{Stanley2014-gx}, a modified version of the above, applied mostly in economics research and recently to psychology \parencite{carter_series_2015}. This method is not without critics. \textcite{gervais_putting_2015} claims the method systematically underestimates the effect size in presence of publication bias, making almost any effect appear to be indistinguishable from $0$. In addition, \textcite{simonsohn_[59]_2017} runs simulations to show that the method fails in presence of inter-study heterogeneity. The most popular method in medicine is named trim and fill \parencite{Duval2000-ct}, which is based on removing and adding non-observed studies to the funnel plot in order to make it symmetric. The $p$-curve of \textcite{simonsohn_p-curve:_2014} has proven to be popular in psychology. This method is based on the theoretical shape (under the null of no $p$-hacking) of the probability density function obtained from the $p$-values from a set of studies.
@@ -155,7 +91,41 @@ All these methods, except the selection models, share a serious shortcoming. Pop
 
 The meta-analyst will have to make a choice of correcting for publication bias or not. If she opts to correct for publication bias, she is faced with a large number of different methods, none of them particularly good, but if her choice is no, her resulting estimates might be severely biased. The effect of this choice is potentially tremendous. As an illustration, I take a well-known contentious issue from economics: What is the relationship between the minimum wage and employment? The predictions from economic theory about this are unequivocal: Rising the minimum wage should raise the rate of unemployment. There are two reasons why: First, when the minimum wage is raised above the competitive wage, the employer will shift his spending towards other venues such as capital investments. Second, the industries affected will increase their prices to consumers, reducing the demand for labor in turn. \textcite{doucouliagos_publication_2009} studies the empirical research the relationship between a minimum wage floor and employment. Their meta-analysis contains $64$ studies, which in turn contain a total of $1474$ employment elasticity estimates. The average elasticity was $-0.19$, while the fixed effects meta-analytic estimate was $-0.054$, both highly significant. However, their publication bias-corrected estimate was the meager $-0.01$. In the words of \textcite{doucouliagos_publication_2009}: ``An elasticity of -0.01 has no meaningful policy implications. If correct, the minimum wage could be doubled and cause only a 1 per cent decrease in teenage employment.'' In this case the decision to correct for publication bias reduced the effect size estimate with a factor of $5$. Needless to say, this could have huge policy implication, considering the recent push towards rising the minimum wage in California and other U.S. states \textcite{Lee2016-bd}.
 
-Since publication bias and $p$-hacking is ubiquitous and its effect can make the difference between two radically different conclusions, good methods for dealing with them are needed. Even more important, scientist should rigorous in their usage of methods designed to avoid publication bias and $p$-hacking, for instance study pre-registration. 
+Since publication bias and $p$-hacking is ubiquitous and its effect can make the difference between two radically different conclusions, good methods for dealing with them are needed. Even more important, scientist should rigorous in their usage of methods designed to avoid publication bias and $p$-hacking, for instance study pre-registration. Most importantly, science should be open, transparent, and reproducible. 
+
+\subsection{Open science}
+
+Scientific data is hard to get by request, even for editors. In an editorial for the neuroscience journal Molecular Brain, \textcite{Miyakawa2020-ze} described his experience with asking authors for raw data. Out of the $180$ submissions he handled, he made $41$ requests for raw data as part of a ``Revise before review'' decision. Among these $41$ manuscripts, $21$ withdrew their submission. Out of the $20$ manuscripts left, Miyakawa rejected $19$ due to insufficient raw data. Thus $97\%$ of the submissions failed to provide raw data of good quality even after a request. Miyakawa suggests the possibility ``that the raw data did not exist from the beginning, at least in some portions of these cases.''
+
+Data is even harder to get for non-editors. As part of a study of psychological research's robustness to outliers, \textcite{Wicherts2006-yy} requested data from $141$ research psychologists, but received some data from only $27\%$ percent of them. This was not plausibly because the data was lost: All of the papers they requested data from were published during the last $12$ months. Moreover, the contacted psychologists reneged on their duty. All of them had signed the American Psychological Association's $2001$ ethics code, which contains the sentence ``psychologists do not withhold the data on which their conclusions are based from other competent professionals'' \parencite[p. 396; as cited in Wicherts et al. 2006][]{American_Psychological_Association2001-rs}. 
+\textcite{Wicherts2006-yy} are not the only researchers who have had trouble getting data. \textcite[p. 526]{Nelson2018-ov} wrote: 
+\begin{quote} Requesting data from another researcher---particularly for the stated justification of suspecting fraud---is socially taxing. Furthermore, although the APA prescribes the sharing of data, there is no enforcement mechanism. We have heard many stories from other researchers who were told that the requested data were coming soon (but then never arrive), were impossible to share, had been lost, or were legally impounded. We have personally been denied data explicitly because the authors wished to avoid criticism; the authors wrote bluntly, \textquotedblleft no data for you.''
+\end{quote}
+There are some valid reasons not to share data. Most important is the issue of privacy, where there are both ethical and legal issues. But for the majority of psychology papers, the reasons not for sharing data are bad. It is natural to suspect that data is withheld since the authors want to avoid criticism or scrutiny, and there is some evidence for this suspicion. Using the data from the aforementioned study of \textcite{Wicherts2006-yy}, \textcite{Wicherts2011-eb} argue that the reluctance to share data is associated with the study's quality. For instance, $25\%$ of the studies that did not share data reported \textit{p}-values below $0.05$ when they were not, in fact, below $0.05$; this error was not committed by any of the studies that shared data.
+
+The benefits of sharing data are numerous, and not always obvious. \textcite{Wicherts2012-cp} lists six points. First, sharing data preserves it. If you keep your data only on your own computer, it will eventually be lost. Second, openness allows other researchers to independently reproduce your results. They can uncover errors in the analysis, \emph{p-}hacking, or scientific misconduct. Third, publishing data can make the paper more citeable. This is especially relatable for methodologists, who frequently cite papers only since they are associated with data sets. Fourth and fifth, other researchers can run different analysis on your data. For statisticians this one is an obvious one, and is especially important for meta-analysists \parencite{Cooper2009-ge}. Finally, founding agencies routinely stipulate that data must kept in an accessible form for some minimum amount of years. If the data are made open, you do not have to worry at all about this.  
+
+A major reason to demand open data is to prevent scientific fraud. While most researchers believe that fraud is uncommon, it is extremely difficult to measure. Since there are strong incentives to falsify data and incorrectly report summary statistics, it is imprudent to assume no one does it. Demanding open data reduces the number of fraudulent papers by two mechanism. First, you are strongly disincentivized to falsify data and summary statistics when the data are publicly available. For other researchers can, in principle, uncover your fraud at any moment. Second, fraudulent papers will be uncovered at a greater rate when the evidence is available for scrutiny. By merely looking at reported standard deviations and means, \textcite{Simonsohn2013-ul} started to suspect two authors of systematic data manipulation. Luckily, the authors supplied him with the raw data, which only strengthened the suspicion of fraud. One of the authors, Dirk Smeesters, has now been convicted of scientific misconduct. The other, Lawrence Sanna, suddenly resigned from his professorship. However, \textcite{Simonsohn2013-ul}
+also observed a ``third case of exceedingly similar summary statistics''. Sadly, he did not get hold of the data, as the ``main author reported losing them, and the coauthors of the article did not wish to get involved''.
+
+Sharing data is just one part of open and reproducible science. It is equally important to share the code employed in the preparation of the manuscripts. The code should be readable, that is, no spaghetti code, documented, and preferably tested. Even better, the code should be integrated with the manuscript itself, allowing a compilation of a single file to reproduce the entire manuscript. The $\mathtt{R}$ environment provides tools to do such reproducible science, most importantly \texttt{rmarkdown} \parencite{Xie2018}.
+
+The reasons to share code are pretty much the same as the reasons to share data. Openness fosters better research and invites scrutiny for other researchers. It increases the trust in your research. It probably fosters collaboration too; it is much easier to approach someone about what they do when you know what they are doing.
+
+Papers report inconsistent statistics. \textcite{Nuijten2016-eu} reports that one of two psychology papers contains \emph{p}-values that are inconsistent with its reported test statistics. Moreover, one of eight papers have gross inconsistencies, where a reported \emph{p}-value is significant but its computed \emph{p}-value is not. As a reader without access to either the data or the code used to calculate the statistics, you are left in the dark about what the data actually says.
+
+\textcite{John2012-xp} measured the frequency of \emph{p}-hacking and other questionable research practices, in psychology using an electronic survey. Figure \ref{fig:john2012} shows their results. Most of these questions are about \emph{p}-hacking, but question eight is about \emph{hypothesising after results are known} (denoted \emph{HARKing} by \textcite{Kerr1998-by}), and question ten about scientific fraud. Approximately one third of the respondents admitted to hypothesising after results are known. Doing this certainly makes \emph{p}-values invalid, as choosing a null hypothesis conditioned its \emph{p}-value being less than $0.05$ definitely makes you reject the null hypothesis. But hypothesising after results are known is detrimental for other reasons too, and \textcite[p. 205]{Kerr1998-by} lists nine additional reasons why.
+
+\begin{figure}
+\noindent \begin{centering}
+\includegraphics[scale=0.4]{chunks/john2012}
+\par\end{centering}
+\caption{\label{fig:john2012}Self-admission rates to questionable research practices from \textcite{John2012-xp}. The participants in BTS group were given incentives for honest reporting, and the defensibility rating indicates how defensible the respondents consider each practice to be.}
+\end{figure}
+
+A study is preregistered if it is planned in detail in advance and the this plan is publicly known \parencite{Van_t_Veer2016-fo}. The plan should include the what hypotheses are tested, the experimental methods used, and an exact specification on the statistical analysis. A benefit of proper preregistration is that it makes hypothesising after results are known impossible, which on its own should reduce the rate of false positives in the literature quite a bit. But preregistration is also a remedy for \emph{p}-hacking, and can even help with publication bias.
+
+\textcite{Scheel2020-sq} studied rate of positive results in standard research versus preregistered research. Among $148$ standard, non-preregistered studies sampled, $142$ were positive. That is, $95\%$ were positive. On the other hand only $15/30=50\%$ of the preregistered reports were positive. Such a rate of positive results is far more plausible than $95\%$, especially when seen in light of the fact that most psychological research is severely underpowered \parencite{Sedlmeier1989-zz}.
 
 \subsection{Back-of-the-envelope calculations }
 A large part the daily lives of researchers is spent on reading and critically engaging with other peoples research. Prior to the replication crisis, a common way to judge the worth of an effect was to look at its \emph{p}-value or \emph{t-}value. If the \emph{p}-value was smaller than $0.05$, or the \emph{t-}value larger than approximately $2$, results looked impressive enough to be worthy of consideration. While plenty of researchers believe this way to consume research is bad \parencite{Gigerenzer2004-oc}, it is not without its merits. We have limited attention spans and need to abide by some decision rules; what we need are well-justified decision rules that will not lead us astray with an unacceptably high probability.
@@ -193,7 +163,7 @@ You could argue that $\delta$ does not look that simple to work with, but it is.
 Consider Study 1 of the infamous \emph{Power posing} paper by \textcite{Carney2010-we}. Here $t = 2.07$, so that $1/(t - 2) \approx 14$ with $38$ degrees of freedom. Since $38^{1/2} \approx 6$, we see that $1/(t - 2)$ is much larger than $38^{1/2}$, and we can probably ignore the study.
 
 Proposition \ref{prop:maximum likelihood bounds} is a straight-forward
-corollary of the following propositon. 
+corollary of the following proposition. 
 \begin{proposition}
 \label{prop:ml bouds}Let $X_{1},\ldots,X_{N}$ be independent samples
 from a left-truncated normal. Assuming known truncation point $a$
