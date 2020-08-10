@@ -73,15 +73,19 @@
     \listoftables       % Or \listoftables*
 
     \mainmatter         % Folios in Arabic numerals, numbered chapters.
+    
     \chapter{Setting the scene}
-    \include{sections/section-introduction}
-    \include{sections/section-inference}
-    \include{sections/section-replication-crisis}
-    \include{sections/section-psychometrics}
-    \include{sections/section-partial-identification}
-    \include{sections/section-open-science}
+    \input{sections/section-introduction}
+    \input{sections/section-inference}
+    \input{sections/section-replication-crisis}
+    \input{sections/section-psychometrics}
+    \input{sections/section-partial-identification}
+    \input{sections/section-open-science}
     \printbibliography[heading = subbibliography]
 
+    \chapter{Paper summaries}
+    \input{sections/section-summaries}
+    
     \paper              % "Chapter" is renamed "Paper"
     \paperpage          % Similar to \part*{Papers}, but appears in TOC
     \numberofpapers{3}  % Specify size of thumb indices

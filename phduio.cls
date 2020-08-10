@@ -204,7 +204,6 @@
     {\Huge\bfseries\boldmath\sffamily\raggedright}
     \renewcommand*{\authorsfont}{\Large\bfseries\sffamily}
     \renewcommand*{\metadatafont}{\normalfont\normalsize\sffamily}
-
     \setlength{\beforechapskip}{-1.35\baselineskip}
     \setlength{\midchapskip}{10pt}
     \setlength{\afterchapskip}{20pt}
@@ -237,14 +236,13 @@
 
     \renewcommand*{\printchapternonum}
     {
-        \vphantom{\chapnumfont Chapter}
+        \vphantom{\chapnumfont}
         \afterchapternum
         \vskip\topskip
     }
 }
 
 \chapterstyle{phduio}
-
 
 %% Lower level sections
 \setsecnumdepth{subsubsection}

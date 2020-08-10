@@ -1,10 +1,25 @@
 \section{Open science with \texttt{R}}
 
-\texttt{R} is not only a popular language among statisticians, but among other scientists as well, in particular social scientists and biologists. The \texttt{R} community is brimming with dedicated user, with roughly $16,000$ \texttt{CRAN} packages as of August 2020. Most \texttt{R} package development takes place on Github or other Git-based platforms such as Gitlab. These platforms allow for version control, code sharing, collaboration, and issue tracking. Lately, it has become popular to use Git to collaborate on papers on papers as well, often with \texttt{R} taking the center spot.
+\texttt{R} is not only a popular language among statisticians. Its popular among other scientists as well, social scientists and biologists in particular. The \texttt{R} community is brimming with dedicated user, with roughly $16,000$ \texttt{CRAN} packages as of August 2020. The large user-base and design of the language makes it the ideal language for statistics, with Python being the only rival.
 
-There are high-quality tools that greatly simplify the production of high-quality \texttt{R} code. Some of the most important are \texttt{devtools} \parencite{devtools}, for creating and disseminating \texttt{R} packages, and texttt{Roxygen} \parencite{roxygen2} for automatized creation of documentation. The packages \texttt{knitr} \parencite{Xie2014} and \texttt{R} markdown allows you to create manuscripts, blog posts, \texttt{R} package vignettes, reports, and even Beamer presentations without leaving \texttt{R}.
+\texttt{R}'s large base. For example, there are at least 16 packages dedicated to univariate density estimation \parencite{Deng2011-bk} and at least 14 implementations of isotonic regression \parencite{Busing2019-tv}. 
 
-Several \texttt{R} packages aid researchers in doing open and reproducible science in \texttt{R}. The \texttt{codebook} package by \textcite{Arslan2019-tg} assists in creating documentation for data sets. The packages \texttt{xtable} \parencite{xtable} and \texttt{huxtable} \parencite{huxtable} creates Latex tables from \texttt{R} code. \texttt{renv} \parencite{renv} and \texttt{packrat} \parencite{packrat} manages package version so that the code used to run the analysis does not break do to changes in external packages. The package \texttt{papaja} \parencite{papaja} makes knitr documents adhere to popular the American Psychological Association (APA) style. \texttt{worcs} \parencite{Van_Lissa2020-sb} is a template for open science in \texttt{R} developed by psychologists. This is just a small selection of packages for open and reproducible research.
+Creating high-quality \texttt{R}-package is quite simple, mainly due to the aid conferred by the \texttt{R} ecosystem. A high-quality packages should.
+
+\begin{enumerate}
+\item Have code of high quality.
+\item Be documented.
+\item Be tested.
+\item Conform to the standards of the \texttt{R} community, for instance passing the \texttt{CRAN} incoming checks.
+\end{enumerate}
+
+
+
+Much \texttt{R} package development takes place on Github or other Git-based platforms such as Gitlab. These platforms allow for version control, code sharing, collaboration, and issue tracking. Lately, it has become popular to use Git to collaborate on papers too, often with \texttt{R} taking the center spot.
+
+There are high-quality tools that greatly simplify the production of high-quality \texttt{R} code. Some of the most important are \texttt{devtools} \parencite{devtools}, for creating and disseminating \texttt{R} packages, and \texttt{Roxygen} \parencite{roxygen2} for automatized creation of documentation. The packages \texttt{knitr} \parencite{Xie2014} and \texttt{R} markdown allows you to create manuscripts, blog posts, \texttt{R} package vignettes, reports, and even Beamer presentations without leaving \texttt{R}.
+
+Several \texttt{R} packages aid researchers in doing open science too. The \texttt{codebook} package by \textcite{Arslan2019-tg} assists in creating documentation for data sets. The packages \texttt{xtable} \parencite{xtable} and \texttt{huxtable} \parencite{huxtable} creates Latex tables from \texttt{R} code. \texttt{renv} \parencite{renv} and \texttt{packrat} \parencite{packrat} manages package version so that the code used to run the analysis does not break do to changes in external packages. The package \texttt{papaja} \parencite{papaja} makes knitr documents adhere to popular the American Psychological Association (APA) style. \texttt{worcs} \parencite{Van_Lissa2020-sb} is a template for open science in \texttt{R} developed by psychologists. This is just a small selection of packages for open and reproducible research.
 
 Documentation allows the user to use the software without guessing what it does. Ideally, the user will understand what your code does without having to read your code at all. And in this sense, high-quality documentation lowers the bar for both users and contributors to engage with your code and understand your research. Documentation forces you think about how general your function is, what its input should be, and as a consequence, what it can be used for. As a consequence, documentation leads to better code. When you revisit your code $4$ years from now, you can actually read it and understand what it does. 
 

@@ -1,0 +1,35 @@
+\section{Please avoid the standardized alpha and the ordinal alpha}
+\textbf{Moss, J. ``Please avoid the standardized alpha and the ordinal alpha''
+(2020). \emph{Submitted for publication.}}
+
+The standardized alpha is a variant of coefficient alpha based on the correlation instead of the covariance matrix. I give two reasons why you should avoid standardized alpha. 
+
+The standardized alpha has two reasonable interpretations. You can view it as an approximation to the ordinary coefficient alpha, or you can view it as an approximation to the reliability coefficient based on standardized weights. While both of these views are correct, the approximations not optimal.
+
+I argue you shouldn
+
+In addition, there is 
+
+\section{Partial identification of
+latent correlations with binary data}
+\textbf{Grønneberg, S., Moss, J., Foldnes, N. ``Partial identification of
+latent correlations with binary data'' (2020). \emph{Invited to resubmit, major revision, Psychometrika.}}
+
+
+
+\section{Modelling publication bias and \emph{p}-hacking}
+\textbf{Moss, J., De Bin, R. ``Modelling publication bias and \emph{p}-hacking''
+(2020), \emph{Invited to resubmit, major revision, Biometrics.}}
+
+Publication bias is actually quite easy to model. Hedges' publication bias \parencite{Hedges1992-ue} models \textit{p}-value based publication bias perfectly. But \textit{p}-hacking is much worse, partly we do not have a solid understanding of how research \textit{p}-hack; partly as what we know is daunting to model efficiently. In this paper we explore a small modification of Hedges' publication bias model that turns it into a \textit{p}-hacking model instead. We argue the new model works well using examples, simulations, and theoretical arguments. 
+
+The difference between Hedges' publication bias model and our \textit{p}-hacking model is subtle, and disappears if there is no heterogeneity in the data. In publication bias, a study is rejected with high probability if its \textit{p}-value is above $0.05$. In Hedges' model, a researcher whose study is rejected will attempt a completely new study -- and under heterogeneity, this study will have its own true effect size parameter $\theta_i$. In the \textit{p}-hacking model, a researcher won't do a new study if it fails to reach significance -- she will manipulate it until its \textit{p}-value is less than $0.05$. In this case, she will not deal with a new effect size $\theta_i$, but deal with the same all along.  
+
+\section{Infinite confidence sets in Hedges' model of publication
+bias}
+\textbf{Moss, J. ``Infinite confidence sets in Hedges' model of publication
+bias'' (2020). \emph{Submitted for publication.}}
+
+Hedges' publication bias model is one of the most popular models of publication bias. Interpreting this model is a breeze, and it is evidently the correct model for \textit{p}-value based publication bias. But the model is not above reproach. Several authors have complained about difficulties with estimation and inference using maximum likelihood, with parameter estimates being all over the place and algorithms failing to converge. What causes these problems and how can we interpret them?
+
+\textcite{Gleser1987-ii} proved an elegant theorem giving sufficient conditions for every confidence set to be of infinite diameter with positive probability. If we could show that a model's confidence sets must be of infinite diameter using this theorem, we would immediately be justified in comparing it to other models with such poorly-behaved confidence sets. And in this paper I show that every confidence set for Hedges' publication bias model is of infinite diameter, thereby giving an explanation for the model's unsavoury behavior.

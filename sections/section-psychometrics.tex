@@ -28,9 +28,9 @@ To be able to connect proxies to their latent variables, will need a statistical
 \begin{equation}
 Y=\lambda Z+\Psi^{1/2}\epsilon,\label{eq:one-factor model}
 \end{equation}
-where $\lambda$ is a real vector of \emph{factor loadings}, $\Psi$ is a positive definite matrix, $\epsilon$ is a $J$-ary vector of uncorrelated error terms, and both $Z$ and $\epsilon$ have finite variances. This is the linear one-factor model.
+where $\Lambda$ is a real matrix of \emph{factor loadings}, $\Psi$ is a positive definite matrix, $\epsilon$ is a $J$-ary vector of uncorrelated error terms, and both $Z$ and $\epsilon$ have finite variances. This is the linear factor model. Of particular interest is the \textit{one-factor model}, where $Z$ is scalar and $\Lambda = \lambda$ a vector of loadings.
 
-The linear one-factor model is a member of the wider class of generalized item response models \parencite{Mellenbergh1994-iy}, which encompasses most psychometric models \parencite[Chapter 3.1]{Borsboom2005-iq}. A generalized item response model is similar to a generalized linear model. Let $X$ be a vector of covariates, $Z$ be a vector of latent variables, $g$ a monotone link function, and $Y$ the $J$-ary vector of responses. Then 
+The linear factor model is a member of the wider class of generalized item response models \parencite{Mellenbergh1994-iy}, which encompasses most psychometric models \parencite[Chapter 3.1]{Borsboom2005-iq}. A generalized item response model is similar to a generalized linear model. Let $X$ be a vector of covariates, $Z$ be a vector of latent variables, $g$ a monotone link function, and $Y$ the $J$-ary vector of responses. Then 
 \begin{equation}
 g(E[Y_{j}])=\lambda_{j}^{T}Z+\beta_{j}^{T}X,\quad(j=1,\ldots J)\label{eq:GLIRT model}
 \end{equation}
@@ -85,4 +85,29 @@ Cronbach's \citeyear{Cronbach1951-in} paper on coefficient alpha has $45673$ Goo
 Reliability coefficients are routinely reported in investigations of psychometric scales. For example, \textcite{Marx1978-rf} administered \enquote{three self-report measures of self-concept} to \enquote{488 sixth grade children as the basis for a [...] self-concept measurement.} They found that the first self-report measure had sample coefficient alpha $0.56$, the second $0.55$, and the third $0.67$. 
 Reliability coefficients are frequently debated by psychologists and psychometricians. A decent introduction to the literature is McNeish's \citeyear{McNeish2018-vu} attack on coefficient alpha together with the comments of \textcite{Raykov2019-yr} and \textcite{Savalei2019-se}. Psychometrika Volume 74, Issue 1 of 2009 is a relatively recent issue devoted mainly to coefficient alpha. A potential difficulty for statisticians trying to enter this fields are the two cultures of psychometrics, discussed by e.g. \textcite{Borsboom2005-iq}. One one hand are researchers working in the framework of latent variables, which is accessible to statisticians, as they work with explicit statistical models. But the majority of psychologists have been trained in the classical test theory of \textcite{Lord1968-ax}, which is slightly more esoteric to a statistician. But fear not, for classical test theory can be subsumed under latent variable theory without much work.
 
+\subsection{Normal-ogive models}
 
+A probit regression can written down as
+\begin{eqnarray*}
+Z_{i}\mid X_{i} & \sim & \beta^{T}X_{i}+\epsilon_{i}\\
+Y_{i}\mid Z_{i} & \sim & 1[Z_{i}>0]
+\end{eqnarray*}
+provided only that $\epsilon_i$ is standard normal. Here we have a latent continuous variable $Z_i$, never observed, that captures the true regression relationship with $X$. Sadly, we only observe $Y_i$, with the associated loss of power. Probit regression is not alone in having this interpretation, as the famous logit model has the same interpretation, but with a logistically distributed $\epsilon_i$ in place of the normally distributed $\epsilon_i$. These models are popular, likely because the make more sense for binary data than the obvious competitor, linear regression. 
+
+Most psychometric data is on a Likert scale, usually on the range $1$ -- $5$ or $1$ -- $7$. These data are ordinal, and we are usually not justified in interpreting them as real numbers with the ordinary distance metric. But the popular linear factor model is best understood as modelling real numbers. How can we reconcile the linear factor model with Likert scale items?
+
+The most common answer is to pretend the Likert scale items are real numbers, and use the linear factor model directly. Another popular answer is to use thresholding as in the probit and logit model.  
+
+Recall the linear factor model
+\begin{equation}
+X=\Lambda Z+\Psi^{1/2}\epsilon,      \tag{\ref{eq:one-factor model}}
+\end{equation}
+where $\Lambda$ is a matrix, $\Psi$ positive definite, and $\epsilon$ uncorrelated with $Z$. Consider the scenario when we do not observe the $X_{i}$s directly, but rather $X_{i}$s discretized into $m_{i}$ categories according to
+\begin{equation}
+Y_{i}=j1[\tau_{i(j-1)}\leq X_{i}\leq\tau_{ij}],\quad j = 1, \ldots,m_i. \label{eq:discretization model}
+\end{equation}
+Here $-\infty=\tau_{i0}<\tau_{i1}<\ldots<\tau_{im_{i}}=\infty$
+are thresholds for each $i$, 
+
+If $X$ is multivariate normal, model (\ref{eq:discretization model})
+is a \textit{normal-ogive model} \parencite{Swaminathan2016-rg}, also known as a discretized factor analysis model \parencite{Takane1987-pq}. Estimating of normal-ogive models is not much more involved than estimation of linear factor models. The correlation matrix of $X$ is called the \textit{polychoric correlation matrix}, it is identified and relatively straight-forward to estimate \parencite{Olsson1979-ti}. Using this estimated correlation matrix, the parameters $\Lambda$ and $\Psi^{1/2}$ can be calculating using e.g. minimum square procedures. The polychoric correlation matrix can also be used as input coefficient alpha \eqref{eq:sample coefficient alpha} instead of the sample covariance matrix, yielding the \textit{ordinal alpha} \parencite{Zumbo2007-ap}. 
