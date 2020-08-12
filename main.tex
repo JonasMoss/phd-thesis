@@ -3,6 +3,10 @@
 \usepackage{phdstyle}   % Custom style
 \usepackage{kantlipsum} % Dummy text
 \usepackage{tikz-cd} 
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{url}
+
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\Var}{Var}
@@ -46,12 +50,12 @@
 %     sections/dedication,
 %     sections/preface,
 %     sections/papers,
-%     sections/introduction,
-%     sections/chapter2,
-%     sections/chapter3,
-%     sections/chapter4,
-%     sections/appendixA,
-%     sections/appendixB,
+%     sections/section-introduction,
+%     sections/section-inference,
+%     sections/section-replication-crisis,
+%     sections/section-psychometrics,
+%     sections/section-partial-identification,
+%     sections/section-open-science,
 % }
 
 
@@ -86,18 +90,15 @@
     \chapter{Paper summaries}
     \input{sections/section-summaries}
     
-    \paper              % "Chapter" is renamed "Paper"
-    \paperpage          % Similar to \part*{Papers}, but appears in TOC
-    \numberofpapers{3}  % Specify size of thumb indices
+    \paper              
+    \paperpage          
+    \numberofpapers{6} 
 
-    %\include{sections/chapter2}
-    %\include{sections/chapter3}
-    %\include{sections/chapter4}
-
-    %\appendix           % "Chapter" is renamed "Appendix"
-    %\appendixpage       % Similar to \part*{Appendices}, but appears in TOC
-
-    %\include{sections/appendixA}
-    %\include{sections/appendixB}
+    \input{papers/paperI}\clearpage
+    \input{papers/paperII}\clearpage
+    \input{papers/paperIII}\clearpage
+    \input{papers/paperIV}\clearpage
+    \input{papers/paperV}\clearpage
+    \input{papers/paperVI}\clearpage
 
 \end{document}

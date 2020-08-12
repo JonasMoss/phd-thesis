@@ -125,7 +125,7 @@ Confidence sets are not only hard to define, they are hard to understand. You ca
 Let's say you have a sequence of real random variables $X_{1},X_{2},\ldots,X_{n}$ from some probability measure $P$ with finite mean $\mu=EX_{1}<\infty$. You do not know anything else about $P$. Is it possible to say anything about the mean $\mu$? From a Bayesian perspective the answer is no, as the problem is underspecified. The problem lacks not only a prior, but a likelihood too. Even worse, there is no $\sigma$-finite dominating measure for the class of candidate $F$s, so Bayes' theorem would be useless in any case. 
 
 But what happens with \emph{p}-values? It turns out there is no nice \emph{p}-value for the mean, or even hypothesis test, for non-parametric families of distributions, even when the variance is finite for every $P$. \textcite{Bahadur1956-tg} proved the following elegant theorem.
-\begin{theorem}[Bahadur--Savage]
+\begin{theorem}[Bahadur--Savage]\label{thm:bahadur-savage}
 Let $\mathcal{\mathcal{P}}$ be a family of probability measures
 satisfying
 \begin{enumerate}
