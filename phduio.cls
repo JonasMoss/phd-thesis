@@ -311,6 +311,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INCLUDE PAPERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Papers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Title for papers
 \renewcommand{\maketitle}
@@ -320,7 +323,6 @@
     \paperthumb
     \saythanks
 }
-
 
 %% Specify authors for separate paper
 \newcommand{\paperauthors}[1]
@@ -334,7 +336,6 @@
 %% Specify metadata for separate paper
 \newcommand{\metadata}[1]{ \def \phduio@metadata{#1} }
 \metadata{}
-
 
 %% Rename 'Chapter' to 'Paper'
 \newcommand*{\paper}
@@ -362,35 +363,6 @@
 }
 \newcounter{paper}
 
-
-%% Standard \appendix is broken by \paper
-%% Fix hyperlinks to appendices
-\renewcommand*{\appendix}
-{
-    \setcounter{chapter}{0}
-    \setcounter{section}{0}
-    \ifdef{\theHchapter}
-    {
-        \renewcommand{\theHchapter}{\arabic{chapter}}
-    }
-    {}
-    \def \@chapapp{\appendixname}
-    \let \c@appendix \c@chapter
-    \def \thechapter{\@Alph\c@chapter}
-    \let \theappendix \thechapter
-    \ifdef{\memendofchapterhook}
-    {
-        \renewcommand{\memendofchapterhook}
-        {
-            \addtocounter{appendix}{-1}
-            \refstepcounter{appendix}
-        }
-    }
-    {}
-}
-\newcounter{appendix}
-
-
 %% Print 'Papers'
 \newcommand{\paperpage}
 {
@@ -402,7 +374,6 @@
 
 %% Specify number of papers
 \newcommand{\numberofpapers}[1]{ \setcounter{totpapernum}{#1} }
-
 
 %% Thumb index to separate papers
 \newcommand{\paperthumb}
@@ -447,6 +418,127 @@
     }
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Standard \appendix is broken by \paper
+%% Fix hyperlinks to appendices
+\renewcommand*{\appendix}
+{
+    \setcounter{chapter}{0}
+    \setcounter{section}{0}
+    \ifdef{\theHchapter}
+    {
+        \renewcommand{\theHchapter}{\arabic{chapter}}
+    }
+    {}
+    \def \@chapapp{\appendixname}
+    \let \c@appendix \c@chapter
+    \def \thechapter{\@Alph\c@chapter}
+    \let \theappendix \thechapter
+    \ifdef{\memendofchapterhook}
+    {
+        \renewcommand{\memendofchapterhook}
+        {
+            \addtocounter{appendix}{-1}
+            \refstepcounter{appendix}
+        }
+    }
+    {}
+}
+\newcounter{appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Software papers %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Title for papers
+\newcommand{\swmaketitle}
+{
+    \paperauthors{\theauthor}
+    \chapter{\thetitle}
+    \paperswthumb
+    \saythanks
+}
+%% Rename 'Chapter' to 'swpaper'
+\newcommand*{\swpaper}
+{
+    \setcounter{chapter}{0}
+    \setcounter{section}{0}
+    \ifdef{\theHchapter}
+    {
+        \renewcommand{\theHchapter}{papter.\arabic{chapter}}
+    }
+    {}
+    \def \@chapapp{Software paper}
+    \let \c@swpaper \c@chapter
+    \def \thechapter{\@Roman\c@chapter}
+    \let \theswpaper \thechapter
+    \ifdef{\memendofchapterhook}
+    {
+        \renewcommand{\memendofchapterhook}
+        {
+            \addtocounter{swpaper}{-1}
+            \refstepcounter{swpaper}
+        }
+    }
+    {}
+}
+\newcounter{swpaper}
+
+%% Print 'swpapers'
+\newcommand{\swpaperpage}
+{
+    \part*{Software papers}
+    \addcontentsline{toc}{chapter}{Software papers}
+    \cleartorecto
+}
+
+%% Specify number of swpapers
+\newcommand{\numberofswpapers}[1]{ \setcounter{totswpapernum}{#1} }
+
+%% Thumb index to separate papers
+\newcommand{\paperswthumb}
+{
+    \ifnum \value{swthumbpos} = \value{totswpapernum}
+    \setcounter{swthumbpos}{0}
+    \fi
+    
+    \stepcounter{swthumbnum}
+    \stepcounter{swthumbpos}
+    
+    \pgfmathsetlength{\swthumbheight}{\paperheight / \value{totswpapernum}}
+    
+    \begin{tikzpicture}[remember picture, overlay]
+        \node [thumb, align = right, anchor = north east]
+        at
+        ($(current page.north east) - (0,{(\value{swthumbpos}-1)*\swthumbheight})$)
+        {\Roman{swthumbnum}};
+    \end{tikzpicture}
+}
+
+\newcounter{swthumbnum}
+\newcounter{swthumbpos}
+\newcounter{totswpapernum}
+\setcounter{totswpapernum}{2}
+
+\newlength{\swthumbwidth}
+\newlength{\swthumbheight}
+\setlength{\swthumbwidth}{1cm}
+
+\tikzset
+{
+    swthumb/.style =
+    {
+        fill           = uioblack,
+        text           = uiowhite,
+        font           = \sffamily\bfseries\Huge,
+        text width     = \swthumbwidth,
+        minimum height = \swthumbheight,
+        outer sep      = 0pt,
+        inner xsep     = 1.5em
+    }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %% Unmarked footnote
 \newcommand{\papernote}[1]
@@ -470,7 +562,6 @@
         \thanks{}
     }
 }
-
 
 %% Include PDFs containing separate papers
 %% Based on code by Dag Langmyhr

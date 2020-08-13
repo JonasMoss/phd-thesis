@@ -1,0 +1,84 @@
+\chapter{Supporting Information for "Modelling publication bias and p-hacking"}
+
+\section*{Web Appendix A}
+
+Recall that a density $f(x;\theta)$ is identified if $f(x;\theta_{1})=f(x;\theta_{2})$
+for all $x$ implies that $\theta_{1}=\theta_{2}.$ Call a density
+$f(x;\theta)$ \textit{strongly identified} if $f(x;\theta_{1})/f(x;\theta_{2})$
+being constant for all $x$ in an open interval $I$ implies that
+$\theta_{1}=\theta_{2}$.
+\paragraph{Proposition A.}\label{prop:identified}
+
+Let $f(x;\theta)$ be a family of densities on $\mathbb{R}$, $-\infty=a_{1}<a_{2}<\ldots<a_{k+1}=\infty$
+a sequence of cutoffs, and $f_{[a_{i},a_{i+1}]}(x;\theta)$ the density
+$f$ truncated to $[a_{i},a_{i+1}]$. Let $\lambda_{i},k=1,\ldots k$
+be positive numbers satisfying $\sum_{i=1}^{k}\lambda_{i}=1$. Then
+the mixture
+\[
+g(x;\lambda,\theta)=\sum_{i=1}^{k}\lambda_{i}f_{[a_{i},a_{i+1})}(x;\theta)
+\]
+is identified in $(\lambda,\theta)$ if $f(x;\theta)$ is strongly
+identified in $\theta$.
+
+\paragraph{Proof.}
+Assume that $g(x;\lambda_{1},\theta_{1})=g(x;\lambda_{2},\theta_{2})$.
+Then $$\lambda_{1i}f_{[a_{i},a_{i+1}]}(x;\theta_{1})=\lambda_{2i}f_{[a_{i},a_{i+1}]}(x;\theta_{2})$$
+for all $i$, thus
+\[
+\frac{\lambda_{1i}}{\lambda_{2i}}=\frac{f_{[a_{i},a_{i+1})}(x;\theta_{1})}{f_{[a_{i},a_{i+1})}(x;\theta_{2})}.
+\]
+This implies that $f(x;\theta_{1})/f(x;\theta_{2})$ is constant for
+$x\in[a_{i},a_{i+1}]$. But since $f(x;\theta)$ is strongly identifiable,
+$\theta_{1}=\theta_{2}$, and, consequently, $\lambda_1 = \lambda_2$.
+
+
+If $f(x;\theta)$ is real analytic and nowhere zero, $f(x;\theta_{1})/f(x;\theta_{2})$
+is also real analytic and nowhere zero. By the Identity Theorem \parencite[Corollary 1.2.6]{Krantz2002-bt}, if the ratio
+$f(x;\theta_{1})/f(x;\theta_{2})$ is constant on some interval $I$,
+then $f(x;\theta_{1})/f(x;\theta_{2})$ is constant everywhere, hence
+$f(x;\theta_{1})=f(x;\theta_{2})$ everywhere. Thus a family of real
+analytic nowhere zero densities is identified if and only if it is
+strongly identified. Every exponential family of densities on the form
+\[
+f(x;\theta)=h(x)\exp(\eta(\theta)^{T}T(x)-A(\theta))
+\]
+satisfies this property, provided only that $h$ is nowhere zero real analytic
+and $T$ is real analytic. In particular, the normal family satisfies
+the properties.
+
+Not every density is strongly identified. For instance, mixtures of uniforms are not strongly identified. And indeed, Proposition A fails when $f$ is a mixture of uniforms.
+
+\section*{Web Appendix B}
+
+As mentioned in Section 2, any \textit{p}-hacking model can be written on the form of a selection model. Observe that
+\begin{eqnarray*}
+\int_{[0,1]}f_\alpha^{\star}(x_{i}\mid\theta_{i},\eta_{i}, u)d\omega(\alpha) & = & \int_{[0,1]}f(x_{i}\mid\theta_{i})P(u\in\left[0,\alpha\right]\mid\theta_{i},\eta_{i})^{-1}d\omega(\alpha)\\
+ & = & f(x_{i}\mid\theta_{i})\int_{[0,u]}P(u\in\left[0,\alpha\right]\mid\theta_{i},\eta_{i})^{-1}d\omega(\alpha).
+\end{eqnarray*}
+where $f_\alpha^{\star}$ is the density $f^{\star}$ truncated so that the \textit{p}-value $u\in\left[0,\alpha\right]$. This is a publication bias model if $$h(u)=\int_{[0,u]}P(u\in\left[0,\alpha\right]\mid\theta_{i},\eta_{i})^{-1}d\omega(\alpha)$$ is bounded for each $u$ and $h(u)$ is independent of $\theta_{i},\eta_{i}$. While $h(u)$ can be bounded, it is typically dependent of $\theta_{i},\eta_{i}$, with the fixed effect model under complete selection for significance being a notable exception.
+
+On the other hand, any selection model $f(x_{i};\theta_{i},\eta_{i})\rho(u)$ with $I =\int f(x;\theta_{i},\eta_{i})\rho(u)du<\infty$ can be written as a mixture model. For then there is a finite measure $d\omega(\alpha;\theta_{i},\eta_{i})$ satisfying 
+\[
+\rho(u)=\int_{[0,u]}\frac{1}{P(u\in\left[0,\alpha\right]\mid\theta,\eta)}d\omega(\alpha;\theta_{i},\eta_{i})
+\]
+Just take $d\omega(\alpha;\theta_{i},\eta_{i})=d\rho(\alpha)P(u\in\left[0,\alpha\right]\mid\theta_{i},\eta_{i})$, where $d\rho(\alpha)$ is defined by $\int_{0}^{u}d\rho(\alpha)=\rho(u)$. The size of the measure is
+\begin{eqnarray*}
+\int_{0}^{1}d\omega(\alpha;\theta_{i},\eta_{i}) & = & \int_{0}^{1}P(u\in\left[0,\alpha\right]\mid\theta_{i},\eta_{i})d\rho(\alpha)\\
+ & = & \int_{0}^{1}f(u;\theta_{i},\eta_{i})\int_{0}^{u}d\rho(\alpha)du\\
+ & = & I
+\end{eqnarray*}
+Hence $I_{\theta,\eta}d\omega'(\alpha;\theta_{i},\eta_{i})$ is a probability measure. This probability measure makes 
+\[
+I^{-1}f(x_{i};\theta_{i},\eta_{i})\rho(u)=\int_{[0,1]}f_\alpha(x_{i};\theta_{i},\eta_{i})d\omega'(\alpha)
+\]
+as can be seen by the following computation,
+\begin{eqnarray*}
+I^{-1}f(x_{i};\theta_{i},\eta_{i})\rho(u) & = & I^{-1}\int_{[0,u]}\frac{f(x_{i};\theta_{i},\eta_{i})}{P(u\in\left[0,\alpha\right]\mid\theta_{i},\eta_{i})}d\omega(\alpha)\\
+ & = & I^{-1}\int_{[0,1]}\frac{f(x_{i};\theta,\eta)1_{\left[0,\alpha\right]}(u)}{P(u\in\left[0,\alpha\right]\mid\theta_{i},\eta_{i})}d\omega(\alpha)\\
+ & = & I^{-1}\int_{[0,1]}f_\alpha(x_{i};\theta_{i},\eta_{i})d\omega(\alpha)\\
+ & = & \int_{[0,1]}f_\alpha(x;\theta_{i},\eta_{i})d\omega'(\alpha)
+\end{eqnarray*}
+
+Proposition 1 shows the form of the one-sided normal step function selection probability publication bias model when it is written as a mixture model of the form (5). But most such mixture models are not true \textit{p}-hacking models, as the mixing probabilities $\pi_{i}^{\star}$ depend on $\theta$. There is no way for the \textit{p}-hacker to know
+$\theta$, so we cannot regard the publication bias model as a \textit{p}-hacking model.
+

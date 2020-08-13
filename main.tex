@@ -80,11 +80,11 @@
     
     \chapter{Setting the scene}
     \input{sections/section-introduction}
-    \input{sections/section-inference}
-    \input{sections/section-replication-crisis}
-    \input{sections/section-psychometrics}
-    \input{sections/section-partial-identification}
-    \input{sections/section-open-science}
+    %\input{sections/section-inference}
+    %\input{sections/section-replication-crisis}
+    %\input{sections/section-psychometrics}
+    %\input{sections/section-partial-identification}
+    %\input{sections/section-open-science}
     \printbibliography[heading = subbibliography]
 
     \chapter{Paper summaries}
@@ -92,13 +92,24 @@
     
     \paper              
     \paperpage          
-    \numberofpapers{6} 
+    \numberofpapers{4} 
 
     \input{papers/paperI}\clearpage
     \input{papers/paperII}\clearpage
     \input{papers/paperIII}\clearpage
     \input{papers/paperIV}\clearpage
-    \input{papers/paperV}\clearpage
-    \input{papers/paperVI}\clearpage
+    
+    \swpaper              
+    \swpaperpage          
+    \numberofswpapers{2} 
+    
+    \input{papers/swpaperI}\clearpage
+    \input{papers/swpaperII}\clearpage
+    
+    \appendix           % "Chapter" is renamed "Appendix"
+    \appendixpage       % Similar to \part*{Appendices}, but appears in TOC
+
+    \include{appendices/appendixA}
+    \include{appendices/appendixB}
 
 \end{document}

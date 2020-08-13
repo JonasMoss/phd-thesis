@@ -70,13 +70,13 @@ under normal sampling.
 
 There are several methods that attempts to identify and even correct for publication bias. The most widely used is the \emph{funnel plot} of \textcite{Egger1998-kj}, where the standard error of each study is plotted against its effect size. Under severe publication bias, this plot will be skewed. This is because small studies, which will
 typically be those with high standard errors, must have large estimated
-effect sizes in order to cross the $p=0.05$ boundary. Figure \ref{fig:A-funnel-plot} contains an example of such a plot, based on a subset of the data in the video game and aggression meta-analysis of \textcite{Anderson2010-ki}.
+effect sizes in order to cross the $p=0.05$ boundary. Figure \ref{fig:A-funnel-plot} contains an example of such a plot, based on a subset of the data in the video game and aggression meta-analysis of \textcite{Anderson2010-ki}, and made with the $\mathtt{R}$-package $\mathtt{metafor}$. \parencite{viechtbauer_conducting_2010}.
 
 \begin{figure}
 \noindent \begin{centering}
 \includegraphics[scale=0.5]{chunks/anderson}
 \par\end{centering}
-\caption{\label{fig:A-funnel-plot}A funnel plot of a subset from the meta-analysis of \textcite{Anderson2010-ki} on the effect of violent video games on aggressive behavior. The funnel plot is highly skewed to the left, which indicates severe publication bias. The funnel plot was made with the $\mathtt{R}$-package \textcite{team_r_2000} $\mathtt{metafor}$.  \parencite{viechtbauer_conducting_2010}.}
+\caption{\label{fig:A-funnel-plot}A funnel plot of a subset from the meta-analysis of \textcite{Anderson2010-ki} on the effect of violent video games on aggressive behavior. The funnel plot is highly skewed to the left, which indicates severe publication bias.}
 \end{figure}
 
 Under severe publication bias, this plot will be skewed. Building on this method intuition, the authors propose to estimate a publication bias-corrected effect size by running the regression
