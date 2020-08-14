@@ -2,14 +2,14 @@
 \label{sec:partial identification}
 Sometimes we cannot say much about how the world is. If I tell you that $\cos K=1$ you would be at a loss to tell me exactly what $K$ is. You could say that $K=2\pi n$, for some integer $n$, but not anything else. The situation is bad, but could have been worse. You do know something about $K$ after all; in the worst case scenario, you would have known only that $K\in\mathbb{R}$. You have \emph{partially identifed} $K$. In contrast, if I tell you that $K\in[0,1]$, you can immediately answer that $K=0$, and you have \emph{identified} $K$.
 
-In general, identification is about answering questions on the form ``I know $K$ but want to know $W$, to what extent is this possible?''. If this is possible for every $K$, there is a function $K\mapsto W$, such as $f(K)=K^{2}$. Often tough, there are multiple possible $W$ compatible with $K$, and the mapping $K\mapsto\{W\}$ is set-valued, such as $f(K)=\{\pm\sqrt{K}\}$ or $f(K) = \arccos{K} \pm \{2\pi n\mid n\in \mathbb{N}\}$.
+In general, identification is about answering questions on the form ``I know $K\in\mathcal{K}$ but want to know $W\in\mathcal{W}$, to what extent is this possible?''. If this is possible for every $K$, there is a function $\mathcal{K}\to \mathcal{W}$, such as $f(K)=K^{2}$. Often tough, there are multiple possible $W$ compatible with $K$, and the mapping $\mathcal{K}\to \mathcal{P}(\mathcal{W}$ is set-valued, such as $f(K)=\{\pm\sqrt{K}\}$ or $f(K) = \arccos{K} \pm \{2\pi n\mid n\in \mathbb{N}\}$.
 
 Most identification problems in statistics and adjacent fields can be analyzed using four spaces.
 \begin{enumerate}
 \item $\mathcal{F}$: A space of distributions. Think of these as latent distributions underlying some phenomenon. 
 \item $\mathcal{K}$: The space of what you know. This space could contain multivariate distributions, sets of marginal distributions, or perhaps moments of a distribution. We will demand that $K\in\mathcal{K}$ is the image of an $F\in\mathcal{F}$ under some function. That is, there is a surjective function $\mathcal{F}\to\mathcal{K}$. 
 \item $\Theta$: The parameter space of $\mathcal{F}$, endowed with a surjective function $\Theta\to\mathcal{F}$. The parameter space will sometimes contain information that cannot be deduced from $\mathcal{F}$ itself, that is, the mapping $\theta\mapsto F$ does not have to injective. 
-\item $\mathcal{W}$: The space of what you want to know. The quantity we wish to know is a function of $\theta$, hence there is a surjective function $\mathcal{F}\to\mathcal{K}$. 
+\item $\mathcal{W}$: The space of what you want to know. The quantity we wish to know is a function of $\theta$, hence there is a function $\Theta\to\mathcal{W}$. 
 \end{enumerate}
 The mappings above induce a set-valued map $H:\mathcal{K}\to\mathcal{W}$, the \emph{identification region} for $F$ \parencite{Manski2003-aq}.
 Figure \ref{fig:partial identifiaction situation-1} shows the situation using a commutative diagram. 
@@ -29,8 +29,8 @@ denote surjections, the dashed arrow ($\protect\dashrightarrow$)
 denotes the induced map.}
 \end{figure}
 
-Identification analysis is usually not presented in this formal way, but is fruitful for three reason. First, it makes a clear that there is a connection between the seemingly disparate uses of the word ``identification'' across the statistical, medical, econonomic, and sociological literatures.
-Second, it allows us to state results using little notation and words. For instance, $H(K)\subseteq A$ means that $A$ contains the identification region of $K$, when $K$ is what we know. Third, it is possible to prove some general results about these problems.
+Identification analysis is usually not presented in this formal way, which is fruitful for three reason. First, it makes a clear that there is a connection between the seemingly disparate uses of the word ``identification'' across the statistical, medical, econonomic, and sociological literatures.
+Second, it allows us to state results using little notation and words. For instance, $H(K)\subseteq A$ means that $A$ contains the identification region of $K$, when $K$ is what we know. Third, it is possible to prove some general results about these problems using this formalism.
 
 As is customary in partial identification analysis, we ignore sampling error \parencite{Manski2003-aq}. Making this assumption reduces the complexity of the problem quite a bit. 
 
@@ -43,12 +43,12 @@ Identification analyses come in three forms, depending on which of maps the maps
 
 \subsection{Convenience identification}
 
-Identification is usually about parameterizations. A parameterization is just a convenient way to represent an object, and we usually want each representation to be unique. We want parameterizations since probabilities are wild beasts, and usually cannot be worked with directly. On the other hand, tuples of reals are easily tamed. Let $\mathcal{P}$ be family of probability measures and $\theta:\text{\ensuremath{\Theta\to\mathcal{P}}}$ a surjective function on some parameter space $\Theta$. We will call $\theta$ a parameter and say it is\emph{ identified }if $\theta$ is injective. 
+Identification is usually about parameterizations. A parameterization is just a convenient way to represent an object, and we usually want each representation to be unique. We want parameterizations since probabilities are wild beasts, and usually cannot be worked with directly. On the other hand, tuples of reals are easily tamed. Let $\mathcal{F}$ be family of distributions and $\theta:\text{\ensuremath{\Theta\to\mathcal{F}}}$ a surjective function on some parameter space $\Theta$. We will call $\theta$ a parameter and say it is\emph{ identified }if $\theta$ is injective. 
 \begin{example}
 \label{exa:normal unidentified}Let $\Theta=[0,\infty)$ and map $\theta$ to the the probability distribution of a mean-zero normal variable with standard deviation $\theta$. Then $\theta$ is injective, hence identified. On the other hand, if $\Theta=\mathbb{R}$ and $\theta$ maps to the mean-zero normal probability with standard deviation $|\theta|$, $\theta$ is not identified. For instance, both $-1,1$ maps to the the standard normal probability.
 \end{example}
 
-Parameterizing probability measures is in many cases quite important, both for interpretations and mathematics. The prior in Bayesian statistics can be formally formulated as a probability measure over probability measures. For instance, a $\textrm{Beta}(\alpha,\beta)$ prior over the $p$-parameter of a binomial binomial distribution can also be formulated as a probability measure over binomial distributions directly. We want to use nice the parameterization since we understand and are able to work with the topology of $[0,\infty)^2$ easily. Moreover, we can verify that it's topology is separably metrizable (i.e., Polish), which implies that the $\sigma$-algebra generated by its open sets is a standard Borel space \parencite{Kechris2012-nh}. Most measure theory works smoothly only for standard Borel spaces \parencite[][Chapter 1]{Van_der_Vaart1996-dx}, hence our parameterization gives us assurance we won't have unpleasant surprises such as non-measurability down the line. 
+Parameterizing probability measures is in many cases quite important, both for interpretations and mathematics. The prior in Bayesian statistics can be formally formulated as a probability measure over probability measures. For instance, a $\textrm{Beta}(\alpha,\beta)$ prior over the $p$-parameter of a binomial binomial distribution can also be formulated as a probability measure over binomial distributions directly. We want to use nice the parameterization since we understand and are able to work with the topology of $[0,\infty)^2$ easily. Moreover, we can verify that it's topology is separably metrizable (i.e., Polish), which implies that the $\sigma$-algebra generated by its open sets is a standard Borel space \parencite{Kechris2012-nh}. Most measure theory works smoothly only for standard Borel spaces \parencite[][Chapter 1]{Van_der_Vaart1996-dx}, hence our parameterization gives us assurance we will not have unpleasant surprises such as non-measurability down the line. 
 
 Identifiability is often a crucial technical assumption, required for the math to work. For instance, an identifiable parameterization is required for Doob's consistency theorem \parencite{Miller2018-xq} and consistency of Manski's maximum score estimator \parencite{Manski1975-gl}. Moreover, it is needed for numerical algorithms such as Newton--Raphson in order to assure convexity of the objective function.
 
@@ -58,7 +58,7 @@ In partial identification of probability distributions, the spaces $\mathcal{F}$
 \emph{The Law of Decreasing Credibility: }The credibility of inference
 decreases with the strength of the assumptions maintained.
 \end{quote}
-There is a trade-off between credibility and assumptions. Strong assumptions bring plenty of benefits, such as models that are much easier to deal with computationally and mathematically. It is easier to compute a linear regression with normal errors than one with \emph{t}-distributed errors, and confidence intervals are exact only in the former case. Moreover, adding assumptions can make models much easier to interpret; the linear regression model $Y=\alpha+\beta X+\epsilon$ is as clear as day, $Y=\alpha+\beta X+\delta e^{\sin X}\Gamma(X)\epsilon$ is obscure. 
+There is a trade-off between credibility and assumptions. Strong assumptions bring plenty of benefits, such as models that are much easier to deal with computationally and mathematically. It is easier to compute a linear regression with normal errors than one with \emph{t}-distributed errors, and confidence intervals are exact only in the former case. Moreover, adding assumptions can make models much easier to interpret; the linear regression model $Y=\alpha+\beta X+\epsilon$ is clear as day, $Y=\alpha+\beta X+\delta e^{\sin X}\Gamma(X)\epsilon$ is obscure. 
 
 Frequently assumptions are made only to make sure the model is identifiable, as in the following is the quintessential partial identifiability problem.
 \begin{example}[Error-in-variables regression model, \textcite{Tamer2010-rj}]
@@ -73,7 +73,7 @@ If we make the assumption that $m\leq\Var Z\leq\Var X$, we obtain
 the identification region $H=\beta^{\star}[1,\Var X/m)$. 
 \end{example}
 
-Now we will consider, in more detail, two problem of partial identification of distributions.
+Now we will consider, in more detail, two problems of partial identification of distributions.
 
 \subsubsection{When you know some correlations}
 Let $X,Y,Z$ be random variable with unit variance. Assume you know
@@ -198,7 +198,7 @@ To model all of this, let $c$ be a credence function sampled according to $Q$ an
 c\sim Q,\quad X\mid c\sim c.
 \]
 The next step is to decide on the possible space of distributions $Q$. \textcite[Chapter 2, endnote 28]{Caplan2018-oj} assumes that every person either knows $A$ with certainty or guesses with $50/50$ odds.
-In this case, $Q$ can be a parameterized by $\gamma$, the proportion who knows for certain. Then $1-\gamma=2(1-P(A))$, hence $\gamma=1-2(1-P(A))=2P(A)-1$. When $P(A)=0.74$ we get $\gamma=0.48$, hence just below $50\%$ of the population $\alpha$-knows the Earth goes around the Sun when $\alpha\geq0.5$. But this assumption doesn't look quite right, for why would there be no one who are, say, $90\%$ certain that the Sun goes around the Earth?
+In this case, $Q$ can be a parameterized by $\gamma$, the proportion who knows for certain. Then $1-\gamma=2(1-P(A))$, hence $\gamma=1-2(1-P(A))=2P(A)-1$. When $P(A)=0.74$ we get $\gamma=0.48$, hence just below $50\%$ of the population $\alpha$-knows the Earth goes around the Sun when $\alpha\geq0.5$. But this assumption does not look quite right, for why would there be no one who are, say, $90\%$ certain that the Sun goes around the Earth?
 
 In the spirit of \textcite{Manski2003-aq}, we will make no assumption about $Q$. Let $H_\alpha(\beta)$ be the identification region for $\alpha$-knowledge of Question 3 when $P(A) = \beta$. Then we get the following proposition.
 \begin{proposition}
@@ -236,17 +236,17 @@ That $H_\alpha(\beta)=(0,\beta/\alpha]$ when $\alpha\geq\beta$ can be verified b
 when $P(A)=0.74$.}
 \end{figure}
 
-The identification regions of Proposition \ref{prop:guessing regions} are wide. Figure \ref{fig:Identification-regions-guessing} tells the story when $P(A)=0.74$. In particular, when $\alpha=0.95$, we get $H_\alpha(\beta)=[0,0.78]$, meaning anything between $0\%$ and $78\%$ of the population knows $A$ with minimum $95\%$ certainty. If we choose the low $\alpha=0.6$, we get $H_\alpha(\beta)=[0.35,1]$, so at least $35\%$ of the population knows $A$ with minimum $60\%$ percent certainty. In conclusion, we can't really say how many Americans know the Earth orbits the Sun.
+The identification regions of Proposition \ref{prop:guessing regions} are wide. Figure \ref{fig:Identification-regions-guessing} tells the story when $\beta = P(A)=0.74$. In particular, when $\alpha=0.95$, we get $H_\alpha(\beta)=[0,0.78]$, meaning anything between $0\%$ and $78\%$ of the population knows $A$ with minimum $95\%$ certainty. If we choose the low $\alpha=0.6$, we get $H_\alpha(\beta)=[0.35,1]$, so at least $35\%$ of the population knows $A$ with minimum $60\%$ percent certainty. In conclusion, we can't really say how many Americans know the Earth orbits the Sun.
 
 \subsection{Identification of structural parameters}
 
 Structural parameters are extra-probabilistical; they encode something
-about the world the isn't captured in any probability distribution.
+about the world the is not captured in any probability distribution.
 Causal inference is about structural parameters; the joint distribution
 of $(X,Y)$ does not tell us if $X$ causes $Y$. The causal information
 is encoded in e.g. a causal graph \parencite{Pearl2009-zf} or a system
 of counterfactuals \parencite[Chapter 4]{Pearl2016-tc}. A related example
-of identifacation of structural parameters is from psychometrics.
+of identification of structural parameters is from psychometrics.
 In general, several structural equation models can give rise to exactly
 the same joint distribution, but with highly disparate interpretations
 \parencite{Raykov2001-ap}. Econometrics have perhaps the most famous
