@@ -1,6 +1,6 @@
 
 \section{Psychometrics}
-In the animated 1937 classic \textit{Clock Cleaners}, Mickey Mouse, Donald Duck, and Goofy are working as janitors in a clock tower. As usual, Goofy is dimwitted and carefree, Donald Duck gets fits of anger, and Mickey Mouse is kind and compassionate. Goofy mistakes a statue for a lady, Donald Duck throws a temper tantrum at a spring, and Mickey Mouse does everything he can to save Goofy from falling to certain death. This is not the only animated movie were these characters behave like this. Donald Duck's fiery temper -- and bad luck -- is what he's known for, and something you'd expect to see in any movie featuring him. Likewise, Goofy is always thickheaded. We say that these characters have \textit{stable psychological traits}. And real humans have them too. There are people you would describe as temperamental. In almost every situation, they are more prone to getting angry than others.
+In the animated 1937 classic \textit{Clock Cleaners}, Mickey Mouse, Donald Duck, and Goofy are working as janitors in a clock tower. As usual, Goofy is dimwitted and carefree, Donald Duck gets fits of anger, and Mickey Mouse is kind and compassionate. Goofy mistakes a statue for a lady, Donald Duck throws a temper tantrum at a spring, and Mickey Mouse does everything he can to save Goofy from falling to certain death. This is not the only animated movie were these characters behave like this. Donald Duck's fiery temper -- and bad luck -- is what he is known for, and something you would expect to see in any movie featuring him. Likewise, Goofy is always thickheaded. We say that these characters have \textit{stable psychological traits}. And real humans have them too. There are people you would describe as temperamental. In almost every situation, they are more prone to getting angry than others.
 
 Psychometrics is about the study and quantification of psychological traits such as temperament. These traits cannot be directly measured though. Even if you think every individual has, in Platonic sense, a real variable $Z$ called "temperament", you would not be able to measure it directly. For these traits are not observable, they are \textit{latent}. Instead of observing $Z$ directly, we observe a random vector $X$ of proxies for $Z$. In most cases these proxies are responses to a questionnaire, usually on \emph{Likert items}. A Likert item is the response to a question with ordered alternatives ranging from e.g. strongly disagree to strongly agree. Table \ref{tab:IPIP} shows five questions from the International Personality Item Pool \parencite{Goldberg1992-hp}, all of them supposedly related to the trait \textit{agreeableness}.
 
@@ -9,11 +9,11 @@ Psychometrics is about the study and quantification of psychological traits such
 \noindent \begin{centering}
 \begin{tabular}{lccccc}
  & $1$ & $2$ & $3$ & $4$ & $5$\tabularnewline
-Am indifferent to the feelings of others.  & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
-Inquire about others' well-being. & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
-Know how to comfort others. & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
-Love children. & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
-Make people feel at ease.  & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
+I Am indifferent to the feelings of others.  & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
+I inquire about others' well-being. & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
+I know how to comfort others. & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
+I love children. & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
+I make people feel at ease.  & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$ & $\bigcirc$\tabularnewline
 \end{tabular}
 \par\end{centering}
 \vskip7.0pt
@@ -22,7 +22,7 @@ Inaccurate; 3, Neither Accurate Nor Inaccurate; 4, Moderately Accurate;
 5, Very Accurate}{\scriptsize\par}
 \end{table}
 
-These questions are said to \textit{load on} the personality trait agreeableness. A person strongly agreeing with ``Am indifferent to the feelings of others.'' is likely to be disagreeable, and his affirmative answer is likely to be caused by his disagreeableness. Psychometrics is about using questions such as these to infer, numerically, how agreeable someone is. That is, the questions serves as proxies for the latent variable, and it is the latent variable we are actually interested in. The answers to the individual questions are not too interesting in and of themselves.
+These questions are said to \textit{load on} the personality trait agreeableness. A person strongly agreeing with ``Am indifferent to the feelings of others.'' is likely to be disagreeable, and his affirmative answer is likely to be caused by his disagreeableness. Psychometrics is about using questions such as these to infer, numerically, how agreeable someone is. The questions serves as proxies for the latent variable, and it is the latent variable we are actually interested in. The answers to the individual questions are not too interesting in and of themselves.
 
 To be able to connect proxies to their latent variables, will need a statistical model. The most popular model is the linear model. Here $Y$ is a $J$-ary vector and
 \begin{equation}
@@ -38,7 +38,7 @@ is a generalized item response model.
 
 The most important feature of psychometric models is the reversed roles of regressors and covariates. In a usual regression model, the left hand side is unknown and the input to the right hand side is known. For instance, when we regress gross domestic product on some other economic indicators, we wish to predict gross domestic product from those other indicators. We can imagine a situation where we know the economic indicators and make a guess about gross domestic product. 
 
-In psychometrics this situation is turned on its head. We know the regressors but not all of the covariates. In the words of \textcite[p. 61]{Borsboom2005-iq}, models in psychometrics are \emph{reflective}, not \emph{formative}. In a formative model, and variable $Y$ is defined in terms of its indicator. For instance, socio-economic status is defined in terms of variables such as income, education level, and neighborhood quality. But socio-economic status does not cause them, it is merely a summary \parencite[p. 62]{Borsboom2005-iq}. On the other hand, agreeableness causes the responses to the questions in Table \ref{tab:IPIP}. Figure \ref{fig:dag} shows formative and reflexive models using directed graphs, where directed arrows are interpreted causally.
+In psychometrics this situation is turned on its head. We know the regressors but not all of the covariates. In the words of \textcite[p. 61]{Borsboom2005-iq}, models in psychometrics are \emph{reflective}, not \emph{formative}. In a formative model, a variable $Y$ is defined in terms of its indicator. For instance, socio-economic status is defined in terms of variables such as income, education level, and neighborhood quality. But socio-economic status does not cause them, it is merely a summary \parencite[p. 62]{Borsboom2005-iq}. On the other hand, agreeableness causes the responses to the questions in Table \ref{tab:IPIP}. Figure \ref{fig:dag} shows formative and reflexive models using directed graphs, where directed arrows are interpreted causally.
 
 \begin{figure}
 \noindent \begin{centering}
@@ -54,18 +54,18 @@ score}, $\hat{Z}=\sum_{i=1}^{k}Y_{i}$, and the mean squared error-optimal linear
 The three fundamental questions of psychometrics are:
 \begin{enumerate}
 \item \textbf{Model fit}. Is the model a good approximation to reality? Are the structural and parametric assumptions defensible? Model fit in structural equation modelling is usually evaluation through model fit indices, for instance $\chi^{2}$-tests. \parencite[Chapter 15]{Mulaik2009-gc}.
-\item \textbf{Reliability}. Is $\hat{Z}$ a good estimator of $Z$, assuming the model is correct? If so, the estimator is reliable. In the linear one-factor model, the reliability is most often measured by calculating coefficient alpha \parencite{Cronbach1951-in}, a statistic related to the squared correlation $\Cor^{2}(Z,\hat{Z})$. between $Z$ and $\hat{Z}$ when $\hat{Z}$ is a sum-score.
+\item \textbf{Reliability}. Is $\hat{Z}$ a good estimator of $Z$, assuming the model is correct? If so, the estimator is reliable. In the linear one-factor model, the reliability is most often measured by calculating coefficient alpha \parencite{Cronbach1951-in}, a statistic related to the squared correlation $\Cor^{2}(Z,\hat{Z})$ between $Z$ and $\hat{Z}$ when $\hat{Z}$ is a sum-score.
 \item \textbf{Validity}. Is $Z$ what we want it to be? Even if the model is correct, $Z$ might be something else than what we would like it to be. For instance, the five questions of Table \ref{tab:IPIP} should be related to the personality trait agreeableness. But is true? Maybe they measure some other psychological trait, such as irritability, intelligence, or even a physical trait such as height. Assuming personality traits such agreeableness exists, which not every psychometrician agrees with, there are some methods to check this. The techniques are often extrastatistical, and the application of them is called \emph{validation}. \parencite[Chapter 6]{Borsboom2005-iq}
 \end{enumerate}
 
 \subsection{Reliability}
 
-There is a mismatch between the mathematical definition of reliability and what psychologists think reliability is. The common definition of reliability is slightly different from correlation-based definition above. In our terminology, \textcite[Equation 3]{Raykov2019-yr} defines the reliability of $\hat{Z}$ as a measurement of $Z$ as
+There is a mismatch between the mathematical definition of reliability and what psychologists think reliability is. The common definition of reliability is slightly different from correlation definition above. In our terminology, \textcite[Equation 3]{Raykov2019-yr} defines the reliability of $\hat{Z}$ as a measurement of $Z$ as
 \begin{equation}
 \rho=\frac{\Var Z}{\Var\hat{Z}}\label{eq:rakov-reliabiliy}
 \end{equation} Under the linear model \eqref{eq:one-factor model}, $\rho = \Cor^2(Z,\hat{Z})$ when $Z$ is a linear predictor of $Z$ with zero mean, which happens when $Z$ is the sum-score $\hat{Z}=\sum_{i=1}^{k}Y_{i}$ or the mean squared error-optimal linear combination $\hat{Z}=\sum_{i=1}^{k}v_{i}Y_{i}$.
 
-Both the correlation and ratio of variance definitions of reliability are straight-forward. Both are defined relative to statistical model, and both inform us about the quality of $\hat{Z}$ as a predictor of $Z$. But it is common for psychologists to hope for much more. For instance, \textcite{McNeish2018-vu} wrote that
+Both the correlation definition and ratio of variance definition of reliability are straight-forward. Both are defined relative to statistical model, and both inform us about the quality of $\hat{Z}$ as a predictor of $Z$. But it is common for psychologists to hope for much more. For instance, \textcite{McNeish2018-vu} wrote that
 \begin{quote} 
 [...] researchers often report a measure of reliability to demonstrate that the items composing the measure are reliable, meaning that the scores based on the items are reasonably consistent, the responses to the scale are reproducible, and that responses are not simply comprised of random noise. Put another way, a reliability analysis provides evidence that the scale is consistently measuring the same thing [...]
 \end{quote}
@@ -83,6 +83,7 @@ where $k$ is the size of $Y$, the vector $\boldsymbol{1}$ is a $k$-ary vector of
 Cronbach's \citeyear{Cronbach1951-in} paper on coefficient alpha has $45673$ Google scholar cites as of August 2020. It is the third-most cited paper in psychology and in the top-hundred of the most cited papers in any field \parencite{McNeish2018-vu}. Whenever a reliability coefficient is reported, there is a $75\%$ chance it's coefficient alpha.
 
 Reliability coefficients are routinely reported in investigations of psychometric scales. For example, \textcite{Marx1978-rf} administered \enquote{three self-report measures of self-concept} to \enquote{488 sixth grade children as the basis for a [...] self-concept measurement.} They found that the first self-report measure had sample coefficient alpha $0.56$, the second $0.55$, and the third $0.67$. 
+
 Reliability coefficients are frequently debated by psychologists and psychometricians. A decent introduction to the literature is McNeish's \citeyear{McNeish2018-vu} attack on coefficient alpha together with the comments of \textcite{Raykov2019-yr} and \textcite{Savalei2019-se}. Psychometrika Volume 74, Issue 1 of 2009 is a relatively recent issue devoted mainly to coefficient alpha. A potential difficulty for statisticians trying to enter this fields are the two cultures of psychometrics, discussed by e.g. \textcite{Borsboom2005-iq}. One one hand are researchers working in the framework of latent variables, which is accessible to statisticians, as they work with explicit statistical models. But the majority of psychologists have been trained in the classical test theory of \textcite{Lord1968-ax}, which is slightly more esoteric to a statistician. Luckily, classical test theory can be subsumed under latent variable theory without much work.
 
 \subsection{Normal-ogive models}
@@ -90,10 +91,10 @@ Reliability coefficients are frequently debated by psychologists and psychometri
 
 A probit regression can written down as
 \begin{eqnarray*}
-Z_{i}\mid X_{i} & \sim & \beta^{T}X_{i}+\epsilon_{i}\\
-Y_{i}\mid Z_{i} & \sim & 1[Z_{i}>0]
+Z\mid X & \sim & \beta^{T}X+\epsilon\\
+Y\mid Z & \sim & 1[Z>0]
 \end{eqnarray*}
-provided only that $\epsilon_i$ is standard normal. Here we have a latent continuous variable $Z_i$, never observed, that captures the true regression relationship with $X$. Sadly, we only observe $Y_i$, with the associated loss of power. Probit regression is not alone in having this interpretation, as the famous logit model has the same interpretation, but with a logistically distributed $\epsilon_i$ in place of the normally distributed $\epsilon_i$. These models are popular, likely because the make more sense for binary data than the obvious competitor, linear regression.
+provided only that $\epsilon$ is standard normal. Here we have a latent continuous variable $Z$, never observed, that captures the true regression relationship with $X$. Sadly, we only observe $Y$, with the associated loss of power. Probit regression is not alone in having this interpretation, as the famous logit model has the same interpretation, but with a logistically distributed $\epsilon$ in place of the normally distributed $\epsilon$. These models are popular, likely because the make more sense for binary data than the obvious competitor, linear regression.
 
 Most psychometric data is on a Likert scale, usually on the range $1$ -- $5$ or $1$ -- $7$. These data are ordinal, and we are usually not justified in interpreting them as real numbers with the ordinary distance metric. But the popular linear factor model is best understood as modelling real numbers. How can we reconcile the linear factor model with Likert scale items?
 
@@ -103,14 +104,14 @@ Recall the linear factor model
 \begin{equation}
 X=\Lambda Z+\Psi^{1/2}\epsilon,      \tag{\ref{eq:one-factor model}}
 \end{equation}
-where $\Lambda$ is a matrix, $\Psi$ positive definite, and $\epsilon$ uncorrelated with $Z$. Consider the scenario when we do not observe the $X_{i}$s directly, but rather $X_{i}$s discretized into $m_{i}$ categories according to
+where $\Lambda$ is a matrix, $\Psi$ positive definite, and $\epsilon$ uncorrelated with $Z$. Consider the scenario when we do not observe the $X$s directly, but rather $X$s discretized into $m$ categories according to
 \begin{equation}
-Y_{i}=j1[\tau_{i(j-1)}\leq X_{i}\leq\tau_{ij}],\quad j = 1, \ldots,m_i. \label{eq:discretization model}
+Y=j1[\tau_{(j-1)}\leq X\leq\tau_{j}],\quad j = 1, \ldots,m. \label{eq:discretization model}
 \end{equation}
-Here $-\infty=\tau_{i0}<\tau_{i1}<\ldots<\tau_{im_{i}}=\infty$
-are thresholds for each $i$, 
+Here $-\infty=\tau_{0}<\tau_{1}<\ldots<\tau_{m}=\infty$
+are thresholds.
 
 If $X$ is multivariate normal, model (\ref{eq:discretization model})
-is a \textit{normal-ogive model} \parencite{Swaminathan2016-rg}, also known as a discretized factor analysis model \parencite{Takane1987-pq}. Estimating of normal-ogive models is not much more involved than estimation of linear factor models. The correlation matrix of $X$ is called the \textit{polychoric correlation matrix}, it is identified and relatively straight-forward to estimate \parencite{Olsson1979-ti}. Using this estimated correlation matrix, the parameters $\Lambda$ and $\Psi^{1/2}$ can be calculating using e.g. minimum square procedures. The polychoric correlation matrix can also be used as input coefficient alpha \eqref{eq:sample coefficient alpha} instead of the sample covariance matrix, yielding the \textit{ordinal alpha} \parencite{Zumbo2007-ap}. 
+is a \textit{normal-ogive model} \parencite{Swaminathan2016-rg}, also known as a discretized factor analysis model \parencite{Takane1987-pq}. Estimating of normal-ogive models is not much more involved than estimation of linear factor models. The correlation matrix of $X$ is called the \textit{polychoric correlation matrix}, it is identified and relatively straight-forward to estimate \parencite{Olsson1979-ti}. Using this estimated correlation matrix, the parameters $\Lambda$ and $\Psi^{1/2}$ can be calculating using e.g. minimum square procedures. The polychoric correlation matrix can also be used as input to coefficient alpha \eqref{eq:sample coefficient alpha} instead of the sample covariance matrix, yielding the \textit{ordinal alpha} \parencite{Zumbo2007-ap}. 
 
-Be aware that it is impossible to verify the distribution assumptions about $X$, as we do not observe it, only $Y$. While some distributions of $X$ are incompatible with normality, there are a plethora of distributions compatible with $X$ that are not normal even when $X$ is compatible with normality \parencite{Foldnes2020-ma}. In this regard, testing $X$ for normality is impossible in the same sense as non-parametric testing of the mean from Theorem \ref{thm:bahadur-savage}.
+Be aware that it is impossible to verify the distributional assumptions about $X$, as we do not observe it, only $Y$. While some distributions of $X$ are incompatible with normality, there are a plethora of distributions compatible with $X$ that are not normal even when $X$ is compatible with normality \parencite{Foldnes2020-ma}. In this regard, testing $X$ for normality is impossible in the same sense as non-parametric testing of the mean from Theorem \ref{thm:bahadur-savage}.

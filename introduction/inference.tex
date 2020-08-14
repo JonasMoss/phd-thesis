@@ -1,7 +1,7 @@
 \section{Statistical inference}
 
-Frequentist inference is hard to understand for lay people. Misunderstandings about \emph{p}-values and confidence intervals are ubiquitous, documented in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi} and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same sense as Bayesian quantities, and they are often hard to reason about mathematically. It's easy to forget just how strange hypothesis tests, confidence
-sets, and \emph{p}-values are. 
+Frequentist inference is hard to understand. Misunderstandings about \textit{p}-values and confidence intervals are ubiquitous, documented in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi} and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same sense as Bayesian quantities, and they are often hard to reason about mathematically. It's easy to forget just how strange hypothesis tests, confidence
+sets, and \textit{p}-values are. 
 
 \subsection{Hypothesis tests}
 
@@ -17,7 +17,7 @@ such that $\sup_{P\in\mathcal{P}_{0}}P(R)\leq\alpha.$
 
 The set $R$ is the \emph{rejection set} of the hypothesis test. Its complement is the acceptance set of the hypothesis and is denoted $A=R^{c}$. The philosophical underpinning of hypothesis test, due to Neyman, is that you have to have make a binary choice. Either you act as if $P\in\mathcal{P}_{0}$ is true, or you act as if $\mathcal{P}_{0}$ isn't true. When you do a hypothesis test, you choose $\mathcal{P}_{0}$ if $\omega\in R^{c}$ and $\mathcal{P}_{1}=\mathcal{P\backslash P}_{0}$, the alternative hypothesis, otherwise. The definition of hypothesis test guarantees you will choose $\mathcal{P}_{1}$ when $\mathcal{P}_{0}$ is true with at most probability $\alpha$. Usually, discussions of hypothesis tests will involve the probability that $\mathcal{P}_{1}$ is chosen when $\mathcal{P}_{1}$ is true; this is called the \emph{power} of the test \parencite{Neyman1977-nx}.
 
-Hypothesis tests are quite easy to understand, especially when formulated with explicit null-hypotheses and alternative hypotheses. The idea behind hypothesis tests is easy to state and has a clear and practical rationale, which is to control error rates. That said, there are examples of even optimal hypothesis tests that behave unintuitively. 
+Hypothesis tests are quite easy to understand, especially when formulated with explicit null-hypotheses and alternative hypotheses. The idea behind hypothesis tests is easy to state and has a clear and practical rationale,  to control error rates. That said, there are examples of even optimal hypothesis tests that behave unintuitively. 
 
 \begin{example}[{\textcite[Example 4a]{Berger1988-ji}}]
  Let $X\in\{1,2,3\}$ and $\theta\in\{1,2\}$. Define
@@ -26,7 +26,7 @@ P_{0}(x)=\begin{cases}
 0.009, & x=1.\\
 0.001, & x=2,\\
 0.99, & x=3,
-\end{cases},\;P_{1}=\begin{cases}
+\end{cases},\;P_{1}(x)=\begin{cases}
 0.001, & x=1.\\
 0.989, & x=2,\\
 0.01, & x=3,
@@ -48,57 +48,51 @@ Then the random variable
 \begin{equation}
 U(\omega)=\inf\{\alpha\mid\omega\in R(\alpha)\}\label{eq:size p-value}
 \end{equation}
-is a \emph{p}-value. 
+is a \textit{p}-value. 
 \end{definition}
 
 Observe that $\{U\leq\alpha\}=\left\{ \omega\mid\inf\{\alpha'\mid\omega\in R(\alpha')\}\leq\alpha\right\}=R(\alpha)$.
 Importantly, $U$ satisfies $\sup_{P\in\mathcal{P}_{0}}P(U\leq\alpha)=\sup_{P\in\mathcal{P}_{0}}P(R(\alpha))=\alpha$
 for all $\alpha\in A$. When $\mathcal{P}_{0}$ is a singleton, $P(U\leq\alpha)=P(R(\alpha))=\alpha$.
-In particular, if $A=[0,1]$, $U$ is uniformly distributed under
-$P$, a common definition of a \emph{p}-value in and of itself. The definition
-of \emph{p}-value is slightly more general than usual, as it allows
-for both $A\neq[0,1]$ and composite hypotheses. The \emph{p}-value
-suffers from an all-too-common problem in statistics; there is no
-different name for the observed \emph{p}-value $u$ and the \emph{p}-value
-statistic $U$. \textcite{Schweder1988-nh} proposed to call $U$ the
-``significance statistic'', a name that has unfortunately not caught
-on. 
+In particular, if $A=[0,1]$, $U$ is uniformly distributed under $P$, a common definition of a \textit{p}-value in and of itself. The definition of \textit{p}-value is slightly more general than usual, as it allows for both $A\neq[0,1]$ and composite hypotheses. 
 
-You could claim this definition of a \emph{p}-value is too convoluted. But common definitions of\emph{ p}-values are incomplete, most of them being variants of ``the probability of observing something at least as extreme as the observed data, given the null hypothesis is true.'' A better definition is ``the probability of observing $T\geq t$, where $t$ is a observation of the statistic $T$'', as it makes the dependence on the (often arbitrary) statistic $T$ explicit. But stating the definition in terms of increasing rejection sets is even better, as it makes it clear just how many \emph{p}-values there are, how permissive the definition is, and how the definition is fundamentally about chains of sets in the $\sigma$-algebra $\mathcal{F}$. Moreover, the connection between hypothesis tests and \emph{p}-values is easiest to state and appreciate in terms of rejection sets. For instance, the notion of most powerful \emph{p}-value is obvious; a \emph{p}-value is most powerful against $\mathcal{P}_{1}$ if each rejection set $R(\alpha)$ is a most powerful size $\alpha$ hypothesis test. 
+The \textit{p}-value suffers from an all-too-common problem in statistics; there is no different name for the observed \textit{p}-value $u$ and the \textit{p}-value statistic $U$. \textcite{Schweder1988-nh} proposed to call $U$ the ``significance statistic'', a name that has unfortunately not caught on. 
 
-To see why \emph{p}-values should be defined for composite hypothesis, consider the most famous of test of them all, the two-sided $t$-test. The null-hypothesis $\mathcal{P}_{0}$ is the family of normal probabilities with mean zero and any standard deviation $\sigma$, which is composite. Luckily, $\sqrt{n}\overline{x}/s$ is a pivot in this situation, i.e., $P_{\sigma}(\sqrt{n}\overline{x}/s\leq x)$ is independent of $\sigma$, but the null-hypothesis is still composite. The usual formulation hides this though, stating only the insufficient $H_0:\mu = 0$, not $H_0:\mu=0,\sigma>0$.
+You could claim this definition of a \textit{p}-value is too convoluted. But common definitions of\emph{ p}-values are incomplete, most of them being variants of ``the probability of observing something at least as extreme as the observed data, given the null hypothesis is true.'' A better definition is ``the probability of observing $T\geq t$, where $t$ is a observation of the statistic $T$'', as it makes the dependence on the (often arbitrary) statistic $T$ explicit. But stating the definition in terms of increasing rejection sets is even better, as it makes it clear just how many \textit{p}-values there are, how permissive the definition is, and how the definition is fundamentally about chains of sets in the $\sigma$-algebra $\mathcal{F}$. Moreover, the connection between hypothesis tests and \textit{p}-values is easiest to state and appreciate in terms of rejection sets. For instance, the notion of most powerful \textit{p}-value is obvious; a \textit{p}-value is most powerful against $\mathcal{P}_{1}$ if each rejection set $R(\alpha)$ is a most powerful size $\alpha$ hypothesis test. 
 
-How should you use \emph{p}-values for inferential purposes? That is really hard to say. A \emph{p}-value does not have the error rate interpretation as an hypothesis test does. And a \textit{p}-value of $0.05$ is not observed with probability $0.05$ under the null-hypothesis, but a \emph{p}-value of $0.05$ or less is observed with probability $0.05$. 
+To see why \textit{p}-values should be defined for composite hypothesis, consider the most famous of test of them all, the two-sided $t$-test. The null-hypothesis $\mathcal{P}_{0}$ is the family of normal probabilities with mean zero and any standard deviation $\sigma$, which is composite. Luckily, $\sqrt{n}\overline{x}/s$ is a pivot in this situation, i.e., $P_{\sigma}(\sqrt{n}\overline{x}/s\leq x)$ is independent of $\sigma$, but the null-hypothesis is still composite. The usual formulation hides this though, stating only the insufficient $H_0:\mu = 0$, not $H_0:\mu=0,\sigma>0$.
 
-It is demanding to interpret \emph{p}-values. The definition is opaque and hard, if not impossible, to connect to real-life outcomes. And it is hard to justify the use of numbers one cannot expect anyone to interpret in any meaningful way, especially because people will try to interpret it, and inevitably fail. \textcite{Cohen1994-au} wrote, in his critique of \emph{p}-values, 
+How should you use \textit{p}-values for inferential purposes? That is really hard to say. A \textit{p}-value does not have the convenient error rate interpretation of a hypothesis test. A \textit{p}-value of $0.05$ is not observed with probability $0.05$ under the null-hypothesis, but a \textit{p}-value of $0.05$ or less is observed with probability $0.05$. 
+
+It is demanding to interpret \textit{p}-values. The definition is opaque and hard, if not impossible, to connect to real-life outcomes. Justify the use of numbers one cannot expect anyone to interpret in any meaningful way is a challenge, especially because people will try to interpret it, and inevitably fail. \textcite{Cohen1994-au} wrote, in his critique of \textit{p}-values, 
 \begin{quotation}
 What's wrong with {[}null-hypothesis significance testing{]}? Well, among many other things, it does not tell us what we want to know, and we so much want to know what we want to know that, out of desperation, we nevertheless believe that it does! What we want to know is \textquotedbl Given these data, what is the probability that $H_{0}$ is true?\textquotedbl{}
 \end{quotation}
-Some authors, most famously Fisher \parencite{Liu2020-er} attempt to justify \emph{p}-values
-as measures of evidence, and, according to \textcite{Berger1987-tf}
-most statisticians use \emph{p}-values since they are ``feeling it
+Some authors, most famously Fisher \parencite{Liu2020-er} attempt to justify \textit{p}-values
+as \textit{measures of evidence}, and, according to \textcite{Berger1987-tf}
+most statisticians use \textit{p}-values since they are ``feeling it
 to be important to indicate how strong the evidence against $H_{0}$''.
-\textcite{Hubbard2008-cg}, among others, are strongly critical of the idea that \emph{p}-values are a measure of evidence, but \textcite{Liu2020-er} defend a slight modification of Definition \ref{def:p-value}, incorporating asymptotic guarantees, as being a reasonable measure of evidence.
+\textcite{Hubbard2008-cg}, among others, are strongly critical of the idea that \textit{p}-values are a measure of evidence, but \textcite{Liu2020-er} defend a slight modification of Definition \ref{def:p-value}, incorporating asymptotic guarantees, as being a reasonable measure of evidence.
 
-One reason why \emph{p}-values are not measures is evidence is the lack of explicit alternative hypotheses. That \emph{p}-values are usually framed without explicit alternative hypotheses is sometimes framed as a strength. \textcite[p. 308]{Barnard1962-rz} wrote that ``the simple tests of significance arise ,it seems to me, in situations where we do not have a parameter space of hypotheses; we have only a single hypothesis essentially, and the sample space then is the only space of variables present in the problem.`` Fisher was firmly against formal alternatives hypotheses and power calculations \parencite{Lehmann1993-oa}. A compelling argument for why alternative hypotheses are important is the Albino argument of \textcite{Berkson1942-hj}:
+One reason why \textit{p}-values are not measures is evidence is the lack of explicit alternative hypotheses. That \textit{p}-values are usually framed without explicit alternative hypotheses is sometimes framed as a strength. \textcite[p. 308]{Barnard1962-rz} wrote that ``the simple tests of significance arise ,it seems to me, in situations where we do not have a parameter space of hypotheses; we have only a single hypothesis essentially, and the sample space then is the only space of variables present in the problem.`` Moreover, Fisher was firmly against formal alternatives hypotheses and power calculations \parencite{Lehmann1993-oa}. A compelling argument for why alternative hypotheses are important is the Albino argument of \textcite{Berkson1942-hj}:
 \begin{quotation}
 Suppose I said, \textquotedblleft Albinos are very rare in human populations, only one in fifty thousand. Therefore, if you have taken a random sample of 100 from a population and found in it an albino, the population is not human.\textquotedblright{} This is a similar argument but if it were given, I believe the rational retort would be, \textquotedblleft If the population is not human, what is it?\textquotedblright{} 
 \end{quotation}
-A major difference between the Neyman--Pearson theory of statistical tests and \textit{p}-values is the theoretical justification. Classical Neyman--Pearson-type inferential statistics, with Lehmann's ``Testing statistical hypotheses'' \parencite{Lehmann2005-sp} as its bible, is concerned with finding optimal tests. Usually, uniformly most powerful tests or uniformly most powerful unbiased tests do not exist, but it is sometimes possible to find other kinds of optimal tests. Optimality theory gives you justification for selecting one test instead of another, and maybe more importantly, forces you to think clearly about exactly what your assumptions are and exactly what you want to test. \emph{p}-values, almost never framed in this way, are much more arbitrary. 
+A major difference between the Neyman--Pearson theory of statistical tests and \textit{p}-values is the theoretical justification. Classical Neyman--Pearson-type inferential statistics, with Lehmann's ``Testing statistical hypotheses'' \parencite{Lehmann2005-sp} as its bible, is concerned with finding optimal tests. Usually, uniformly most powerful tests or uniformly most powerful unbiased tests do not exist, but it is sometimes possible to find other kinds of optimal tests. Optimality theory justifies selecting one test instead of another, and maybe more importantly, forces you to think clearly about what exactly your assumptions are and what exactly you want to test. \textit{p}-values, almost never framed in this way, are arbitrary in comparsion.
 
 The opaqueness of \textit{p}-values arguably has detrimental consequences for the scientific literature. Since most researchers do not know the definition of \textit{p}-values, much less understand them, they fall back on utterly incorrect ideas about what a \textit{p}-value is or what it entails. Classical examples include \parencite{Gigerenzer2018-oi}:
-\begin{itemize}
-    \item Replication delusion. The idea that a  \textit{p}-values specifies the probability of a successful replication.
-    \item Illusion of certainty. A significant \textit{p}-value proves a purported effect exists.
+\begin{enumerate}[label=(\alph*)]
+    \item The replication delusion. The idea that a  \textit{p}-values specifies the probability of a successful replication.
+    \item The illusion of certainty. A significant \textit{p}-value proves a purported effect exists.
     \item Bayesian wishful thinking. The \textit{p}-value is the posterior probability of the null-hypothesis being true.
-\end{itemize}
-\textcite{Gigerenzer2018-oi} found, in a review of the literature comprising a total sample of approximately 1000 academic psychologist and $1000$ psychology students, that $56\% -- 97\%$ of the respondents believed in at least one these incorrect statements. 
+\end{enumerate}
+\textcite{Gigerenzer2018-oi} found, in a review of the literature comprising a total sample of approximately 1000 academic psychologist and $1000$ psychology students, that $56\%$ -- $97\%$ of the respondents believed in at least one these incorrect statements. 
 
 Most research follows what \textcite{Gigerenzer2004-oc} calls the \text{null ritual}. The null hypothesis is that of no effect, the \textit{p}-value threshold is $0.05$, and the study is a success if and only if the \textit{p}-value falls below $0.05$. The detrimental effects of this ritual includes \textit{p}-hacking and publication bias, to be discussed in the section about the replication crisis.
 
 \subsection{Confidence sets}
-Confidence sets are even harder handle than \emph{p}-values. While
-\emph{p}-values are defined in terms of a nested families of rejection
+Confidence sets are even harder handle than \textit{p}-values. While
+\textit{p}-values are defined in terms of a nested families of rejection
 sets, confidence sets need a parameterized families of rejection sets. 
 \begin{definition}
 \label{def:confidence sets}Let $\Pi=\{\mathcal{P}(\theta)\}_{\theta\in\Theta}$
@@ -111,7 +105,7 @@ a family of rejection sets, satisfying
 If the inequality is an equality, the confidence set has size $\alpha$. 
 \end{definition}
 
-Usually we define a set $C(\omega)$ by $\theta\in C(\omega)\iff\omega\notin R_{\theta}$ and call $C$ a confidence set. The definition above uses the well-known duality between rejection sets and confidence sets, and constructing a confidence set from rejection sets in this way is called
+Usually we define a set $C(\omega)$ by $\theta\in C(\omega)\iff\omega\notin R_{\theta}$ and call $C$ a confidence set. The definition above uses the well-known duality between rejection sets and confidence sets \parencite[Section 3.5]{Lehmann2005-sp}, and constructing a confidence set from rejection sets in this way is called
 \emph{inverting a test}. The definition might look more abstract than necessary, as it involves two suprema. But both are necessary, despite they not showing up in the most familiar examples. The supremum over $\mathcal{P}(\theta)$ guarantees that that $P(R_{\theta})\leq\alpha$
 for every $P$ in the equivalence class $\mathcal{P}(\theta)$, while
 the supremum over $\Theta$ guarantees that this is the case for each equivalence class.
@@ -122,9 +116,9 @@ Confidence sets are not only hard to define, they are hard to understand. You ca
 
 \subsection{Impossibility results}
 
-Let's say you have a sequence of real random variables $X_{1},X_{2},\ldots,X_{n}$ from some probability measure $P$ with finite mean $\mu=EX_{1}<\infty$. You do not know anything else about $P$. Is it possible to say anything about the mean $\mu$? From a Bayesian perspective the answer is no, as the problem is underspecified. The problem lacks not only a prior, but a likelihood too. Even worse, there is no $\sigma$-finite dominating measure for the class of candidate $F$s, so Bayes' theorem would be useless in any case. 
+Say you have a sequence of real random variables $X_{1},X_{2},\ldots,X_{n}$ from some probability measure $P$ with finite mean $\mu=EX_{1}<\infty$. You do not know anything else about $P$. Is it possible to say anything about the mean $\mu$? From a Bayesian perspective the answer is no, as the problem is underspecified. The problem clearly lacks a prior. Even worse, there is no $\sigma$-finite dominating measure for the class of candidate $F$s, so Bayes' theorem would be useless in any case. 
 
-But what happens with \emph{p}-values? It turns out there is no nice \emph{p}-value for the mean, or even hypothesis test, for non-parametric families of distributions, even when the variance is finite for every $P$. \textcite{Bahadur1956-tg} proved the following elegant theorem.
+But what happens with \textit{p}-values? It turns out there is no nice \textit{p}-value for the mean, or even hypothesis test, for non-parametric families of distributions, even when the variance is finite for every $P$. \textcite{Bahadur1956-tg} proved the following elegant theorem.
 \begin{theorem}[Bahadur--Savage]\label{thm:bahadur-savage}
 Let $\mathcal{\mathcal{P}}$ be a family of probability measures
 satisfying
@@ -138,7 +132,7 @@ That is, if $\lambda\in[0,1]$ and $P,Q\in\mathcal{P}$, then $\lambda P+(1-\lambd
 too.
 \end{enumerate}
 Let $\mathcal{P}_{n}(\mu)$ denote the family of probability measures
-containing every $P^{n}$ such that $P\in\mathcal{P}$ and $\mu(P)=\mu$.
+containing every $P^{n}$ (the $n$-fold product measure) such that $P\in\mathcal{P}$ and $\mu(P)=\mu$.
 Let $R$ be a size $\alpha>0$ rejection set for the hypothesis $\mu(P)=\mu_{0}$.
 Then 
 \[
@@ -183,7 +177,7 @@ conditional independence test has no power against any alternative.
 \label{theorem:Shah--Peters}Let $n$ be arbitrary and $x_{i},y_{i},z_{i}$ be identically and independently sampled from $P$. Assume $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{0}$. Then $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{1}$ too.
 \end{theorem}
 
-The Shah--Peters theorem is stronger than the Bahadur--Savage theorem in the sense its alternatives are simple, not composite. The alternatives in Bahadur--Savage are entire classes of probability measures; and the richness of these classes is what drives the theorem. The Shah--Peters theorem, on the other hand, is about the richness of the the null hypothesis, $\mathcal{P}_{0}$. This class of distributions is so large that any rejection set satisfying $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{0}$ must satisfy $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{1}$ too.
+The Shah--Peters theorem is stronger than the Bahadur--Savage theorem in the sense that its alternatives are simple, not composite. The alternatives in Bahadur--Savage are entire classes of probability measures; and the richness of these classes is what drives the theorem. The Shah--Peters theorem, on the other hand, is about the richness of the the null hypothesis, $\mathcal{P}_{0}$. This class of distributions is so large that any rejection set satisfying $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{0}$ must satisfy $P^{n}(R)\leq\alpha$ for all $P\in\mathcal{P}_{1}$ too.
 
 An analogue of the Shah--Peters result does not hold for unconditional independence testing, as the rank test of \textcite{Hoeffding1948-nm} test is pointwise consistent. Still, there is no uniformly unbiased test of independence \parencite{Moss2020-bc}.
 
