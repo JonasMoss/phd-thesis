@@ -1,21 +1,16 @@
 \section{Statistical inference}
 
-Frequentist inference is hard to understand. Misunderstandings about \textit{p}-values and confidence intervals are ubiquitous, documented in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi} and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same sense as Bayesian quantities, and they are often hard to reason about mathematically. It's easy to forget just how strange hypothesis tests, confidence
+Frequentist inference is hard to understand. Misunderstandings about \textit{p}-values and confidence intervals are ubiquitous, documented in fields such as psychology \parencite{Belia2005-di,Gigerenzer2018-oi} and medicine \parencite{Goodman2008-ed,Gigerenzer2007-qi}. Frequentist quantities are almost never unique in the same sense as Bayesian quantities, and they are often hard to reason about mathematically. Even for statisticians, it's easy to forget just how strange hypothesis tests, confidence
 sets, and \textit{p}-values are. 
 
 \subsection{Hypothesis tests}
 
 In the following pages, $(\Omega,\mathcal{\mathcal{F}})$ will be a measurable space and $\mathcal{P}$ a background family of probability measures on this space. The family $\mathcal{P}$ contains every probability measure we consider plausible. 
 \begin{definition}
-\parencite[][Chapter 3.1]{Lehmann2005-sp} Let $\mathcal{P}_{0}$ be a family
-of probability measures on $(\Omega,\mathcal{F})$. A test of the
-null-hypothesis $P\in\mathcal{P}_{0}$ of \emph{size} $\alpha$ is
-a set $R$ such that $\sup_{P\in\mathcal{P}_{0}}P(R)=\alpha.$ A test
-of $P\in\mathcal{P}_{0}$ of \emph{level $\alpha$ }is a set $R$
-such that $\sup_{P\in\mathcal{P}_{0}}P(R)\leq\alpha.$
+\parencite[][Chapter 3.1]{Lehmann2005-sp} Let $\mathcal{P}_{0}$ be a family of probability measures on $(\Omega,\mathcal{F})$. A test of the null-hypothesis $P\in\mathcal{P}_{0}$ of \emph{size} $\alpha$ is a set $R$ such that $\sup_{P\in\mathcal{P}_{0}}P(R)=\alpha.$ A test of $P\in\mathcal{P}_{0}$ of \emph{level $\alpha$ }is a set $R$ such that $\sup_{P\in\mathcal{P}_{0}}P(R)\leq\alpha.$
 \end{definition}
 
-The set $R$ is the \emph{rejection set} of the hypothesis test. Its complement is the acceptance set of the hypothesis and is denoted $A=R^{c}$. The philosophical underpinning of hypothesis test, due to Neyman, is that you have to have make a binary choice. Either you act as if $P\in\mathcal{P}_{0}$ is true, or you act as if $\mathcal{P}_{0}$ isn't true. When you do a hypothesis test, you choose $\mathcal{P}_{0}$ if $\omega\in R^{c}$ and $\mathcal{P}_{1}=\mathcal{P\backslash P}_{0}$, the alternative hypothesis, otherwise. The definition of hypothesis test guarantees you will choose $\mathcal{P}_{1}$ when $\mathcal{P}_{0}$ is true with at most probability $\alpha$. Usually, discussions of hypothesis tests will involve the probability that $\mathcal{P}_{1}$ is chosen when $\mathcal{P}_{1}$ is true; this is called the \emph{power} of the test \parencite{Neyman1977-nx}.
+The set $R$ is the \emph{rejection set} of the hypothesis test. Its complement is the acceptance set of the hypothesis and is denoted $A=R^{c}$. The philosophical underpinning of hypothesis test, due to Neyman, is that you have to have make a binary choice. Either you act as if $P\in\mathcal{P}_{0}$ is true, or you act as if $\mathcal{P}_{0}$ isn't true. When you do a hypothesis test, you choose $\mathcal{P}_{0}$ if $\omega\in R^{c}$ and the alternative hypothesis $\mathcal{P}_{1}=\mathcal{P\backslash P}_{0}$ otherwise. The definition of hypothesis test guarantees you will choose $\mathcal{P}_{1}$ when $\mathcal{P}_{0}$ is true with at most probability $\alpha$. Usually, discussions of hypothesis tests will involve the probability that $\mathcal{P}_{1}$ is chosen when $\mathcal{P}_{1}$ is true; this is called the \emph{power} of the test \parencite{Neyman1977-nx}.
 
 Hypothesis tests are quite easy to understand, especially when formulated with explicit null-hypotheses and alternative hypotheses. The idea behind hypothesis tests is easy to state and has a clear and practical rationale,  to control error rates. That said, there are examples of even optimal hypothesis tests that behave unintuitively. 
 
@@ -58,9 +53,9 @@ In particular, if $A=[0,1]$, $U$ is uniformly distributed under $P$, a common de
 
 The \textit{p}-value suffers from an all-too-common problem in statistics; there is no different name for the observed \textit{p}-value $u$ and the \textit{p}-value statistic $U$. \textcite{Schweder1988-nh} proposed to call $U$ the ``significance statistic'', a name that has unfortunately not caught on. 
 
-You could claim this definition of a \textit{p}-value is too convoluted. But common definitions of\emph{ p}-values are incomplete, most of them being variants of ``the probability of observing something at least as extreme as the observed data, given the null hypothesis is true.'' A better definition is ``the probability of observing $T\geq t$, where $t$ is a observation of the statistic $T$'', as it makes the dependence on the (often arbitrary) statistic $T$ explicit. But stating the definition in terms of increasing rejection sets is even better, as it makes it clear just how many \textit{p}-values there are, how permissive the definition is, and how the definition is fundamentally about chains of sets in the $\sigma$-algebra $\mathcal{F}$. Moreover, the connection between hypothesis tests and \textit{p}-values is easiest to state and appreciate in terms of rejection sets. For instance, the notion of most powerful \textit{p}-value is obvious; a \textit{p}-value is most powerful against $\mathcal{P}_{1}$ if each rejection set $R(\alpha)$ is a most powerful size $\alpha$ hypothesis test. 
+You could claim this definition of a \textit{p}-value is too convoluted. But common definitions of\emph{ p}-values are incomplete, most of them being variants of ``the probability of observing something at least as extreme as the observed data, given the null hypothesis is true.'' A better definition is ``the probability of observing $T\geq t$, where $t$ is an observation of the statistic $T$'', as it makes the dependence on the (often arbitrary) statistic $T$ explicit. But stating the definition in terms of increasing rejection sets is even better, as it makes it clear just how many \textit{p}-values there are, how permissive the definition is, and how the definition is fundamentally about chains of sets in the $\sigma$-algebra $\mathcal{F}$. Moreover, the connection between hypothesis tests and \textit{p}-values is easiest to state and appreciate in terms of rejection sets. For instance, the notion of most powerful \textit{p}-value is obvious; a \textit{p}-value is most powerful against $\mathcal{P}_{1}$ if each rejection set $R(\alpha)$ is a most powerful size $\alpha$ hypothesis test. 
 
-To see why \textit{p}-values should be defined for composite hypothesis, consider the most famous of test of them all, the two-sided $t$-test. The null-hypothesis $\mathcal{P}_{0}$ is the family of normal probabilities with mean zero and any standard deviation $\sigma$, which is composite. Luckily, $\sqrt{n}\overline{x}/s$ is a pivot in this situation, i.e., $P_{\sigma}(\sqrt{n}\overline{x}/s\leq x)$ is independent of $\sigma$, but the null-hypothesis is still composite. The usual formulation hides this though, stating only the insufficient $H_0:\mu = 0$, not $H_0:\mu=0,\sigma>0$.
+To see why \textit{p}-values should be defined for composite hypothesis, consider the most famous test of them all, the two-sided $t$-test. The null-hypothesis $\mathcal{P}_{0}$ is the family of normal probability distributions with mean zero and any standard deviation $\sigma$, which is composite. Luckily, $\sqrt{n}\overline{x}/s$ is a pivot in this situation, i.e., $P_{\sigma}(\sqrt{n}\overline{x}/s\leq x)$ is independent of $\sigma$, but the null-hypothesis is still composite. The usual formulation hides this though, stating only the insufficient $H_0:\mu = 0$, not $H_0:\mu=0,\sigma>0$.
 
 How should you use \textit{p}-values for inferential purposes? That is really hard to say. A \textit{p}-value does not have the convenient error rate interpretation of a hypothesis test. A \textit{p}-value of $0.05$ is not observed with probability $0.05$ under the null-hypothesis, but a \textit{p}-value of $0.05$ or less is observed with probability $0.05$. 
 
@@ -71,10 +66,10 @@ What's wrong with {[}null-hypothesis significance testing{]}? Well, among many o
 Some authors, most famously Fisher \parencite{Liu2020-er} attempt to justify \textit{p}-values
 as \textit{measures of evidence}, and, according to \textcite{Berger1987-tf}
 most statisticians use \textit{p}-values since they are ``feeling it
-to be important to indicate how strong the evidence against $H_{0}$''.
+to be important to indicate how strong the evidence against $H_{0}$.''
 \textcite{Hubbard2008-cg}, among others, are strongly critical of the idea that \textit{p}-values are a measure of evidence, but \textcite{Liu2020-er} defend a slight modification of Definition \ref{def:p-value}, incorporating asymptotic guarantees, as being a reasonable measure of evidence.
 
-One reason why \textit{p}-values are not measures is evidence is the lack of explicit alternative hypotheses. That \textit{p}-values are usually framed without explicit alternative hypotheses is sometimes framed as a strength. \textcite[p. 308]{Barnard1962-rz} wrote that ``the simple tests of significance arise ,it seems to me, in situations where we do not have a parameter space of hypotheses; we have only a single hypothesis essentially, and the sample space then is the only space of variables present in the problem.`` Moreover, Fisher was firmly against formal alternatives hypotheses and power calculations \parencite{Lehmann1993-oa}. A compelling argument for why alternative hypotheses are important is the Albino argument of \textcite{Berkson1942-hj}:
+One reason why \textit{p}-values are not measures is evidence is the lack of explicit alternative hypotheses. That \textit{p}-values are usually framed without explicit alternative hypotheses is sometimes framed as a strength. \textcite[p. 308]{Barnard1962-rz} wrote that ``the simple tests of significance arise, it seems to me, in situations where we do not have a parameter space of hypotheses; we have only a single hypothesis essentially, and the sample space then is the only space of variables present in the problem.`` Moreover, Fisher was firmly against formal alternatives hypotheses and power calculations \parencite{Lehmann1993-oa}. A compelling argument for why alternative hypotheses are important is the Albino argument of \textcite{Berkson1942-hj}:
 \begin{quotation}
 Suppose I said, \textquotedblleft Albinos are very rare in human populations, only one in fifty thousand. Therefore, if you have taken a random sample of 100 from a population and found in it an albino, the population is not human.\textquotedblright{} This is a similar argument but if it were given, I believe the rational retort would be, \textquotedblleft If the population is not human, what is it?\textquotedblright{} 
 \end{quotation}
@@ -92,8 +87,8 @@ Most research follows what \textcite{Gigerenzer2004-oc} calls the \text{null rit
 
 \subsection{Confidence sets}
 Confidence sets are even harder handle than \textit{p}-values. While
-\textit{p}-values are defined in terms of a nested families of rejection
-sets, confidence sets need a parameterized families of rejection sets. 
+\textit{p}-values are defined in terms of nested families of rejection
+sets, confidence sets need parameterized families of rejection sets. 
 \begin{definition}
 \label{def:confidence sets}Let $\Pi=\{\mathcal{P}(\theta)\}_{\theta\in\Theta}$
 be a partition of probabilities on a common probability space $(\Omega,\mathcal{F})$.
@@ -110,7 +105,7 @@ Usually we define a set $C(\omega)$ by $\theta\in C(\omega)\iff\omega\notin R_{\
 for every $P$ in the equivalence class $\mathcal{P}(\theta)$, while
 the supremum over $\Theta$ guarantees that this is the case for each equivalence class.
 
-A confidence set should be regarded as family of rejection sets, not as a random set. For it to be random set we would have to find a $\sigma$-algebra $\mathcal{G}$ over a suitable space of sets $\mathcal{X}$ such that $C:\Omega\to\mathcal{X}$ is measurable, i.e., $C^{-1}(G)\in\mathcal{F}$ for every $G\in\mathcal{G}$. Luckily, this is unneccessary, as we are never interested in questions such a ``What is the probability under $P$ that $C$ is an element of $\mathcal{D}$?''. But a formalization of $C$ as a random set would would be necessary to answer such questions.
+A confidence set should be regarded as family of rejection sets, not as a random set. For it to be a random set we would have to find a $\sigma$-algebra $\mathcal{G}$ over a suitable space of sets $\mathcal{X}$ such that $C:\Omega\to\mathcal{X}$ is measurable, i.e., $C^{-1}(G)\in\mathcal{F}$ for every $G\in\mathcal{G}$. Luckily, this is unneccessary, as we are never interested in questions such a ``What is the probability under $P$ that $C$ is an element of $\mathcal{D}$?''. But a formalization of $C$ as a random set would would be necessary to answer such questions.
 
 Confidence sets are not only hard to define, they are hard to understand. You cannot figure out a handy reformulation of confidence sets, as that does not exist \parencite{Morey2016-ry}. Moreover, confidence sets can be empty; even optimal confidence sets can be empty \parencite[Section 3.1]{Blaker2000-ud}. Well justified confidence set for a real parameter can contain the entire real line \parencite[Section 3.2--3.3]{Blaker2000-ud}. Most confidence sets are asymptotic, but with no guaranteed coverage since uniform convergence almost never is proved, or even true \parencite{Gleser1996-kk}.
 
