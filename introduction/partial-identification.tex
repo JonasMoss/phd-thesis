@@ -73,8 +73,6 @@ If we make the assumption that $m\leq\Var Z\leq\Var X$, we obtain
 the identification region $H=\beta^{\star}[1,\Var X/m)$. 
 \end{example}
 
-Now we will consider, in more detail, two problems of partial identification of distributions.
-
 \subsubsection{When you know some correlations}
 Let $X,Y,Z$ be random variable with unit variance. Assume you know
 $\rho_{12}=\Cov(X,Y)$, $\rho_{23}=\Cov(Y,Z)$. What can you say about
@@ -175,68 +173,70 @@ the identification set $(0.4585,0.9815)$ for $\rho_{13}$.
 \end{example}
 
 
-\subsubsection{How many people know basic scientific facts?}
-\begin{quote}
-\textbf{\emph{Question 3}}: Does the Earth go around the Sun, or does
-the Sun go around the Earth?
+% \subsubsection{How many people know basic scientific facts?}
+% \begin{quote}
+% \textbf{\emph{Question 3}}: Does the Earth go around the Sun, or does
+% the Sun go around the Earth?
 
-\medskip
+% \medskip
 
-$\bigcirc$ Earth goes around the Sun.
+% $\bigcirc$ Earth goes around the Sun.
 
-$\bigcirc$ Sun goes around the Earth.
-\end{quote}
-The National Science Board \citeyear[Table 7-8]{National_Science_Board2014-yl}
-reports that a shockingly high percentage of people answer this question incorrectly. Only $74$\% of American adults answered correctly, while an even worse $66$\% of adults in the European Union answered correctly. South Koreans did slightly better, at $86$\%. But the true percentage of Americans who know the Earth goes around the Sun is probably even lower than $74$\%. For a monkey would select either option with equal probability, and some humans probably do this too. The base-line of no knowledge is $50$\% correct answers, and we haven't corrected for this. So what's the real percentage of people of who knows that the Earth goes around the Sun? 
+% $\bigcirc$ Sun goes around the Earth.
+% \end{quote}
+% The National Science Board \citeyear[Table 7-8]{National_Science_Board2014-yl}
+% reports that a shockingly high percentage of people answer this question incorrectly. Only $74$\% of American adults answered correctly, while an even worse $66$\% of adults in the European Union answered correctly. South Koreans did slightly better, at $86$\%. But the true percentage of Americans who know the Earth goes around the Sun is probably even lower than $74$\%. For a monkey would select either option with equal probability, and some humans probably do this too. The base-line of no knowledge is $50$\% correct answers, and we haven't corrected for this. So what's the real percentage of people of who knows that the Earth goes around the Sun? 
 
-A popular way to model people's state of knowledge is to use probability distributions. Imagine everyone has a probability distribution over the answers to Question 3. Denote this distribution $c$ and the proposition that the Earth goes around the Sun by $A$. Then the knowledge of a person is captured by $c(A)$, which encodes the probability of answering $A$. In philosophy, this is called a \emph{credence function} \parencite{Pettigrew2019-rk}.
+% A popular way to model people's state of knowledge is to use probability distributions. Imagine everyone has a probability distribution over the answers to Question 3. Denote this distribution $c$ and the proposition that the Earth goes around the Sun by $A$. Then the knowledge of a person is captured by $c(A)$, which encodes the probability of answering $A$. In philosophy, this is called a \emph{credence function} \parencite{Pettigrew2019-rk}.
 
-We want to know the percentage of people that knows the answer to $A$. Even if we knew everyone's credence function $c$, the answer to this question is not completely straightforward. Knowing or not knowing must involve a cutoff. For instance, you could claim that you know $A$ when you are at least $95\%$ certain of $A$ and $A$ is true. This cutoff is arbitrary, and could equally well have been $75\%$, $99\%$, or anything else. A natural restriction is to demand a certainty of more than $50\%$, but otherwise any percentage appears defensible. To take this arbitrariness of the cutoffs into account, let us say that a person $\alpha$-knows $A$ if $c(A)>\alpha$ and $A$ is true. Now we can restate the goal: we want to find the percentage of the population that $\alpha$-knows that the Earth orbits the sun.
+% We want to know the percentage of people that knows the answer to $A$. Even if we knew everyone's credence function $c$, the answer to this question is not completely straightforward. Knowing or not knowing must involve a cutoff. For instance, you could claim that you know $A$ when you are at least $95\%$ certain of $A$ and $A$ is true. This cutoff is arbitrary, and could equally well have been $75\%$, $99\%$, or anything else. A natural restriction is to demand a certainty of more than $50\%$, but otherwise any percentage appears defensible. To take this arbitrariness of the cutoffs into account, let us say that a person $\alpha$-knows $A$ if $c(A)>\alpha$ and $A$ is true. Now we can restate the goal: we want to find the percentage of the population that $\alpha$-knows that the Earth orbits the sun.
 
-To model all of this, let $c$ be a credence function sampled according to $Q$ and $X\mid c$ sampled according to $c$,
-\[
-c\sim Q,\quad X\mid c\sim c.
-\]
-The next step is to decide on the possible space of distributions $Q$. \textcite[Chapter 2, endnote 28]{Caplan2018-oj} assumes that every person either knows $A$ with certainty or guesses with $50/50$ odds.
-In this case, $Q$ can be parameterized by $\gamma$, the proportion who knows for certain. Then $1-\gamma=2(1-P(A))$, hence $\gamma=1-2(1-P(A))=2P(A)-1$. When $P(A)=0.74$ we get $\gamma=0.48$, hence just below $50\%$ of the population $\alpha$-knows the Earth goes around the Sun when $\alpha\geq0.5$. But this assumption does not look quite right, for why would there be no one who are, say, $90\%$ certain that the Sun goes around the Earth?
+% To model all of this, let $c$ be a credence function sampled according to $Q$ and $X\mid c$ sampled according to $c$,
+% \[
+% c\sim Q,\quad X\mid c\sim c.
+% \]
+% The next step is to decide on the possible space of distributions $Q$. \textcite[Chapter 2, endnote 28]{Caplan2018-oj} assumes that every person either knows $A$ with certainty or guesses with $50/50$ odds.
+% In this case, $Q$ can be parameterized by $\gamma$, the proportion who knows for certain. Then $1-\gamma=2(1-P(A))$, hence $\gamma=1-2(1-P(A))=2P(A)-1$. When $P(A)=0.74$ we get $\gamma=0.48$, hence just below $50\%$ of the population $\alpha$-knows the Earth goes around the Sun when $\alpha\geq0.5$. 
 
-In the spirit of \textcite{Manski2003-aq}, we will make no assumption about $Q$. Let $H_\alpha(\beta)$ be the identification region for $\alpha$-knowledge of Question 3 when $P(A) = \beta$. Then we get the following proposition.
-\begin{proposition}
-\label{prop:guessing regions}Let $P(A)=\beta\in(0,1)$. Then 
-\[
-H_{\alpha}(\beta)=\begin{cases}
-[(\beta-\alpha)/(1-\alpha),1], & \textrm{when }\beta>\alpha,\\
-(0,1), & \textrm{when }\beta=\alpha,\\{}
-[0,\beta/\alpha], & \textrm{when }\beta<\alpha.
-\end{cases}
-\]
-\end{proposition}
+% But the assumption that every person either knows $A$ with certainty or guesses with $50/50$ odds does not look quite right. For why would there be no one who are, say, $90\%$ certain that the Sun goes around the Earth?
 
-\begin{proof}
-Assume $\beta>\alpha$. Let $B$ be the event that $c(A)\leq\alpha$
-and $C$ the event that $c(A)>\alpha$. Denote $P(A\mid B)=\alpha-\epsilon$,
-where $\epsilon\in[0,\alpha]$, assume $P(A\mid C)=\beta+\delta$,
-$\delta\in[0,1-\beta]$, and denote $P(C)=q$. By the law of total
-probability,
-\[
-P(A)=P(C)(\beta+\delta)+P(B)(\alpha-\epsilon).
-\]
-Since $\beta=P(A)$, $P(C)=q$, and $P(B)=1-q$, we get $\beta=q(\beta+\delta)+(1-q)(\alpha-\epsilon).$
-Rearrange to get $q=(\beta-\alpha+\epsilon)/(\beta-\alpha+\epsilon+\delta)$.
-This is maximized when $\delta=0$, when $q=1$. It is minimized when
-$\epsilon=0$ and $\delta=1-\beta$, when $q=(\beta-\alpha)/(1-\alpha).$
+% In the spirit of \textcite{Manski2003-aq}, we will make no assumption about $Q$. Let $H_\alpha(\beta)$ be the identification region for $\alpha$-knowledge of Question 3 when $P(A) = \beta$. Then we get the following proposition.
+% \begin{proposition}
+% \label{prop:guessing regions}Let $P(A)=\beta\in(0,1)$. Then 
+% \[
+% H_{\alpha}(\beta)=\begin{cases}
+% [(\beta-\alpha)/(1-\alpha),1], & \textrm{when }\beta>\alpha,\\
+% (0,1), & \textrm{when }\beta=\alpha,\\{}
+% [0,\beta/\alpha], & \textrm{when }\beta<\alpha.
+% \end{cases}
+% \]
+% \end{proposition}
 
-That $H_\alpha(\beta)=(0,\beta/\alpha]$ when $\alpha\geq\beta$ can be verified by duality. For now $1-\alpha\leq 1-\beta$, and we can use the same analysis as above when regarding $A^c$ as the right answer. Hence the maximum is $1$ and the minimum is $(1-\beta-(1-\alpha))/(1-(1-\alpha)=(\alpha-\beta)/\alpha$. Turn back to the case when $A$ is the right by forming $1-(0,(\alpha-\beta)/\alpha)=(0,\beta/\alpha].$
-\end{proof}
-\begin{figure}
-\noindent \begin{centering}
-\includegraphics[scale=0.5]{figures/knowing}
-\par\end{centering}
-\caption{\label{fig:Identification-regions-guessing}Identification regions
-when $P(A)=0.74$.}
-\end{figure}
+% \begin{proof}
+% Assume $\beta>\alpha$. Let $B$ be the event that $c(A)\leq\alpha$
+% and $C$ the event that $c(A)>\alpha$. Denote $P(A\mid B)=\alpha-\epsilon$,
+% where $\epsilon\in[0,\alpha]$, assume $P(A\mid C)=\beta+\delta$,
+% $\delta\in[0,1-\beta]$, and denote $P(C)=q$. By the law of total
+% probability,
+% \[
+% P(A)=P(C)(\beta+\delta)+P(B)(\alpha-\epsilon).
+% \]
+% Since $\beta=P(A)$, $P(C)=q$, and $P(B)=1-q$, we get $\beta=q(\beta+\delta)+(1-q)(\alpha-\epsilon).$
+% Rearrange to get $q=(\beta-\alpha+\epsilon)/(\beta-\alpha+\epsilon+\delta)$.
+% This is maximized when $\delta=0$, when $q=1$. It is minimized when
+% $\epsilon=0$ and $\delta=1-\beta$, when $q=(\beta-\alpha)/(1-\alpha).$
 
-The identification regions of Proposition \ref{prop:guessing regions} are wide. Figure \ref{fig:Identification-regions-guessing} tells the story when $\beta = P(A)=0.74$. In particular, when $\alpha=0.95$, we get $H_\alpha(\beta)=[0,0.78]$, meaning anything between $0\%$ and $78\%$ of the population knows $A$ with minimum $95\%$ certainty. If we choose the low $\alpha=0.6$, we get $H_\alpha(\beta)=[0.35,1]$, so at least $35\%$ of the population knows $A$ with minimum $60\%$ percent certainty. In conclusion, we can't really say how many Americans know that the Earth orbits the Sun.
+% That $H_\alpha(\beta)=(0,\beta/\alpha]$ when $\alpha\geq\beta$ can be verified by duality. For now $1-\alpha\leq 1-\beta$, and we can use the same analysis as above when regarding $A^c$ as the right answer. Hence the maximum is $1$ and the minimum is $(1-\beta-(1-\alpha))/(1-(1-\alpha)=(\alpha-\beta)/\alpha$. Turn back to the case when $A$ is the right by forming $1-(0,(\alpha-\beta)/\alpha)=(0,\beta/\alpha].$
+% \end{proof}
+% \begin{figure}
+% \noindent \begin{centering}
+% \includegraphics[scale=0.5]{figures/knowing}
+% \par\end{centering}
+% \caption{\label{fig:Identification-regions-guessing}Identification regions
+% when $P(A)=0.74$.}
+% \end{figure}
+
+% The identification regions of Proposition \ref{prop:guessing regions} are wide. Figure \ref{fig:Identification-regions-guessing} tells the story when $\beta = P(A)=0.74$. In particular, when $\alpha=0.95$, we get $H_\alpha(\beta)=[0,0.78]$, meaning anything between $0\%$ and $78\%$ of the population knows $A$ with minimum $95\%$ certainty. If we choose the low $\alpha=0.6$, we get $H_\alpha(\beta)=[0.35,1]$, so at least $35\%$ of the population knows $A$ with minimum $60\%$ percent certainty. In conclusion, we can't really say how many Americans know that the Earth orbits the Sun.
 
 \subsection{Identification of structural parameters}
 
