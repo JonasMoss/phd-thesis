@@ -41,11 +41,7 @@ deploy:
 
 # the list of files to upload
   file: 
-    - "HowtoDeployLatexDocs-DE.pdf"
-    - "HowtoDeployLatexDocs-EN.pdf"
-    - "README.pdf"
-    - "HowtoDeployLatexDocs-DE.djvu"
-    - "HowtoDeployLatexDocs-EN.djvu"
+    - "main.pdf"
   skip_cleanup: true
   on:
     repo: SimonWaldherr/HowTo-Deploy-LaTeX-Documents
