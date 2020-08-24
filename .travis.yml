@@ -44,4 +44,4 @@ deploy:
     - "main.pdf"
   skip_cleanup: true
   on:
-    repo: SimonWaldherr/HowTo-Deploy-LaTeX-Documents
+    repo: JonasMoss/phd-thesis
