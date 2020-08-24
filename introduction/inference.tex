@@ -73,7 +73,7 @@ One reason why \textit{p}-values are not measures is evidence is the lack of exp
 \begin{quotation}
 Suppose I said, \textquotedblleft Albinos are very rare in human populations, only one in fifty thousand. Therefore, if you have taken a random sample of 100 from a population and found in it an albino, the population is not human.\textquotedblright{} This is a similar argument but if it were given, I believe the rational retort would be, \textquotedblleft If the population is not human, what is it?\textquotedblright{} 
 \end{quotation}
-A major difference between the Neyman--Pearson theory of statistical tests and \textit{p}-values is the theoretical justification. Classical Neyman--Pearson-type inferential statistics, with Lehmann's ``Testing statistical hypotheses'' \parencite{Lehmann2005-sp} as its bible, is concerned with finding optimal tests. Usually, uniformly most powerful tests or uniformly most powerful unbiased tests do not exist, but it is sometimes possible to find other kinds of optimal tests. Optimality theory justifies selecting one test instead of another, and maybe more importantly, forces you to think clearly about what exactly your assumptions are and what exactly you want to test. \textit{p}-values, almost never framed in this way, are arbitrary in comparsion.
+A major difference between the Neyman--Pearson theory of statistical tests and \textit{p}-values is the theoretical justification. Classical Neyman--Pearson-type inferential statistics, with Lehmann's ``Testing statistical hypotheses'' \parencite{Lehmann2005-sp} as its bible, is concerned with finding optimal tests. Usually, uniformly most powerful tests or uniformly most powerful unbiased tests do not exist, but it is sometimes possible to find other kinds of optimal tests. Optimality theory justifies selecting one test instead of another, and maybe more importantly, forces you to think clearly about what exactly your assumptions are and what exactly you want to test. \textit{p}-values, almost never framed in this way, are arbitrary in comparison.
 
 The opaqueness of \textit{p}-values arguably has detrimental consequences for the scientific literature. Since most researchers do not know the definition of \textit{p}-values, much less understand them, they fall back on utterly incorrect ideas about what a \textit{p}-value is or what it entails. Classical examples include \parencite{Gigerenzer2018-oi}:
 \begin{enumerate}[label=(\alph*)]
@@ -88,7 +88,7 @@ Most research follows what \textcite{Gigerenzer2004-oc} calls the \text{null rit
 \subsection{Confidence sets}
 Confidence sets are even harder handle than \textit{p}-values. While
 \textit{p}-values are defined in terms of nested families of rejection
-sets, confidence sets need parameterized families of rejection sets. 
+sets, confidence sets need parametrized families of rejection sets. 
 \begin{definition}
 \label{def:confidence sets}Let $\Pi=\{\mathcal{P}(\theta)\}_{\theta\in\Theta}$
 be a partition of probabilities on a common probability space $(\Omega,\mathcal{F})$.
@@ -105,7 +105,7 @@ Usually we define a set $C(\omega)$ by $\theta\in C(\omega)\iff\omega\notin R_{\
 for every $P$ in the equivalence class $\mathcal{P}(\theta)$, while
 the supremum over $\Theta$ guarantees that this is the case for each equivalence class.
 
-A confidence set should be regarded as family of rejection sets, not as a random set. For it to be a random set we would have to find a $\sigma$-algebra $\mathcal{G}$ over a suitable space of sets $\mathcal{X}$ such that $C:\Omega\to\mathcal{X}$ is measurable, i.e., $C^{-1}(G)\in\mathcal{F}$ for every $G\in\mathcal{G}$. Luckily, this is unneccessary, as we are never interested in questions such a ``What is the probability under $P$ that $C$ is an element of $\mathcal{D}$?''. But a formalization of $C$ as a random set would would be necessary to answer such questions.
+A confidence set should be regarded as family of rejection sets, not as a random set. For it to be a random set we would have to find a $\sigma$-algebra $\mathcal{G}$ over a suitable space of sets $\mathcal{X}$ such that $C:\Omega\to\mathcal{X}$ is measurable, i.e., $C^{-1}(G)\in\mathcal{F}$ for every $G\in\mathcal{G}$. Luckily, this is unnecessary, as we are never interested in questions such a ``What is the probability under $P$ that $C$ is an element of $\mathcal{D}$?''. But a formalization of $C$ as a random set would would be necessary to answer such questions.
 
 Confidence sets are not only hard to define, they are hard to understand. You cannot figure out a handy reformulation of confidence sets, as that does not exist \parencite{Morey2016-ry}. Moreover, confidence sets can be empty; even optimal confidence sets can be empty \parencite[Section 3.1]{Blaker2000-ud}. Well justified confidence set for a real parameter can contain the entire real line \parencite[Section 3.2--3.3]{Blaker2000-ud}. Most confidence sets are asymptotic, but with no guaranteed coverage since uniform convergence almost never is proved, or even true \parencite{Gleser1996-kk}.
 
@@ -181,7 +181,7 @@ An analogue of the Shah--Peters result does not hold for unconditional independe
 \begin{figure}
     \centering
     \includegraphics[scale=0.16]{figures/donoho.png}
-    \caption{Thick line: A density with three modes. Thin line: The same density pertubed to have three modes. Taken from the paper of \textcite{Donoho1988-hg}.}
+    \caption{Thick line: A density with three modes. Thin line: The same density perturbed to have three modes. Taken from the paper of \textcite{Donoho1988-hg}.}
     \label{fig:donoho}
 \end{figure}
 
