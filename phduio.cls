@@ -465,6 +465,7 @@
     \paperswthumb
     \saythanks
 }
+
 %% Rename 'Chapter' to 'swpaper'
 \newcommand*{\swpaper}
 {
@@ -472,7 +473,7 @@
     \setcounter{section}{0}
     \ifdef{\theHchapter}
     {
-        \renewcommand{\theHchapter}{papter.\arabic{chapter}}
+        \renewcommand{\theHchapter}{swpapter.\arabic{chapter}}
     }
     {}
     \def \@chapapp{Software paper}
@@ -489,6 +490,7 @@
     }
     {}
 }
+
 \newcounter{swpaper}
 
 %% Print 'swpapers'
