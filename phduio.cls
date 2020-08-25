@@ -367,7 +367,7 @@
 \newcommand{\paperpage}
 {
     \part*{Papers}
-    \addcontentsline{toc}{chapter}{Papers}
+    \addcontentsline{toc}{part}{Papers}
     \cleartorecto
 }
 
@@ -447,6 +447,15 @@
 }
 \newcounter{appendix}
 
+%% Print 'swpapers'
+\newcommand{\theappendixpage}
+{
+	\part*{Appendices}
+	\addcontentsline{toc}{part}{Appendices}
+	\cleartorecto
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Software papers %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Title for papers
 \newcommand{\swmaketitle}
@@ -486,7 +495,7 @@
 \newcommand{\swpaperpage}
 {
     \part*{Software papers}
-    \addcontentsline{toc}{chapter}{Software papers}
+    \addcontentsline{toc}{part}{Software papers}
     \cleartorecto
 }
 

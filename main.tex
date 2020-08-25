@@ -73,11 +73,13 @@
     \tableofcontents    % Or \tableofcontents*
     \cleartorecto
     \listoffigures      % Or \listoffigures*
-    \cleartorecto
-    \listoftables       % Or \listoftables*
+    %\cleartorecto
+    %\listoftables       % Or \listoftables*
 
     \mainmatter         % Folios in Arabic numerals, numbered chapters.
     
+    \part*{Introduction}
+    \addcontentsline{toc}{part}{Introduction}
     \chapter{Setting the scene}
     \input{introduction/introduction}
     \input{introduction/inference}
@@ -98,18 +100,19 @@
     \input{papers/paperII}\clearpage
     \input{papers/paperIII}\clearpage
     \input{papers/paperIV}\clearpage
-    
+
     \swpaper              
     \swpaperpage          
     \numberofswpapers{2} 
-    
     \input{swpapers/swpaperI}\clearpage
     \input{swpapers/swpaperII}\clearpage
     
+        
     \appendix           % "Chapter" is renamed "Appendix"
-    \appendixpage       % Similar to \part*{Appendices}, but appears in TOC
-
+    \theappendixpage       % Similar to \part*{Appendices}, but appears in TOC
     \include{appendices/appendixA}
     \include{appendices/appendixB}
+    
+
 
 \end{document}
